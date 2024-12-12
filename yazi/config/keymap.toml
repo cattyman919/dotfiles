@@ -1,0 +1,68 @@
+# ----- Parent Arrow Keymaps -----
+[[manager.prepend_keymap]]
+on  = "K"
+run = "plugin --sync parent-arrow --args=-1"
+
+[[manager.prepend_keymap]]
+on  = "J"
+run = "plugin --sync parent-arrow --args=1"
+
+# ----- Custom Keymaps -----
+[[manager.prepend_keymap]]
+on   = "!"
+run  = 'shell "cmd.exe" --block --confirm'
+desc = "Open CMD here"
+
+# ----- Ouch Keymaps -----
+[[manager.prepend_keymap]]
+on = ["C"]
+run = "plugin ouch --args=zip"
+desc = "Compress with ouch"
+
+# ----- Max Preview Keymaps -----
+[[manager.prepend_keymap]]
+on   = "T"
+run  = "plugin --sync max-preview"
+# run  = "plugin max-preview"
+desc = "Maximize or restore preview"
+
+# ----- Project Keymaps -----
+[[manager.prepend_keymap]]
+on = [ "P", "s" ]
+run = "plugin projects --args=save"
+desc = "Save current project"
+
+[[manager.prepend_keymap]]
+on = [ "P", "l" ]
+run = "plugin projects --args=load"
+desc = "Load project"
+
+[[manager.prepend_keymap]]
+on = [ "P", "P" ]
+run = "plugin projects --args=load_last"
+desc = "Load last project"
+
+[[manager.prepend_keymap]]
+on = [ "P", "d" ]
+run = "plugin projects --args=delete"
+desc = "Delete project"
+
+[[manager.prepend_keymap]]
+on = [ "P", "D" ]
+run = "plugin projects --args=delete_all"
+desc = "Delete all projects"
+
+[[manager.prepend_keymap]]
+on = [ "P", "m" ]
+run = "plugin projects --args='merge current'"
+desc = "Merge current tab to other projects"
+
+[[manager.prepend_keymap]]
+on = [ "P", "M" ]
+run = "plugin projects --args='merge all'"
+desc = "Merge current project to other projects"
+
+[[manager.prepend_keymap]]
+on = [ "q" ]
+run = "plugin projects --args=quit"
+desc = "Save last project and exit the process"

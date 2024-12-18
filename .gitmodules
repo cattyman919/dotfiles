@@ -1,7 +1,3 @@
-[submodule "yazi/config/flavors/onedark.yazi"]
-    path = yazi/config/flavors/onedark.yazi
-    url = https://github.com/BennyOe/onedark.yazi.git
-
 [submodule "yazi/config/plugins/ouch.yazi"]
-    path = yazi/config/plugins/ouch.yazi
-    url = https://github.com/ndtoan96/ouch.yazi.git
+	path = yazi/config/plugins/ouch.yazi
+	url = https://github.com/ndtoan96/ouch.yazi

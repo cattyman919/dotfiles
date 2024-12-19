@@ -3,12 +3,21 @@ theme = "ayu_dark"
 [editor]
 bufferline="multiple"
 line-number = "relative"
+color-modes = true
 true-color = true
+popup-border = "all"
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.file-picker]
+max-depth = 5
+
+[editor.auto-save]
+after-delay.enable = true
+after-delay.timeout = 1000
 
 [editor.indent-guides]
 character = "╎"
@@ -31,10 +40,6 @@ display-messages = true
 "A-/" = "repeat_last_motion"
 A-x = "extend_to_line_bounds"
 X = "select_line_above"
-#C-f = [":new", ":insert-output lf-pick", ":theme default", "select_all", "split_selection_on_newline", "goto_file", "goto_last_modified_file", ":buffer-close!", ":theme tokyonight_storm"]
-#C-f = [":new", ":insert-output lf-pick", ":theme default", "select_all", "split_selection_on_newline", "goto_file", ":buffer-close!", ":theme tokyonight_storm"]
-#C-f = [":new", ":insert-output lf-pick", ":theme default", "select_all", "split_selection_on_newline"]
-# C-f = [":new",":insert:output yazi",":theme default", "select-all", "split_selection_on_newline", "goto_file", "goto_last_modified_file", ":buffer-close!", ":theme ayu_dark" ]
 
 [keys.select]
 A-x = "extend_to_line_bounds"

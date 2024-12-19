@@ -13,11 +13,11 @@ normal = "block"
 select = "underline"
 
 [editor.file-picker]
+hidden = false
 max-depth = 5
 
 [editor.auto-save]
-after-delay.enable = true
-after-delay.timeout = 1000
+focus-lost = true
 
 [editor.indent-guides]
 character = "╎"

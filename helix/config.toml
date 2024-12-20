@@ -1,6 +1,7 @@
 theme = "ayu_dark"
 
 [editor]
+completion-timeout = 5
 bufferline="multiple"
 line-number = "relative"
 color-modes = true
@@ -14,6 +15,7 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+git-ignore = false
 max-depth = 5
 
 [editor.auto-save]

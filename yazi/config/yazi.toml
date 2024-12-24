@@ -1,7 +1,6 @@
 [opener]
 edit = [
-  	{ run = 'hx "$@"', block = true,  desc = "helix (block)",   for = "windows" },
-#{run = 'nu %APPDATA%/yazi/config/open_file.nu "$1"', desc = "Open File in a new pane"},
+  	{ run = 'nvim "$@"', block = true,  desc = "nvim (block)",   for = "windows" },
 ]
 
 extract = [

@@ -10,11 +10,12 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
-      vim.diagnostic.config({
-				virtual_text = false,
-			})
-			vim.o.updatetime = 250
-			vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
+      vim.o.updatetime = 250
+      vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+      vim.cmd [[autocmd CursorMovedI * lua vim.diagnostic.hide()]]
     end,
   },
 
@@ -26,13 +27,16 @@ return {
     end,
   },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "configs.treesitter"
+    end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
 }

@@ -2,7 +2,8 @@ pcall(function()
   dofile(vim.g.base46_cache .. "syntax")
   dofile(vim.g.base46_cache .. "treesitter")
 end)
-
+require("nvim-treesitter.install").prefer_git = false
+require 'nvim-treesitter.install'.compilers = { "zig","clang", "gcc" }
 return {
   ensure_installed = {
     "lua",

@@ -1,5 +1,9 @@
 return {
 	{
+		"equalsraf/neovim-gui-shim",
+		lazy = false,
+	},
+	{
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 	},

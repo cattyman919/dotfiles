@@ -1,5 +1,9 @@
 return {
 	{
+		"github/copilot.vim",
+		lazy = false,
+	},
+	{
 		"equalsraf/neovim-gui-shim",
 		lazy = false,
 	},

@@ -1,31 +1,37 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set number")
-vim.cmd("set relativenumber")
-vim.cmd("set clipboard=unnamed")
-
--- Remappings
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
--- Escape from insert mode using jj or jk
-vim.cmd("inoremap jj <Esc>")
-vim.cmd("inoremap jk <Esc>")
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
--- Move between windows
-vim.cmd("nmap <up> <C-w><up>")
-vim.cmd("nmap <down> <C-w><down>")
-vim.cmd("nmap <left> <C-w><left>")
-vim.cmd("nmap <right> <C-w><right>")
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
+end
 
--- Write only if something is changed
-vim.cmd("noremap <leader>w :up<cr>")
+vim.opt.rtp:prepend(lazypath)
 
--- Terminal Mapping
--- vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+local lazy_config = require "configs.lazy"
 
--- Ignore Shada Files
--- vim.opt.shadafile = "NONE"
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
 
-require("config.lazy")
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "nvchad.autocmds"
+
+vim.schedule(function()
+  require "mappings"
+end)

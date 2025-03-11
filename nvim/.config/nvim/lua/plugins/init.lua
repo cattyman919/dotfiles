@@ -34,6 +34,40 @@ return {
 		},
 	},
 	{
+		"olimorris/codecompanion.nvim",
+		config = true,
+		lazy = false,
+		opts = {
+			strategies = {
+				chat = {
+					adapter = "copilot",
+				},
+				inline = {
+					adapter = "copilot",
+				},
+				agent = {
+					adapter = "copilot",
+				},
+			},
+			adapters = {
+				copilot = function()
+					return require("codecompanion.adapters").extend("copilot", {
+						schema = {
+							model = {
+								endpoint = "https://api.githubcopilot.com",
+								default = "claude-3.5-sonnet",
+							},
+						},
+					})
+				end,
+			},
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
 		"yetone/avante.nvim",
 		lazy = false,
 		event = "VeryLazy",
@@ -224,7 +258,7 @@ return {
 						require("copilot_cmp").setup()
 					end,
 				},
-        "micangl/cmp-vimtex",
+				"micangl/cmp-vimtex",
 			},
 		},
 		opts = function()

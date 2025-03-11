@@ -23,15 +23,12 @@ return {
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
 			{
 				"rcarriga/nvim-notify",
 				opts = {
 					render = "minimal",
-          timeout = 1500,
-          top_down = false,
+					timeout = 1500,
+					top_down = false,
 				},
 			},
 		},
@@ -63,7 +60,22 @@ return {
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			{
+				"zbirenbaum/copilot.lua",
+				cmd = "Copilot",
+				event = "InsertEnter",
+				opts = {
+					panel = {
+						enabled = false,
+					},
+					suggestion = {
+						enabled = false,
+					},
+				},
+				config = function(_, opts)
+					require("copilot").setup(opts)
+				end,
+			},
 			{
 				-- support for image pasting
 				"HakonHarnes/img-clip.nvim",
@@ -120,10 +132,6 @@ return {
 				desc = "Quickfix List (Trouble)",
 			},
 		},
-	},
-	{
-		"github/copilot.vim",
-		lazy = false,
 	},
 	{
 		"equalsraf/neovim-gui-shim",
@@ -210,6 +218,12 @@ return {
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
+				{
+					"zbirenbaum/copilot-cmp",
+					config = function()
+						require("copilot_cmp").setup()
+					end,
+				},
 			},
 		},
 		opts = function()

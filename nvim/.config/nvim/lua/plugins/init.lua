@@ -224,6 +224,7 @@ return {
 						require("copilot_cmp").setup()
 					end,
 				},
+        "micangl/cmp-vimtex",
 			},
 		},
 		opts = function()

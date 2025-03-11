@@ -46,6 +46,7 @@ local options = {
 	},
 
 	sources = {
+    {name = "vimtex"},
 		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },

@@ -1,4 +1,3 @@
 # dotfiles
 
-
-skibidI asdjkajdka
+my personal dotfiles

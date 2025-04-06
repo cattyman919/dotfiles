@@ -47,6 +47,19 @@ return {
 		},
 	},
 	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+  -- stylua: ignore
+  keys = {
+    { "zk",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+    { "Zk",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+    { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+    { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+  },
+	},
+	{
 		"olimorris/codecompanion.nvim",
 		config = true,
 		lazy = false,
@@ -80,68 +93,6 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 	},
-	-- {
-	--   "yetone/avante.nvim",
-	--   lazy = false,
-	--   event = "VeryLazy",
-	--   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-	--   opts = {
-	--     provider = "copilot",
-	--     auto_suggestions_provider = "copilot",
-	--     copilot = {
-	--       endpoint = "https://api.githubcopilot.com",
-	--       model = "claude-3.5-sonnet",
-	--     },
-	--   },
-	--   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-	--   build = "make",
-	--   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-	--   dependencies = {
-	--     "nvim-treesitter/nvim-treesitter",
-	--     "stevearc/dressing.nvim",
-	--     "nvim-lua/plenary.nvim",
-	--     "MunifTanjim/nui.nvim",
-	--     --- The below dependencies are optional,
-	--     "echasnovski/mini.pick",      -- for file_selector provider mini.pick
-	--     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-	--     "hrsh7th/nvim-cmp",           -- autocompletion for avante commands and mentions
-	--     "ibhagwan/fzf-lua",           -- for file_selector provider fzf
-	--     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-	--     {
-	--       "zbirenbaum/copilot.lua",
-	--       cmd = "Copilot",
-	--       event = "InsertEnter",
-	--       opts = {
-	--         panel = {
-	--           enabled = false,
-	--         },
-	--         suggestion = {
-	--           enabled = false,
-	--         },
-	--       },
-	--       config = function(_, opts)
-	--         require("copilot").setup(opts)
-	--       end,
-	--     },
-	--     {
-	--       -- support for image pasting
-	--       "HakonHarnes/img-clip.nvim",
-	--       event = "VeryLazy",
-	--       opts = {
-	--         -- recommended settings
-	--         default = {
-	--           embed_image_as_base64 = false,
-	--           prompt_for_file_name = false,
-	--           drag_and_drop = {
-	--             insert_mode = true,
-	--           },
-	--           -- required for Windows users
-	--           use_absolute_path = true,
-	--         },
-	--       },
-	--     },
-	--   },
-	-- },
 	{
 		"folke/trouble.nvim",
 		lazy = false,
@@ -239,6 +190,49 @@ return {
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
+	},
+	{
+		{
+			"abecodes/tabout.nvim",
+			lazy = false,
+			config = function()
+				require("tabout").setup({
+					tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+					backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+					act_as_tab = true, -- shift content if tab out is not possible
+					act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+					default_tab = "<C-t>", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+					default_shift_tab = "<C-d>", -- reverse shift default action,
+					enable_backwards = true, -- well ...
+					completion = false, -- if the tabkey is used in a completion pum
+					tabouts = {
+						{ open = "'", close = "'" },
+						{ open = '"', close = '"' },
+						{ open = "`", close = "`" },
+						{ open = "(", close = ")" },
+						{ open = "[", close = "]" },
+						{ open = "{", close = "}" },
+					},
+					ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+					exclude = {}, -- tabout will ignore these filetypes
+				})
+			end,
+			dependencies = { -- These are optional
+				"nvim-treesitter/nvim-treesitter",
+				"L3MON4D3/LuaSnip",
+				"hrsh7th/nvim-cmp",
+			},
+			opt = true, -- Set this to true if the plugin is optional
+			event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
+			priority = 1000,
+		},
+		{
+			"L3MON4D3/LuaSnip",
+			keys = function()
+				-- Disable default tab keybinding in LuaSnip
+				return {}
+			end,
+		},
 	},
 	{
 		"hrsh7th/nvim-cmp",

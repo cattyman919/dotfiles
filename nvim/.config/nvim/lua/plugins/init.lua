@@ -94,6 +94,41 @@ return {
 		},
 	},
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "User FilePost",
+		opts = {
+			indent = { highlight = highlight },
+		},
+		config = function(_, opts)
+			local highlight = {
+				"RainbowRed",
+				"RainbowYellow",
+				"RainbowBlue",
+				"RainbowOrange",
+				"RainbowGreen",
+				"RainbowViolet",
+				"RainbowCyan",
+			}
+
+			local hooks = require("ibl.hooks")
+			-- hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+				vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+				vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+				vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+				vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+				vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+			end)
+
+			vim.g.rainbow_delimiters = { highlight = highlight }
+			require("ibl").setup({ scope = { highlight = highlight } })
+
+			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+		end,
+	},
+	{
 		"folke/trouble.nvim",
 		lazy = false,
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -178,7 +213,20 @@ return {
 			return require("configs.nvimtree")
 		end,
 	},
-
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy",
+    opts = {
+      enable = true,
+      max_lines = 3,
+      -- other options
+    },
+    config = function(_, opts)
+      require("treesitter-context").setup(opts)
+      -- Add any keymaps or additional setup here
+      -- vim.keymap.set('n', '<leader>tc', ':TreesitterContextToggle<CR>', { desc = 'Toggle Treesitter Context' })
+    end,
+  },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },
@@ -194,6 +242,7 @@ return {
 	{
 		{
 			"abecodes/tabout.nvim",
+			enabled = false,
 			lazy = false,
 			config = function()
 				require("tabout").setup({

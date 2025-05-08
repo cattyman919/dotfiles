@@ -1,3 +1,3 @@
 # dotfiles
 
-my personal dotfiles
+personal dotfiles, added using GNU-Stow

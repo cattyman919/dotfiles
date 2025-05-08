@@ -1,5 +1,11 @@
 return {
 	{
+		"MaximilianLloyd/ascii.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+	},
+	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -213,20 +219,20 @@ return {
 			return require("configs.nvimtree")
 		end,
 	},
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
-    opts = {
-      enable = true,
-      max_lines = 3,
-      -- other options
-    },
-    config = function(_, opts)
-      require("treesitter-context").setup(opts)
-      -- Add any keymaps or additional setup here
-      -- vim.keymap.set('n', '<leader>tc', ':TreesitterContextToggle<CR>', { desc = 'Toggle Treesitter Context' })
-    end,
-  },
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "VeryLazy",
+		opts = {
+			enable = true,
+			max_lines = 3,
+			-- other options
+		},
+		config = function(_, opts)
+			require("treesitter-context").setup(opts)
+			-- Add any keymaps or additional setup here
+			-- vim.keymap.set('n', '<leader>tc', ':TreesitterContextToggle<CR>', { desc = 'Toggle Treesitter Context' })
+		end,
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },

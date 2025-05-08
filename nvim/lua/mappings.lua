@@ -7,6 +7,12 @@ local builtin = require('telescope.builtin')
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>")
 
+-- Focus to center when scrolling
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-f>", "<C-f>zz")
+map("n", "<C-b>", "<C-b>zz")
+
 -- Telescope 
 map("n", "<leader>fs", builtin.lsp_document_symbols, {desc = "Telescope Symbol Picker"})
 map("n", "<leader>ds", builtin.diagnostics, {desc = "Telescope Diagnostics Picker"})

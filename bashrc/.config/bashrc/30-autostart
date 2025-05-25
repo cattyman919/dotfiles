@@ -3,16 +3,25 @@
 # -----------------------------------------------------
 
 # -----------------------------------------------------
+# Launch Hyprland when boot
+# -----------------------------------------------------
+
+# if [[ "$(tty)" == "/dev/tty1" ]]; then
+#   pgrep Hyprland || Hyprland
+# fi
+
+# -----------------------------------------------------
+# Launch dwm when boot
+# -----------------------------------------------------
+
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+   pgrep dwm || exec startx
+fi
+
+# -----------------------------------------------------
 # Fastfetch
 # -----------------------------------------------------
+
 if [[ $(tty) == *"pts"* ]]; then
     fastfetch
-else
-    echo
-    if [ -f /bin/qtile ]; then
-        echo "Start Qtile X11 with command Qtile"
-    fi
-    if [ -f /bin/hyprctl ]; then
-        echo "Start Hyprland with command Hyprland"
-    fi
 fi

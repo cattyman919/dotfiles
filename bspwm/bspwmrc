@@ -25,7 +25,7 @@ sxhkd &
 polybar-msg cmd quit
 polybar & 
 
-picom -b
+picom --config ~/.config/picom/picom.conf -b
 blueman-applet &
 dunst &
 feh --bg-fill /home/senohebat/Pictures/1.jpeg &

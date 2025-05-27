@@ -12,6 +12,6 @@ im currently using bspwm as of now
 
 ![DWM](assets/dwm.png)
 
-
 ## BSPWM
 
+![BSPWM](assets/bspwm.png)

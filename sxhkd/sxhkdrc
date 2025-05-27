@@ -15,11 +15,11 @@ super + b
   zen-browser
 
 # Screenshot Bindings
-super + s
-  maim -s -o | tesseract stdin stdout | xclip -selection clipboard
-
-super + shift + s
-  maim -s -o | xclip -selection clipboard -t image/png
+# super + s
+#   maim -s -o | tesseract stdin stdout | xclip -selection clipboard
+#
+# super + shift + s
+#   maim -s -o | xclip -selection clipboard -t image/png
 
 # Function Keys
 XF86MonBrightnessUp

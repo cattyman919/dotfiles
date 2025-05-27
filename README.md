@@ -10,7 +10,7 @@ im currently using bspwm as of now
 
 ## DWM 
 
-[DWM](assets/dwm.png)
+![DWM](assets/dwm.png)
 
 
 ## BSPWM

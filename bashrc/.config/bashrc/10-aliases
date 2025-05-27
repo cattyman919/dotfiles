@@ -19,6 +19,11 @@ alias ts='~/.config/ml4w/scripts/snapshot.sh'
 alias wifi='nmtui'
 alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
 alias cat="bat"
+alias y="yazi"
+alias m="memes"
+alias sh="shutdown"
+alias rb="reboot"
+alias sp="sudo pacman"
 
 # -----------------------------------------------------
 # ML4W Apps

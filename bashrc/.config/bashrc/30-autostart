@@ -25,3 +25,5 @@ fi
 if [[ $(tty) == *"pts"* ]]; then
     fastfetch
 fi
+
+eval $(keychain --eval --quiet ~/.ssh/id_ed25519)

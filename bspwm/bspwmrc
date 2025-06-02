@@ -19,6 +19,9 @@ bspc config focus_follows_pointer true
 # bspc rule -a Screenkey manage=off
 xsetroot -cursor_name left_ptr
 
+# eval $(ssh-agent -s)
+# ssh-add ~/.ssh/id_ed25519
+
 sxhkd &
 
 # Terminate already running bar instances

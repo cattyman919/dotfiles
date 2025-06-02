@@ -1,0 +1,160 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+lua/
+  config/
+    lazy.lua
+  plugins/
+    treesitter.lua
+.stylua.toml
+init.lua
+lazy-lock.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="lua/config/lazy.lua">
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+})
+</file>
+
+<file path="lua/plugins/treesitter.lua">
+return {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+	require'nvim-treesitter.configs'.setup {
+	    -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+	    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+
+	    -- Automatically install missing parsers when entering buffer
+	    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	    auto_install = false,
+
+	    highlight = {
+		enable = true,
+
+		-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+		-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+		-- the name of the parser)
+		-- list of language that will be disabled
+		-- disable = { "c", "rust" },
+		
+		-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+		disable = function(lang, buf)
+		    local max_filesize = 100 * 1024 -- 100 KB
+		    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+		    if ok and stats and stats.size > max_filesize then
+			return true
+		    end
+		end,
+		additional_vim_regex_highlighting = false,
+	    },
+	}
+    end
+}
+</file>
+
+<file path=".stylua.toml">
+column_width = 120
+line_endings = "Unix"
+indent_type = "Spaces"
+indent_width = 2
+quote_style = "AutoPreferDouble"
+call_parentheses = "None"
+</file>
+
+<file path="init.lua">
+require("config.lazy")
+
+vim.opt.shiftwidth = 4
+vim.opt.clipboard = "unnamedplus"
+
+vim.keymap.set("n", "<space><space>x","<cmd>source %<CR>")
+vim.keymap.set("n", "<C-s>",":write<CR>" )
+
+-- See `:help vim_highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = 'Highlight when yanking (copying) text',
+	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true}),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+</file>
+
+<file path="lazy-lock.json">
+{
+  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" }
+}
+</file>
+
+</files>

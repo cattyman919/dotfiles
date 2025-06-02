@@ -1,37 +1,41 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
-vim.g.mapleader = " "
+require("config.lazy")
 
--- bootstrap lazy and all plugins
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+-- Configs
+vim.opt.shiftwidth = 4
+vim.opt.clipboard = "unnamedplus" -- Allow system clipboards
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-if not vim.uv.fs_stat(lazypath) then
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
-end
+-- Themes
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme kanagawa]])
 
-vim.opt.rtp:prepend(lazypath)
-
-local lazy_config = require "configs.lazy"
-
--- load plugins
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-  },
-
-  { import = "plugins" },
-}, lazy_config)
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
-require "options"
-require "nvchad.autocmds"
-
-vim.schedule(function()
-  require "mappings"
+-- Keymaps
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<C-s>", ":write<CR>")
+vim.keymap.set("n", "<space>st", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 5)
 end)
+vim.keymap.set("n", "<C-n>", ":Oil --float .<CR>")
+
+-- AutoCommands
+
+-- See `:help vim_highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})

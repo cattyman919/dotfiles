@@ -16,5 +16,11 @@ return {
 				desc = "Buffer Local Keymaps (which-key)",
 			},
 		},
-	}
+	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	},
 }

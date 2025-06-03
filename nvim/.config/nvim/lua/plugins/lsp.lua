@@ -21,6 +21,8 @@ return {
         gopls = {},
         basedpyright = {},
         bashls = {},
+        ts_ls = {},
+        -- denols = {},
       },
     },
     config = function(_, opts)

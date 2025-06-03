@@ -8,7 +8,7 @@ return {
       notify_on_error = true,
       -- Configure format on save
       format_on_save = {
-        timeout_ms = 1000,   -- Set a timeout for format on save
+        timeout_ms = 1000, -- Set a timeout for format on save
         lsp_fallback = true, -- Fallback to LSP formatting if conform.nvim doesn't have a formatter or fails
         -- If true, conform will try LSP formatting if its own formatters fail or aren't set up for the buffer.
         -- If you only want conform.nvim's defined formatters, set this to false.
@@ -16,11 +16,11 @@ return {
       -- Define your formatters by filetype
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff_format", "black" },      -- Tries ruff_format first, then black
-        javascript = { "prettierd", "prettier" }, -- prettierd is faster if available
-        typescript = { "prettierd", "prettier" },
-        javascriptreact = { "prettierd", "prettier" },
-        typescriptreact = { "prettierd", "prettier" },
+        python = { "ruff_format", "black" }, -- Tries ruff_format first, then black
+        javascript = { "biome", "prettierd", "prettier" }, -- prettierd is faster if available
+        typescript = { "biome", "prettierd", "prettier" },
+        javascriptreact = { "biome", "prettierd", "prettier" },
+        typescriptreact = { "biome", "prettierd", "prettier" },
         json = { "prettierd", "prettier" },
         yaml = { "prettierd", "prettier" },
         markdown = { "prettierd", "prettier" },
@@ -50,9 +50,9 @@ return {
     init = function()
       -- Set a keymap for manual formatting
       vim.keymap.set({ "n", "v" }, "<leader>fm", function() -- "fm" for "manual format"
-        require("conform").format({ async = false, lsp_fallback = true, timeout_ms = 1000 })
-        print("Formatted with conform.nvim")
+        require("conform").format { async = false, lsp_fallback = true, timeout_ms = 1000 }
+        print "Formatted with conform.nvim"
       end, { desc = "Format buffer with conform.nvim" })
     end,
-  }
+  },
 }

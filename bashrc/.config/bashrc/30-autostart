@@ -11,11 +11,11 @@
 # fi
 
 # -----------------------------------------------------
-# Launch dwm when boot
+# Launch bspwm when boot
 # -----------------------------------------------------
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-   pgrep dwm || exec startx
+   pgrep bspwm || exec startx
 fi
 
 # -----------------------------------------------------

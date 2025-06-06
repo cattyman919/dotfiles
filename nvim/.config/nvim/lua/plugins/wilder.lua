@@ -11,7 +11,6 @@ return {
     wilder.setup { modes = { ":", "/", "?" } }
 
     -- Define custom highlight groups
-
     wilder.set_option(
       "renderer",
       wilder.popupmenu_renderer(wilder.popupmenu_border_theme {

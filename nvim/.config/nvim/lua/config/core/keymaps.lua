@@ -28,23 +28,20 @@ vim.keymap.set("n", "x", '"_x', opts)
 
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true
-vim.keymap.set("n", "<C-q>", function()
-  isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-  vim.diagnostic.config {
-    virtual_text = isLspDiagnosticsVisible,
-    underline = isLspDiagnosticsVisible,
-  }
+vim.keymap.set("n", "<C-x>", function()
+	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+	vim.diagnostic.config({
+		virtual_text = isLspDiagnosticsVisible,
+		underline = isLspDiagnosticsVisible,
+	})
 end, { desc = "Toggle LSP diagnostics" })
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diagnostics list (location)" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagnostics list (quickfix)" })
 
 -- Terminals
 vim.keymap.set("n", "<space>st", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd "J"
-  vim.api.nvim_win_set_height(0, 5)
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 5)
 end, { desc = "Open small terminal at bottom" })
-vim.keymap.set("n", "<C-n>", function()
-  require("oil").toggle_float()
-end, { desc = "Toggle floating terminal" })

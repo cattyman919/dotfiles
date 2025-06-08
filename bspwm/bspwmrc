@@ -3,7 +3,7 @@
 exec &> ~/.bspwm_startup_log
 
 # --- Monitor Configuration ---
-MON_LEFT="DP-1-0"
+# MON_LEFT="DP-1-0"
 MON_CENTER="DP-1-3"
 MON_RIGHT="eDP-2"
 
@@ -12,7 +12,6 @@ MON_RIGHT="eDP-2"
 # Both DP-1-0 and DP-1-3 support 144Hz (DP-1-0: 144.00, DP-1-3: 143.99) and ~120Hz.
 # eDP-2 also has 60Hz options if 165Hz is problematic in a multi-monitor setup.
 xrandr \
-    --output "$MON_LEFT"   --mode 1920x1080 --rate 165.00 --pos 0x0 \
     --output "$MON_CENTER" --primary --mode 1920x1080 --rate 165.00 --pos 1920x0 \
     --output "$MON_RIGHT"  --mode 2560x1440 --rate 165.00 --scale 0.7x0.7 --pos 3840x0 \
 
@@ -20,9 +19,9 @@ xsetroot -cursor_name left_ptr
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor "$MON_LEFT"   -d 1 2 
-bspc monitor "$MON_CENTER" -d 3 4 # Primary monitor gets more desktops
-bspc monitor "$MON_RIGHT"  -d 5 6
+# bspc monitor "$MON_LEFT"   -d 1 2 
+bspc monitor "$MON_CENTER" -d 1 2 3 # Primary monitor gets more desktops
+bspc monitor "$MON_RIGHT"  -d 4 5 6
 
 #bspc wm -r # Reloads bspwm to recognize monitor changes
 #bspc monitor -d 1 2 3 4 5 6 7 8 9 10 # bspwm distributes these across detected monitors
@@ -50,7 +49,7 @@ polybar-msg cmd quit &> /dev/null # Suppress error if no instances running
 ## Wait for polybar processes to terminate before launching new ones
 while pgrep -u $UID -x polybar >/dev/null; do sleep 0.5; done
 
-MONITOR=$MON_LEFT polybar --reload main -c ~/.config/polybar/config.ini &
+# MONITOR=$MON_LEFT polybar --reload main -c ~/.config/polybar/config.ini &
 MONITOR=$MON_CENTER polybar --reload main -c ~/.config/polybar/config.ini &
 MONITOR=$MON_RIGHT polybar --reload main -c ~/.config/polybar/config.ini &
 

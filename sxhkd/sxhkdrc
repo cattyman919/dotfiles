@@ -16,10 +16,10 @@ super + b
 
 # Screenshot Bindings
 super + s
-  maim -s -o | tesseract stdin stdout | xclip -selection clipboard
+  sel=$(slop -o -f "-i %i -g %g"); shotgun $sel - | xclip -t 'image/png' -selection clipboard
 
 super + shift + s
-  maim -s -o | xclip -selection clipboard -t image/png
+  sel=$(slop -o -f "-i %i -g %g"); directory="$HOME/Pictures/Screenshots/Screenshot_$(date "+%Y%m%d_%H%M%S").png"; shotgun $sel $directory && notify-send "Screenshot have been saved\n $directory"
 
 # Function Keys
 XF86MonBrightnessUp

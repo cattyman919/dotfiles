@@ -23,4 +23,7 @@ return {
 			-- options
 		},
 	},
+	{
+		"elkowar/yuck.vim",
+	},
 }

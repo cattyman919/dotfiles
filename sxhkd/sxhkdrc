@@ -14,9 +14,19 @@ super + @space
 super + b
   zen-browser
 
+super + r
+  /home/senohebat/.config/sxhkd/scripts/record.sh
+
+# Music Player Bindings
+super + {p, semicolon, apostrophe}
+  rmpc {togglepause, prev, next}
+
+super + { comma, period }
+  rmpc volume { -5 , +5 }
+
 # Screenshot Bindings
 super + s
-  sel=$(slop -o -f "-i %i -g %g"); shotgun $sel - | xclip -t 'image/png' -selection clipboard
+  sel=$(slop -o -f "-i %i -g %g"); shotgun $sel - | xclip -t 'image/png' -selection clipboard && notify-send "Screenshot copied to clipboard"
 
 super + shift + s
   sel=$(slop -o -f "-i %i -g %g"); directory="$HOME/Pictures/Screenshots/Screenshot_$(date "+%Y%m%d_%H%M%S").png"; shotgun $sel $directory && notify-send "Screenshot have been saved\n $directory"

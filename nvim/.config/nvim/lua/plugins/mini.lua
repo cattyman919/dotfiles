@@ -9,10 +9,10 @@ return {
 			local MiniFiles = require("mini.files")
 			MiniFiles.setup({
 				mappings = {
-					go_in = "<CR>", -- Map both Enter and L to enter directories or open files
-					go_in_plus = "l",
-					go_out = "-",
-					go_out_plus = "h",
+					go_in = "l",
+					go_in_plus = "<CR>",
+					go_out_plus = "-",
+					go_out = "h",
 				},
 			})
 			vim.keymap.set("n", "<C-n>", function()

@@ -20,6 +20,24 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Navigations (Hop Plugin)
 vim.keymap.set("n", "<C-f>", ":HopWord<CR>", { desc = "move down in buffer with cursor centered" })
 
+-- Harpoon
+local harpoon = require("harpoon")
+vim.keymap.set("n", "<leader>a", function()
+	harpoon:list():add()
+end)
+
+-- vim.keymap.set("n", "<C-e>", function()
+-- 	harpoon.ui:toggle_quick_menu(harpoon:list())
+-- end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-B>", function()
+	harpoon:list():next()
+end)
+vim.keymap.set("n", "<C-S-N>", function()
+	harpoon:list():next()
+end)
+
 -- ctrl c as escape cuz Im lazy to reach up to the esc key
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search hl", silent = true })

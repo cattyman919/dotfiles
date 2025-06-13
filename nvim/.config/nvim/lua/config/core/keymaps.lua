@@ -22,20 +22,59 @@ vim.keymap.set("n", "<C-f>", ":HopWord<CR>", { desc = "move down in buffer with 
 
 -- Harpoon
 local harpoon = require("harpoon")
+local fidget = require("fidget")
+
+-- Add Harpoon Mark
 vim.keymap.set("n", "<leader>a", function()
+	local fname = vim.fn.expand("%:t") -- current file name
+	-- Notify
+	fidget.notify("Added " .. fname .. " Harpoon", vim.log.levels.INFO)
+
 	harpoon:list():add()
 end)
 
--- vim.keymap.set("n", "<C-e>", function()
--- 	harpoon.ui:toggle_quick_menu(harpoon:list())
--- end)
+-- Remove Harpoon Mark
+vim.keymap.set("n", "<leader>r", function()
+	local fname = vim.fn.expand("%:t") -- current file name
+	-- Notify
+	fidget.notify("Removed " .. fname .. " Harpoon", vim.log.levels.WARN)
 
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-B>", function()
-	harpoon:list():next()
+	harpoon:list():remove()
 end)
-vim.keymap.set("n", "<C-S-N>", function()
-	harpoon:list():next()
+
+-- Open Harpoon List with telescope
+vim.keymap.set("n", "<C-e>", function()
+	-- basic telescope configuration
+	local conf = require("telescope.config").values
+	local ivy = require("telescope.themes").get_ivy
+	local function toggle_telescope(harpoon_files)
+		local file_paths = {}
+		for _, item in ipairs(harpoon_files.items) do
+			table.insert(file_paths, item.value)
+		end
+
+		require("telescope.pickers")
+			.new(
+				{},
+				ivy({
+					prompt_title = "Harpoon",
+					finder = require("telescope.finders").new_table({
+						results = file_paths,
+					}),
+					previewer = conf.file_previewer({}),
+					sorter = conf.generic_sorter({}),
+				})
+			)
+			:find()
+	end
+	toggle_telescope(harpoon:list())
+end)
+
+-- Toggle next in harpoon list (wrap)
+vim.keymap.set("n", "<C-V>", function()
+	harpoon:list():next({
+		ui_nav_wrap = true,
+	})
 end)
 
 -- ctrl c as escape cuz Im lazy to reach up to the esc key

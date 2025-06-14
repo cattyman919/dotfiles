@@ -1,6 +1,9 @@
-#
 # wm independent hotkeys
 #
+
+# Safer sxhkd reload: test config before reloading
+super + Escape
+ pkill -USR1 -x sxhkd && notify-send "sxhkd" "Configuration reloaded successfully!";
 
 # terminal emulator
 super + Return
@@ -23,6 +26,10 @@ super + {p, semicolon, apostrophe}
 
 super + { comma, period }
   rmpc volume { -5 , +5 }
+
+# Color Picker
+super + shift + a
+  /home/senohebat/.config/sxhkd/scripts/color_picker.sh
 
 # Screenshot Bindings
 super + s
@@ -49,10 +56,6 @@ XF86AudioMute
 
 XF86AudioMicMute
   ~/.config/sxhkd/scripts/volume_master.sh -q toggle_mic
-
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
 
 #
 # bspwm hotkeys

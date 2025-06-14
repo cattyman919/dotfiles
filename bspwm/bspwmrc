@@ -12,8 +12,8 @@ MON_RIGHT="eDP-2"
 # Both DP-1-0 and DP-1-3 support 144Hz (DP-1-0: 144.00, DP-1-3: 143.99) and ~120Hz.
 # eDP-2 also has 60Hz options if 165Hz is problematic in a multi-monitor setup.
 xrandr \
-    --output "$MON_CENTER" --primary --mode 1920x1080 --rate 165.00 --pos 1920x0 \
-    --output "$MON_RIGHT"  --mode 2560x1440 --rate 165.00 --scale 0.7x0.7 --pos 3840x0 \
+    --output "$MON_CENTER" --primary --mode 1920x1080 --rate 165.00 --pos 0x0 \
+    --output "$MON_RIGHT"  --mode 2560x1440 --rate 165.00 --scale 0.6x0.6 --pos 1920x0 \
 
 xsetroot -cursor_name left_ptr 
 
@@ -32,10 +32,14 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_follows_pointer true
+bspc config pointer_follows_focus false
 
-bspc rule -a Yad desktop='^3' state=floating follow=on center=true focus=on
-bspc rule -a pavucontrol desktop='^3' state=floating follow=on center=true focus=on
-bspc rule -a discord desktop='^5' 
+bspc rule -a Yad state=floating follow=on center=true focus=on
+bspc rule -a pavucontrol state=floating follow=on center=true focus=on
+bspc rule -a discord desktop='^4' 
+bspc rule -a RMPC desktop='^5' 
+bspc rule -a CAVA desktop='^5' 
+
 bspc rule -a "*\.exe" state=fullscreen
 
 # bspc rule -a mplayer2 state=floating
@@ -61,3 +65,7 @@ picom --config ~/.config/picom/picom.conf -b
 blueman-applet &
 dunst &
 feh --bg-fill /home/senohebat/Pictures/background.jpg &
+
+kitty --class RMPC rmpc &
+kitty --class CAVA cava &
+flatpak run com.discordapp.Discord &

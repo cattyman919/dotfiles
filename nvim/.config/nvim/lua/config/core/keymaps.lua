@@ -47,6 +47,7 @@ vim.keymap.set("n", "<C-e>", function()
 	-- basic telescope configuration
 	local conf = require("telescope.config").values
 	local ivy = require("telescope.themes").get_ivy
+
 	local function toggle_telescope(harpoon_files)
 		local file_paths = {}
 		for _, item in ipairs(harpoon_files.items) do
@@ -67,6 +68,7 @@ vim.keymap.set("n", "<C-e>", function()
 			)
 			:find()
 	end
+
 	toggle_telescope(harpoon:list())
 end)
 
@@ -97,6 +99,9 @@ vim.keymap.set("n", "<C-x>", function()
 end, { desc = "Toggle LSP diagnostics" })
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diagnostics list (location)" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagnostics list (quickfix)" })
+
+-- LSP
+vim.keymap.set("n", "<space>ga", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 
 -- Terminals
 vim.keymap.set("n", "<space>st", function()

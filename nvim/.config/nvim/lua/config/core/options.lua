@@ -14,10 +14,6 @@ vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
--- Themes
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme kanagawa]])
-
 -- Diagnostics
 vim.diagnostic.config({
 	-- Show signs in the gutter

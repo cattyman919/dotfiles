@@ -22,6 +22,7 @@ return {
 				basedpyright = {},
 				bashls = {},
 				ts_ls = {},
+				qmlls = {},
 				phpactor = {
 					init_options = {
 						-- If you use psalm, enable it here.
@@ -31,6 +32,7 @@ return {
 						["language_server_phpstan.enabled"] = true,
 					},
 				},
+				cssls = {},
 				-- denols = {},
 			},
 		},

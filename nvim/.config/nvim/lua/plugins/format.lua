@@ -29,7 +29,7 @@ return {
 				scss = { "prettierd", "prettier" },
 				sh = { "shfmt" },
 				go = { "gofmt", "goimports" },
-				php = { "prettier" },
+				php = { "pint" },
 
 				-- Example of using a formatter that isn't a default
 				-- zig = { "zigfmt" },

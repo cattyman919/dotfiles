@@ -1,0 +1,92 @@
+// Variable Color's
+$background: #282a2e;
+$background-alt: #373b41;
+$foreground: #c5c8c6;
+$primary: #f0c674;
+$secondary: #8abeb7;
+$alert: #a54242;
+$disabled: #707880;
+
+* {
+  all: unset;
+  font-family: JetBrainsMono Nerd Font;
+}
+
+// Global Styles
+.bar {
+  font-size: 16px;
+  background-color: $background;
+  color: $foreground;
+  border-radius: 6px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.sidestuff {
+  &:last-child {
+    margin-right: 8px;
+  }
+}
+
+.metric {
+  font-weight: bold;
+  .prefix-label {
+    color: $primary;
+  }
+}
+
+.separator {
+  color: #707880; // Your $disabled color, for a muted look
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 8px 0 8px; // Gives it space on the left and right
+}
+
+.node-title {
+  color: #c5c8c6; // Your $foreground color
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.workspace-button {
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 12px;
+  transition: all 0.3s ease; // Add a smooth transition effect
+
+  // Class for UNOCCUPIED workspaces
+  &.unoccupied {
+    color: $disabled;
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  // Class for OCCUPIED but not focused workspaces
+  &.occupied {
+    color: $foreground;
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  // Class for the FOCUSED workspace
+  &.focused {
+    background-color: $background-alt;
+    border-bottom: 4px solid $primary;
+  }
+}
+
+.volume-metric {
+  transition: all 0.3s ease; // Optional: Adds a smooth transition
+
+  // Styles for when the volume is muted
+  &.muted {
+    color: $disabled; // Muted grey text/icon color
+
+    // Override the default yellow icon color when muted
+    .prefix-label {
+      color: inherit; // Makes the icon use the same muted grey color
+    }
+  }
+}

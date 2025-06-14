@@ -1,0 +1,100 @@
+(deflisten node_listen :initial "Node Title"
+  "$HOME/.config/eww/bar/scripts/get-nodes.sh")
+
+(deflisten workspaces_json :initial "[]"
+  "$HOME/.config/eww/bar/scripts/get-workspaces.sh")
+
+(deflisten volume_json :initial "{}"
+  "$HOME/.config/eww/bar/scripts/volume.sh subscribe")
+
+(defpoll time :interval "2s"
+  "date '+%H:%M'")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Widget Section's							 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Main Bar Widgets ;;
+(defwidget bar []
+  (box :orientation "h"
+    (box :orientation "h" :halign "start" :space-evenly false
+      (workspaces)
+      (label :class "separator" :text "|")
+      (label :class "node-title" :text node_listen :limit-width 35 :show-truncated true)
+    )
+    (sidestuff)))
+
+;; Side Bar Widgets ;;
+(defwidget sidestuff []
+  (box :class "sidestuff"
+       :orientation "h"
+       :space-evenly false
+       :spacing 2
+       :halign "end"
+    (eventbox :cursor "pointer"
+              :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+              :onrightclick "pavucontrol &"
+              :onscroll "$HOME/.config/eww/bar/scripts/volume.sh set-volume {}"
+
+      (metric
+        :class "volume-metric ${volume_json.muted == 'yes' ? 'muted' : ''}"
+        :prefix {volume_json.muted == "yes" ? "󰖁 " : " "}
+        :value {volume_json.muted == "yes" ? "muted" : volume_json.volume}
+        :suffix {volume_json.muted == "yes" ? "" : "%"}
+      )
+    )
+    (label :class "separator" :text "|")
+    (metric
+            :prefix "  "
+            :value "${round(EWW_RAM.used_mem / 1073741824,2)} "
+            :suffix "GiB"
+            )
+    (label :class "separator" :text "|")
+    (metric
+            :prefix "  "
+            :suffix "%"
+            :value {round(EWW_CPU.avg,0)}
+            )
+    (label :class "separator" :text "|")
+    (metric
+            :prefix "󱑃 "
+            :value {time}
+            )
+    ))
+
+;; Metric Widgets ;;
+(defwidget metric [value ?prefix ?suffix ?class]
+  (box :orientation "h"
+       :class "metric ${class}"
+       :space-evenly false
+     (label :class "prefix-label" :text "${prefix}")
+     (label :class "value" :text "${value}")
+     (label :class "suffix-label" :text "${suffix}")
+    ))
+
+;; Workspace Widgets ;;
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly false
+       :halign "start"
+    (for workspace in workspaces_json
+      (button :cursor "pointer"
+                :onclick "bspc desktop -f ^${workspace.name}"
+              :class "workspace-button ${workspace.class}"
+        {workspace.name}))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Window Section's							 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "95%"
+                      :width "99%"
+                      :height "5px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  (bar))

@@ -7,10 +7,6 @@ exec &> ~/.bspwm_startup_log
 MON_CENTER="DP-1-3"
 MON_RIGHT="eDP-2"
 
-# Attempt to configure all monitors.
-# If this fails, try reducing refresh rates (e.g., to 144Hz or 120Hz for MON_LEFT and MON_CENTER if 165Hz is too much for the pair).
-# Both DP-1-0 and DP-1-3 support 144Hz (DP-1-0: 144.00, DP-1-3: 143.99) and ~120Hz.
-# eDP-2 also has 60Hz options if 165Hz is problematic in a multi-monitor setup.
 xrandr \
     --output "$MON_CENTER" --primary --mode 1920x1080 --rate 165.00 --pos 0x0 \
     --output "$MON_RIGHT"  --mode 2560x1440 --rate 165.00 --scale 0.6x0.6 --pos 1920x0 \
@@ -23,8 +19,6 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 bspc monitor "$MON_CENTER" -d 1 2 3 # Primary monitor gets more desktops
 bspc monitor "$MON_RIGHT"  -d 4 5 6
 
-#bspc wm -r # Reloads bspwm to recognize monitor changes
-#bspc monitor -d 1 2 3 4 5 6 7 8 9 10 # bspwm distributes these across detected monitors
 bspc config border_width        2
 bspc config window_gap          8
 
@@ -36,36 +30,37 @@ bspc config pointer_follows_focus false
 
 bspc rule -a Yad state=floating follow=on center=true focus=on
 bspc rule -a pavucontrol state=floating follow=on center=true focus=on
-bspc rule -a discord desktop='^4' 
-bspc rule -a RMPC desktop='^5' 
-bspc rule -a CAVA desktop='^5' 
 
 bspc rule -a "*\.exe" state=fullscreen
 
-# bspc rule -a mplayer2 state=floating
-# bspc rule -a Kupfer.py focus=on
-# bspc rule -a Screenkey manage=off
-
-# Polybar
-
+# (NOT USED ANYMORE, CHANGED TO EWW STATUS BAR)
+# Polybar 
 # Terminate already running bar instances
-polybar-msg cmd quit &> /dev/null # Suppress error if no instances running
-## Wait for polybar processes to terminate before launching new ones
-while pgrep -u $UID -x polybar >/dev/null; do sleep 0.5; done
+# polybar-msg cmd quit &> /dev/null # Suppress error if no instances running
+# ## Wait for polybar processes to terminate before launching new ones
+# while pgrep -u $UID -x polybar >/dev/null; do sleep 0.5; done
+#
+# # MONITOR=$MON_LEFT polybar --reload main -c ~/.config/polybar/config.ini &
+# MONITOR=$MON_CENTER polybar --reload main -c ~/.config/polybar/config.ini &
+# MONITOR=$MON_RIGHT polybar --reload main -c ~/.config/polybar/config.ini &
 
-# MONITOR=$MON_LEFT polybar --reload main -c ~/.config/polybar/config.ini &
-MONITOR=$MON_CENTER polybar --reload main -c ~/.config/polybar/config.ini &
-MONITOR=$MON_RIGHT polybar --reload main -c ~/.config/polybar/config.ini &
+eww -c ~/.config/eww/bar kill > /dev/null 2>&1 # Make sure eww daemon is not running
+eww -c ~/.config/eww/bar daemon &
+eww -c ~/.config/eww/bar open bar --screen 0 --id primary  &
+eww -c ~/.config/eww/bar open bar --screen 1 --id secondary &
+pgrep -f "fullscreen_listen.sh" > /dev/null || ~/.config/eww/bar/scripts/fullscreen_listen.sh &
 
 # Start XDG Desktop Portal services
 /usr/lib/xdg-desktop-portal-gtk &
 /usr/lib/xdg-desktop-portal &
 
-picom --config ~/.config/picom/picom.conf -b
-blueman-applet &
-dunst &
-feh --bg-fill /home/senohebat/Pictures/background.jpg &
+picom --config ~/.config/picom/picom.conf -b # Compositor
+# blueman-applet & # Bluetooth
+dunst & # Notification System
+feh --bg-fill /home/senohebat/Pictures/background.jpg & # Background
 
-kitty --class RMPC rmpc &
-kitty --class CAVA cava &
-flatpak run com.discordapp.Discord &
+# Launch Application at start and send them to specific desktop
+kitty --class RMPC rmpc & sleep 0.5 && bspc node newest -d '^6'
+kitty --class CAVA cava & sleep 0.5 && bspc node newest -d '^6'
+flatpak run com.discordapp.Discord & sleep 2 && bspc node newest -d '^5'
+zen-browser & sleep 2 && bspc node newest -d '^1'

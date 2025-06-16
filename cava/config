@@ -1,0 +1,81 @@
+# /* ---- 🐈 Catppuccin Mocha Theme for Cava (Optimized for Music) 🐈 ---- */ #
+
+[general]
+# Increased framerate for smoother animations on high-refresh-rate monitors.
+# 60 is a safe bet, but you can try 120 if your monitor supports it.
+framerate = 60
+
+# Keep autosens enabled, but slightly lower the manual sensitivity.
+# This helps autosens have a better range to work with, preventing clipping.
+autosens = 1
+sensitivity = 80
+
+# A higher bar count provides more detail across the frequency spectrum.
+# 28 bars is a good starting point for most desktop terminal widths.
+# Adjust this number based on your screen real estate.
+bars = 0
+
+# Adjust spacing and width to fit the new bar count. This is a balanced look.
+bar_spacing = 1
+bar_width = 2
+
+# These frequency cutoffs are excellent for capturing the full range of most music.
+lower_cutoff_freq = 30
+higher_cutoff_freq = 15000
+
+[input]
+# Your input settings are left untouched as requested.
+method = fifo
+source = /tmp/mpd.fifo
+
+[output]
+method = noncurses
+channels = mono
+mono_option = average
+reverse = 0
+show_idle_bar_heads = 1
+
+# Setting waveform to 1 will display a line-based waveform instead of bars.
+# This is a major aesthetic choice. Keep it at 0 for the classic bar look.
+waveform = 0
+
+[color]
+# Your Catppuccin Mocha gradient looks great. No changes needed.
+gradient = 1
+gradient_count = 8
+gradient_color_1 = '#89b4fa' # Blue
+gradient_color_2 = '#74c7ec' # Sapphire
+gradient_color_3 = '#a6e3a1' # Green
+gradient_color_4 = '#f9e2af' # Yellow
+gradient_color_5 = '#fab387' # Peach
+gradient_color_6 = '#f38ba8' # Red
+gradient_color_7 = '#cba6f7' # Mauve
+gradient_color_8 = '#f5c2e7' # Pink
+
+[smoothing]
+# Monstercat smoothing gives that classic, bouncy, weighted feel.
+monstercat = 1
+
+# Waves adds a sine-wave motion to the bars. It can be distracting
+# when combined with monstercat, so it's best left off.
+waves = 0
+
+# A slight increase in noise reduction can help focus on the main instruments
+# and reduce visual noise from very quiet background sounds. 0.8 is a good value.
+noise_reduction = 0.8
+
+# These two options add a sense of "weight" and "drag" to the bars,
+# making them fall more naturally instead of instantly.
+gravity = 100
+inertia = 25
+
+
+[eq]
+# This is a custom EQ curve designed to make the visualizer more dynamic.
+# It boosts the deep bass, slightly scoops the mids, and enhances the treble
+# for a more lively "V-shape" visualization that responds well to most music genres.
+1 = 1.1 # Boost deep bass
+2 = 1.1  # Boost upper bass
+3 = 0.9  # Slightly scoop mid-tones
+4 = 1.0  # Keep upper-mids flat
+5 = 1.1 # Enhance treble/highs

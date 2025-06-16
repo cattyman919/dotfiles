@@ -1,11 +1,7 @@
-// Variable Color's
-$background: #282a2e;
-$background-alt: #373b41;
-$foreground: #c5c8c6;
-$primary: #f0c674;
-$secondary: #8abeb7;
-$alert: #a54242;
-$disabled: #707880;
+@use "variables" as *;
+
+@use "./popups/_brigthness.scss";
+@use "./popups/_music.scss";
 
 * {
   all: unset;
@@ -25,6 +21,46 @@ $disabled: #707880;
 .sidestuff {
   &:last-child {
     margin-right: 8px;
+  }
+  .brightness-icon {
+    color: $primary;
+  }
+}
+// Powermenu
+.powermenu {
+  font-family: feather;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.button-bspres,
+.button-reb,
+.button-off {
+  padding: 0.5rem 0.3rem 0.3rem 0.3rem;
+}
+
+.button-off {
+  color: $red;
+}
+.button-suspend {
+  color: $cyan;
+}
+.button-reb {
+  color: $yellow;
+}
+
+.music {
+  font-size: 16px;
+  font-weight: bold;
+
+  .music-button {
+    margin: 0px 8px;
+    font-size: 24px;
+    color: $primary;
+  }
+
+  .music-title {
+    margin: 0px 8px;
   }
 }
 

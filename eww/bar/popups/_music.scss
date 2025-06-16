@@ -1,0 +1,96 @@
+@use "variables" as *;
+
+.music-widget {
+  background-color: $background;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid $background-alt;
+
+  .music-cover-art {
+    min-height: 200px;
+    min-width: 200px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+  }
+
+  .music-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: $primary;
+  }
+
+  .music-artist {
+    font-size: 1em;
+    color: $foreground;
+  }
+  .music-controls {
+    padding: 10px 0;
+  }
+
+  // --- Styles for Playback Buttons (Prev, Play, Next) ---
+  .playback-buttons {
+    button {
+      font-size: 2.2em;
+      color: $foreground;
+      background-color: $background-alt;
+      border-radius: 50%; // Circular
+      min-width: 50px;
+      min-height: 50px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $disabled;
+      }
+    }
+
+    .music-play-pause-button {
+      color: $background;
+      background-color: $primary;
+
+      &:hover {
+        background-color: $yellow;
+      }
+    }
+  }
+
+  // --- Styles for Mode Buttons (Random, Repeat, Single) ---
+  .mode-buttons {
+    button {
+      font-size: 1.6em;
+      color: $foreground;
+      background-color: $background-alt;
+      border-radius: 8px; // Rectangular with rounded corners
+      padding: 5px 15px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $disabled;
+      }
+    }
+
+    .music-random-button,
+    .music-repeat-button,
+    .music-single-button {
+      font-size: 1.6em;
+      &.active {
+        // "on" state
+        color: $cyan;
+        font-weight: 800;
+        background-color: lighten($background-alt, 5%);
+      }
+    }
+
+    .music-single-button {
+      &.active-once {
+        // "once" state
+        color: $green;
+        font-weight: 800;
+        background-color: lighten($background-alt, 5%);
+      }
+    }
+  }
+}

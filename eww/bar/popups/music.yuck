@@ -1,0 +1,51 @@
+(deflisten music_json :initial "{}"
+  "$HOME/.config/eww/bar/scripts/music.sh")
+
+(defwidget music_widget []
+  (box :class "music-widget"
+       :orientation "v"
+       :space-evenly false
+       :spacing 15
+    (box :class "music-cover-art"
+         :style "background-image: url('${music_json.album_art_path}');")
+    (box :orientation "v" :space-evenly false :spacing 8 :width 300
+      (label :class "music-title" :truncate true :show-truncated true :text "${music_json.title}")
+      (label :class "music-artist" :truncate true :show-truncated true :text "${music_json.artist}")
+    )
+    ;; --- Control section restructured below ---
+    (box :orientation "v" :class "music-controls" :spacing 15 ;; Increased spacing
+      ;; --- Playback Buttons (Circular) ---
+      (box :orientation "h" :space-evenly true :spacing 30 :class "playback-buttons"
+        (eventbox :cursor "pointer"
+          (button :onclick "mpc prev" "󰒮"))
+        (eventbox :cursor "pointer"
+            (button :onclick "mpc toggle"
+                    :class "music-play-pause-button" {music_json.state == 'playing' ? '󰏤' : '󰐎'}))
+        (eventbox :cursor "pointer"
+          (button :onclick "mpc next" "󰒭"))
+      )
+
+      ;; --- Mode Buttons (Rectangular) ---
+      (box :orientation "h" :space-evenly true :class "mode-buttons"
+        (eventbox :cursor "pointer"
+          (button :onclick "mpc random"
+                  :class "music-random-button ${music_json.random == 'on' ? 'active' : ''}" "󰒟"))
+        (eventbox :cursor "pointer"
+          (button :onclick "mpc repeat"
+                :class "music-repeat-button ${music_json.repeat == 'on' ? 'active' : ''}" "󰑖"))
+        (eventbox :cursor "pointer"
+          (button :onclick "mpc single"
+                  :class "music-single-button ${music_json.single == 'on' ? 'active' : music_json.single == 'once' ? 'active-once' : ''}"
+                  {music_json.single == 'once' ? '󰑘' : '󰎤'}))
+      )
+    )
+  )
+)
+
+(defwindow music_popup
+  :monitor 0
+  :geometry (geometry :x "-500px"
+                      :y "45px"
+                      :anchor "top right")
+  :stacking "fg"
+(music_widget))

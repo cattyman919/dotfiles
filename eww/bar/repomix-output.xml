@@ -1,0 +1,925 @@
+<repomix>This file is a merged representation of a subset of the codebase, containing specifically included files and files not matching ignore patterns, combined into a single document by Repomix.
+The content has been processed where comments have been removed, content has been formatted for parsing in xml style.<file_summary>This section contains a summary of this file.<purpose>This file contains a packed representation of the entire repository&apos;s contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.</purpose><file_format>The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file</file_format><usage_guidelines>- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.</usage_guidelines><notes>- Some files may have been excluded based on .gitignore rules and Repomix&apos;s configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: **/*
+- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Code comments have been removed from supported file types
+- Content has been formatted for parsing in xml style
+- Files are sorted by Git change count (files with more changes are at the bottom)</notes><additional_info></additional_info></file_summary><directory_structure>popups/
+  _brigthness.scss
+  _music.scss
+  brigthness.yuck
+  music.yuck
+scripts/
+  brightness.sh
+  fullscreen_listen.sh
+  get-nodes.sh
+  get-workspaces.sh
+  media.sh
+  music.sh
+  pop.sh
+  volume.sh
+_variables.scss
+eww.scss
+eww.yuck</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="popups/_brigthness.scss">@use &quot;variables&quot; as *;
+
+.brightness-controls {
+  background-color: $background;
+  padding: 18px 22px;
+  border-radius: 12px;
+  border: 1px solid $background-alt;
+
+  .brightness-title {
+    color: $primary;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+}
+
+.brightness-slider-container {
+  .brightness-device-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $foreground;
+    margin-bottom: 5px;
+  }
+
+  scale trough {
+    all: unset;
+    background-color: $background-alt;
+    border-radius: 4px;
+    min-height: 8px;
+    min-width: 25px;
+  }
+
+  scale trough highlight {
+    all: unset;
+    border-radius: 4px;
+    background-image: linear-gradient(to top, $cyan, $blue);
+  }
+
+  .slider-value-label {
+    color: $yellow;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+}</file><file path="popups/_music.scss">@use &quot;variables&quot; as *;
+
+.music-widget {
+  background-color: $background;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid $background-alt;
+
+  .music-cover-art {
+    min-height: 200px;
+    min-width: 200px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+  }
+
+  .music-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: $primary;
+  }
+
+  .music-artist {
+    font-size: 1em;
+    color: $foreground;
+  }
+  .music-controls {
+    padding: 10px 0;
+  }
+
+  .music-buttons {
+    button {
+      font-size: 1.6em;
+      color: $foreground;
+      background-color: $background-alt;
+      border-radius: 50%;
+      min-width: 50px;
+      min-height: 50px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+
+      &amp;:hover {
+        background-color: $disabled;
+      }
+    }
+
+    .music-play-pause-button {
+      font-size: 1.8em;
+      color: $background;
+      background-color: $primary;
+      min-width: 30px;
+      min-height: 30px;
+
+      &amp;:hover {
+        background-color: $yellow;
+      }
+    }
+
+    .music-random-button,
+    .music-repeat-button,
+    .music-single-button {
+      font-size: 1.6em;
+      &amp;.active {
+        color: $cyan;
+        font-weight: 800;
+        background-color: lighten($background-alt, 5%);
+      }
+    }
+
+    .music-single-button {
+      &amp;.active-once {
+
+        color: $green;
+        font-weight: 800;
+        background-color: lighten($background-alt, 5%);
+      }
+    }
+  }
+}</file><file path="popups/brigthness.yuck">(deflisten ddcci4_listen :initial &quot;0&quot;
+  &quot;$HOME/.config/eww/bar/scripts/brightness.sh info ddcci4&quot;)
+
+(deflisten laptop_listen :initial &quot;0&quot;
+  &quot;$HOME/.config/eww/bar/scripts/brightness.sh info intel_backlight&quot;)
+
+(defwidget brightness_slider [label value onchange]
+  (box :orientation &quot;v&quot; :class &quot;brightness-slider-container&quot; :space-evenly false :spacing 10
+    (label :text label :class &quot;brightness-device-label&quot;)
+    (scale :orientation &quot;v&quot;
+           :height 250
+           :min 0
+           :max 101
+           :flipped true
+           :value value
+           :onchange onchange)
+
+     (label :text &quot;${round(value, 0)}%&quot; :class &quot;slider-value-label&quot;)
+  )
+)
+
+(defwidget brightness_controls []
+  (box :class &quot;brightness-controls&quot;
+       :orientation &quot;v&quot;
+       :space-evenly false
+       :class &quot;brightness-controls&quot;
+    (label :text &quot;Brightness&quot; :class &quot;brightness-title&quot;)
+    ;; Brightness control buttons
+    (box :orientation &quot;h&quot;
+         :class &quot;sliders-container&quot;
+         :space-evenly false
+         :spacing 50
+       (brightness_slider :label &quot;Monitor&quot;
+                         :value ddcci4_listen
+                         :onchange &quot;$HOME/.config/eww/bar/scripts/brightness.sh set ddcci4 {}&quot;)
+      (brightness_slider :label &quot;Laptop&quot;
+                         :value laptop_listen
+                         :onchange &quot;$HOME/.config/eww/bar/scripts/brightness.sh set intel_backlight {}&quot;)
+      )
+  )
+)
+
+(defwindow brightness_popup
+  :monitor 0
+  :geometry (geometry :x &quot;-310px&quot;
+                      :y &quot;45px&quot;
+                      :anchor &quot;top right&quot;)
+  :stacking &quot;fg&quot;
+(brightness_controls))</file><file path="popups/music.yuck">(deflisten music_json :initial &quot;{}&quot;
+  &quot;$HOME/.config/eww/bar/scripts/music.sh&quot;)
+
+(defwidget music_widget []
+  (box :class &quot;music-widget&quot;
+       :orientation &quot;v&quot;
+       :space-evenly false
+       :spacing 15
+    (box :class &quot;music-cover-art&quot;
+         :style &quot;background-image: url(&apos;${music_json.album_art_path}&apos;);&quot;
+      )
+    (box :orientation &quot;v&quot; :space-evenly false :spacing 8 :width 300
+      (label :class &quot;music-title&quot; :limit-width 50 :show-truncated true :text &quot;${music_json.title}&quot;)
+      (label :class &quot;music-artist&quot; :limit-width 50 :show-truncated true :text &quot;${music_json.artist}&quot;)
+    )
+    (box :orientation &quot;v&quot; :class &quot;music-controls&quot; :spacing 10
+      (box :orientation &quot;h&quot; :space-evenly true :class &quot;music-buttons&quot;
+        (eventbox :cursor &quot;pointer&quot;
+          (button :onclick &quot;mpc random&quot;
+                  :class &quot;music-random-button ${music_json.random == &apos;on&apos; ? &apos;active&apos; : &apos;&apos;}&quot; &quot;󰒟&quot;)
+        )
+        (eventbox :cursor &quot;pointer&quot;
+          (button :onclick &quot;mpc prev&quot; &quot;󰒮&quot;)
+        )
+        (eventbox :cursor &quot;pointer&quot;
+            (button :onclick &quot;mpc toggle&quot;
+                    :class &quot;music-play-pause-button&quot; {music_json.state == &apos;playing&apos; ? &apos;󰏤&apos; : &apos;󰐎&apos;})
+        )
+        (eventbox :cursor &quot;pointer&quot;
+          (button :onclick &quot;mpc next&quot; &quot;󰒭&quot;)
+        )
+        (eventbox :cursor &quot;pointer&quot;
+          (button :onclick &quot;mpc repeat&quot;
+                :class &quot;music-repeat-button ${music_json.repeat == &apos;on&apos; ? &apos;active&apos; : &apos;&apos;}&quot; &quot;󰑖&quot;)
+        )
+        (eventbox :cursor &quot;pointer&quot;
+          (button :onclick &quot;mpc single&quot;
+                  :class &quot;music-single-button ${music_json.single == &apos;on&apos; ? &apos;active&apos; : music_json.single == &apos;once&apos; ? &apos;active-once&apos; : &apos;&apos;}&quot;
+                  {music_json.single == &apos;once&apos; ? &apos;󰑘&apos; : &apos;󰎤&apos;}
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwindow music_popup
+  :monitor 0
+  :geometry (geometry :x &quot;-500px&quot;
+                      :y &quot;45px&quot;
+                      :anchor &quot;top right&quot;)
+  :stacking &quot;fg&quot;
+(music_widget))</file><file path="scripts/brightness.sh">if [[ -z $1 ]] || [[ -z $2 ]]; then
+  echo &quot;Incorrect argument &lt;info | set&gt; &lt;display name&gt;&quot;
+  exit 1
+fi
+
+get_brightness_info() {
+  DEVICE=&quot;$2&quot;
+
+  BRIGHTNESS_FILE=&quot;/sys/class/backlight/$DEVICE/brightness&quot;
+
+  CURRENT_PERCENT=$(brightnessctl -d &quot;$DEVICE&quot; | grep -o &quot;(.*%)&quot; | tr -d &apos;()%&apos;)
+  echo &quot;$CURRENT_PERCENT&quot;
+
+
+  while inotifywait -q -q -e modify &quot;$BRIGHTNESS_FILE&quot;; do
+
+      CURRENT_PERCENT=$(brightnessctl -d &quot;$DEVICE&quot; | grep -o &quot;(.*%)&quot; | tr -d &apos;()%&apos;)
+
+      echo &quot;$CURRENT_PERCENT&quot;
+  done
+}
+
+set_brightness() {
+  DEVICE=&quot;$2&quot;
+  VALUE=&quot;$3&quot;
+  echo &quot;$@&quot; &gt;&gt; /tmp/eww_debug.log
+
+  if [[ -z $3 ]]; then
+    echo &quot;Please enter the value for the brightness&quot;
+    exit 1
+  fi
+
+  brightnessctl -q -d &quot;$DEVICE&quot; s &quot;${VALUE}%&quot;
+}
+
+case &quot;$1&quot; in
+  info)
+    get_brightness_info $@
+
+    ;;
+  set)
+    echo &quot;Debugging on Setting&quot; &gt;&gt; /tmp/eww_debug.log
+    set_brightness $@
+    ;;
+  *)
+    echo &quot;Incorrect argument &lt;info | set&gt; &lt;display name&gt; {set: value}&quot;
+    exit 1
+    ;;
+esac</file><file path="scripts/fullscreen_listen.sh">EWW_CONFIG=&quot;$HOME/.config/eww/bar&quot;
+bspc subscribe node_state | while read -r _ _ _ _ state status; do
+    if [[ &quot;$state&quot; == &quot;fullscreen&quot; &amp;&amp; &quot;$status&quot; == &quot;on&quot; ]]; then
+        eww -c $EWW_CONFIG close primary
+        eww -c $EWW_CONFIG close secondary
+    elif [[ &quot;$state&quot; == &quot;fullscreen&quot; &amp;&amp; &quot;$status&quot; == &quot;off&quot; ]]; then
+        eww -c $EWW_CONFIG open bar --screen 0 --id primary
+        eww -c $EWW_CONFIG open bar --screen 1 --id secondary
+    fi
+done</file><file path="scripts/get-nodes.sh">monitor_node() {
+  bspc subscribe node_stack | while read -r event node_id _ node_id2; do
+     window_title=$(xprop -id &quot;$node_id&quot; WM_NAME | awk -F &apos;&quot;&apos; &apos;{print $2}&apos;)
+     echo &quot;$window_title&quot;
+  done
+}
+
+monitor_node</file><file path="scripts/get-workspaces.sh">generate_workspaces() {
+    local desktops=$(bspc query -D --names)
+    local focused_desktop=$(bspc query -D -d focused --names)
+    local occupied_desktops=$(bspc query -D -d .occupied --names)
+
+    local json=&quot;[&quot;
+
+    for d in $desktops; do
+        local class=&quot;unoccupied&quot;
+
+
+        if [[ &quot;$occupied_desktops&quot; =~ &quot;$d&quot; ]]; then
+            class=&quot;occupied&quot;
+        fi
+
+
+        if [ &quot;$d&quot; = &quot;$focused_desktop&quot; ]; then
+            class=&quot;focused&quot;
+        fi
+
+
+        json+=$(printf &apos;{&quot;name&quot;: &quot;%s&quot;, &quot;class&quot;: &quot;%s&quot;},&apos; &quot;$d&quot; &quot;$class&quot;)
+    done
+
+    json=${json%,}
+    json+=&quot;]&quot;
+
+    echo &quot;$json&quot;
+}
+
+
+generate_workspaces
+
+
+bspc subscribe report | while read -r _; do
+    generate_workspaces
+done</file><file path="scripts/media.sh">MAX_LEN=30
+
+if [[ &quot;$#&quot; -lt 1 ]] || [[ &quot;$#&quot; -gt 2 ]]; then
+  echo &quot;Invalid amount argument&quot;
+  echo &quot;Usage: $0 &lt;info | volume {up | down}&gt;&quot;
+  exit 1
+fi
+
+
+get_info() {
+
+  status_output=$(rmpc status 2&gt; /dev/null)
+  song_output=$(rmpc song 2&gt; /dev/null)
+
+
+  state=$(echo &quot;$status_output&quot; | jq -r &apos;.state&apos;)
+
+  title_song=$(echo &quot;$song_output&quot; | jq &apos;.metadata.title&apos; | tr -d &apos;\&quot;&apos;)
+
+  if [ ${
+    truncated_title=&quot;$(echo &quot;$title_song&quot; | cut -c1-$MAX_LEN)...&quot;
+  else
+    truncated_title=&quot;$title_song&quot;
+  fi
+
+  printf &apos;{&quot;title&quot;: &quot;%s&quot;, &quot;state&quot;: &quot;%s&quot;}\n&apos; &quot;$truncated_title&quot; &quot;$state&quot;
+}
+
+
+set_volume() {
+  case &quot;$2&quot; in
+    up)
+      mpc -q volume +5
+      ;;
+    down)
+      mpc -q volume -5
+      ;;
+    *)
+      echo &quot;Unknown command&quot;
+      exit 1
+      ;;
+  esac
+}
+
+case &quot;$1&quot; in
+  info)
+    get_info
+    ;;
+  volume)
+    set_volume $@
+    ;;
+    *)
+    echo &quot;Invalid argument&quot;
+    echo &quot;Usage: $0 &lt;info | volume {up | down}&gt;&quot;
+    exit 1
+    ;;
+esac</file><file path="scripts/music.sh">ALBUM_ART_PATH_A=&quot;/tmp/rmpc/music_cover_a.jpg&quot;
+ALBUM_ART_PATH_B=&quot;/tmp/rmpc/music_cover_b.jpg&quot;
+
+
+TOGGLE_FILE=&quot;/tmp/rmpc/art_toggle&quot;
+mkdir -p &quot;$(dirname &quot;$ALBUM_ART_PATH_A&quot;)&quot;
+
+stopped_json=&apos;{&quot;artist&quot;:&quot;&quot;,&quot;title&quot;:&quot;Nothing Playing&quot;,&quot;state&quot;:&quot;stopped&quot;,&quot;random&quot;:&quot;off&quot;,&quot;repeat&quot;:&quot;off&quot;,&quot;single&quot;:&quot;off&quot;}&apos;
+
+get_status() {
+    # Get the full multi-line status output from mpc.
+    full_status=$(mpc status)
+
+    # Check if the player state is &quot;stopped&quot;.
+    if ! echo &quot;$full_status&quot; | grep -q &apos;\[playing\]\|\[paused\]&apos;; then
+        echo &quot;$stopped_json&quot;
+        # Clean up both art files when stopped
+        [ -f &quot;$ALBUM_ART_PATH_A&quot; ] &amp;&amp; rm &quot;$ALBUM_ART_PATH_A&quot;
+        [ -f &quot;$ALBUM_ART_PATH_B&quot; ] &amp;&amp; rm &quot;$ALBUM_ART_PATH_B&quot;
+        return
+    fi
+
+    # --- If playing or paused, gather all the info ---
+
+    local current_art_path
+    if [ -f &quot;$TOGGLE_FILE&quot; ]; then
+        # Last used A, so we use B now and delete the toggle
+        current_art_path=&quot;$ALBUM_ART_PATH_B&quot;
+        rm &quot;$TOGGLE_FILE&quot;
+    else
+        # Last used B (or none), so we use A and create the toggle
+        current_art_path=&quot;$ALBUM_ART_PATH_A&quot;
+        touch &quot;$TOGGLE_FILE&quot;
+    fi
+
+
+    # Fetch the album art into the chosen file
+    rmpc albumart --output &quot;$current_art_path&quot; &gt; /dev/null 2&gt;&amp;1
+
+    # 1. Get song artist and title using `mpc current`.
+    song_json=$(mpc current -f &apos;{&quot;artist&quot;:&quot;%artist%&quot;,&quot;title&quot;:&quot;%title%&quot;}&apos;)
+
+    # 2. Parse the player state and modes from the `mpc status` output.
+    state=$(echo &quot;$full_status&quot; | awk &apos;/^\[/ {print $1}&apos; | tr -d &apos;[]&apos;)
+    modes_line=$(echo &quot;$full_status&quot; | awk &apos;/volume:/&apos;)
+
+    # --- UPDATED PARSING LOGIC ---
+    # This `awk` logic is more robust. It splits the string by &quot;mode: &quot;
+    # and takes the first word of what&apos;s left, correctly capturing on/off/once.
+
+    raw_random=$(echo &quot;$modes_line&quot; | awk -F &apos;random: &apos; &apos;{print $2}&apos; | awk &apos;{print $1}&apos;)
+    random=${raw_random:-off}
+
+    raw_repeat=$(echo &quot;$modes_line&quot; | awk -F &apos;repeat: &apos; &apos;{print $2}&apos; | awk &apos;{print $1}&apos;)
+    repeat=${raw_repeat:-off}
+
+    raw_single=$(echo &quot;$modes_line&quot; | awk -F &apos;single: &apos; &apos;{print $2}&apos; | awk &apos;{print $1}&apos;)
+    single=${raw_single:-off}
+
+
+    echo &quot;$song_json&quot; | jq \
+        --arg state &quot;$state&quot; \
+        --arg random &quot;$random&quot; \
+        --arg repeat &quot;$repeat&quot; \
+        --arg single &quot;$single&quot; \
+        --arg album_art_path &quot;$current_art_path&quot; \
+        &apos;. + {state: $state, random: $random, repeat: $repeat, single: $single, album_art_path: $album_art_path}&apos; |
+        tr -d &apos;\n&apos; &amp;&amp; echo &quot;&quot;
+}
+
+
+get_status
+
+
+mpc idleloop player options | while read -r event; do
+    get_status
+done</file><file path="scripts/pop.sh">EWW_BIN=&quot;/usr/local/bin/eww&quot;
+
+brightness() {
+    LOCK_FILE_BRIGHTNESS=&quot;$HOME/.cache/eww-brigthness.lock&quot;
+
+    run() {
+        ${EWW_BIN} -c $HOME/.config/eww/bar open brightness_popup
+    }
+
+
+    if [[ ! -f &quot;$LOCK_FILE_BRIGHTNESS&quot; ]]; then
+
+        touch &quot;$LOCK_FILE_BRIGHTNESS&quot;
+        run &amp;&amp; echo &quot;ok good!&quot;
+    else
+        ${EWW_BIN} -c $HOME/.config/eww/bar close brightness_popup
+        rm &quot;$LOCK_FILE_BRIGHTNESS&quot; &amp;&amp; echo &quot;closed&quot;
+    fi
+}
+
+music() {
+    LOCK_FILE_MUSIC=&quot;$HOME/.cache/eww-music.lock&quot;
+
+    run() {
+        ${EWW_BIN} -c $HOME/.config/eww/bar open music_popup
+    }
+
+
+    if [[ ! -f &quot;$LOCK_FILE_MUSIC&quot; ]]; then
+
+        touch &quot;$LOCK_FILE_MUSIC&quot;
+        run &amp;&amp; echo &quot;ok good!&quot;
+    else
+        ${EWW_BIN} -c $HOME/.config/eww/bar close music_popup
+        rm &quot;$LOCK_FILE_MUSIC&quot; &amp;&amp; echo &quot;closed&quot;
+    fi
+
+}
+case &quot;$1&quot; in
+  brightness)
+    brightness
+    ;;
+  music)
+    music
+    ;;
+  *)
+    echo &quot;Invalid Argument&quot;
+    echo &quot;Usage: $0 &lt;brigthness&gt;&quot;
+    exit 1
+    ;;
+esac</file><file path="scripts/volume.sh">get_and_print_volume() {
+
+    MUTE_STATUS=$(pactl get-sink-mute @DEFAULT_SINK@ | awk &apos;{print $2}&apos;)
+    VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP &apos;[0-9]+(?=%)&apos; | head -n 1)
+
+    printf &apos;{&quot;volume&quot;: &quot;%s&quot;, &quot;muted&quot;: &quot;%s&quot;}\n&apos; &quot;$VOLUME&quot; &quot;$MUTE_STATUS&quot;
+}
+
+if [[ &quot;$#&quot; -lt 1 ]] || [[ &quot;$#&quot; -gt 2 ]]; then
+  echo &quot;Invalid amount argument&quot;
+  echo &quot;Usage: $0 &lt; subscribe | set-volume {up | down}&quot;
+  exit 1
+else
+  case &quot;$1&quot; in
+    subscribe)
+      get_and_print_volume
+      pactl subscribe | grep --line-buffered &apos;on sink&apos; | while read -r event; do
+        get_and_print_volume
+      done
+      ;;
+    set-volume)
+      if [[ &quot;$2&quot; == &quot;up&quot; ]]; then
+        VOLUME=&quot;+5%&quot;
+      else
+        VOLUME=&quot;-5%&quot;
+      fi
+      pactl set-sink-volume @DEFAULT_SINK@ $VOLUME
+      ;;
+    *)
+      echo &quot;Invalid argument&quot;
+      exit 1
+      ;;
+  esac
+fi</file><file path="_variables.scss">$background: #282a2e;
+$background-alt: #373b41;
+$foreground: #c5c8c6;
+$primary: #f0c674;
+$secondary: #8abeb7;
+$alert: #a54242;
+$disabled: #707880;
+
+$black: #24283b;
+$gray: #565f89;
+$red: #f7768e;
+$green: #73daca;
+$yellow: #e0af68;
+$blue: #7aa2f7;
+$magenta: #bb9af7;
+$cyan: #7dcfff;</file><file path="eww.scss">@use &quot;variables&quot; as *;
+
+@use &quot;./popups/_brigthness.scss&quot;;
+@use &quot;./popups/_music.scss&quot;;
+
+* {
+  all: unset;
+  font-family: JetBrainsMono Nerd Font;
+}
+
+
+.bar {
+  font-size: 16px;
+  background-color: $background;
+  color: $foreground;
+  border-radius: 6px;
+}
+
+
+
+.sidestuff {
+  &amp;:last-child {
+    margin-right: 8px;
+  }
+  .brightness-icon {
+    color: $primary;
+  }
+}
+
+.powermenu {
+  font-family: feather;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.button-bspres,
+.button-reb,
+.button-off {
+  padding: 0.5rem 0.3rem 0.3rem 0.3rem;
+}
+
+.button-off {
+  color: $red;
+}
+.button-suspend {
+  color: $cyan;
+}
+.button-reb {
+  color: $yellow;
+}
+
+.music {
+  font-size: 16px;
+  font-weight: bold;
+
+  .music-button {
+    margin: 0px 8px;
+    font-size: 24px;
+    color: $primary;
+  }
+
+  .music-title {
+    margin: 0px 8px;
+  }
+}
+
+.metric {
+  font-weight: bold;
+  .prefix-label {
+    color: $primary;
+  }
+}
+
+.separator {
+  color: #707880;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 8px 0 8px;
+}
+
+.node-title {
+  color: #c5c8c6;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.workspace-button {
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 12px;
+  transition: all 0.3s ease;
+
+
+  &amp;.unoccupied {
+    color: $disabled;
+    &amp;:hover {
+      color: $secondary;
+    }
+  }
+
+
+  &amp;.occupied {
+    color: $foreground;
+    &amp;:hover {
+      color: $secondary;
+    }
+  }
+
+
+  &amp;.focused {
+    background-color: $background-alt;
+    border-bottom: 4px solid $primary;
+  }
+}
+
+.volume-metric {
+  transition: all 0.3s ease;
+
+
+  &amp;.muted {
+    color: $disabled;
+
+
+    .prefix-label {
+      color: inherit;
+    }
+  }
+}</file><file path="eww.yuck">(defvar eww &quot;eww -c $HOME/.config/eww/bar&quot;)
+
+(include &quot;./popups/brigthness.yuck&quot;)
+(include &quot;./popups/music.yuck&quot;)
+
+(defpoll time :interval &quot;2s&quot;
+  &quot;date &apos;+%H:%M&apos;&quot;)
+
+(deflisten node_listen :initial &quot;Node Title&quot;
+  &quot;$HOME/.config/eww/bar/scripts/get-nodes.sh&quot;)
+
+(deflisten workspaces_json :initial &quot;[]&quot;
+  &quot;$HOME/.config/eww/bar/scripts/get-workspaces.sh&quot;)
+
+(deflisten volume_json :initial &quot;{}&quot;
+  &quot;$HOME/.config/eww/bar/scripts/volume.sh subscribe&quot;)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Widget Section&apos;s							 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Main Bar Widgets ;;
+(defwidget bar []
+  (box :orientation &quot;h&quot; :space-evenly false
+    (box :orientation &quot;h&quot; :halign &quot;start&quot; :space-evenly false
+      (workspaces)
+      (label :class &quot;separator&quot; :text &quot;|&quot;)
+      (label :class &quot;node-title&quot; :text node_listen :limit-width 35 :show-truncated true)
+    )
+    (sidestuff)))
+
+;; Workspace Widgets ;;
+(defwidget workspaces []
+  (box :class &quot;workspaces&quot;
+       :orientation &quot;h&quot;
+       :space-evenly false
+       :halign &quot;start&quot;
+    (for workspace in workspaces_json
+      (button :cursor &quot;pointer&quot;
+                :onclick &quot;bspc desktop -f ^${workspace.name}&quot;
+              :class &quot;workspace-button ${workspace.class}&quot;
+        {workspace.name}))))
+
+;; Side Bar Widgets ;;
+(defwidget sidestuff []
+  (box :class &quot;sidestuff&quot;
+       :orientation &quot;h&quot;
+       :space-evenly false
+       :spacing 2
+       :hexpand true
+       :halign &quot;end&quot;
+    (music)
+    (label :class &quot;separator&quot; :text &quot;|&quot;)
+    (eventbox :cursor &quot;pointer&quot;
+              :onclick &quot;pactl set-sink-mute @DEFAULT_SINK@ toggle&quot;
+              :onrightclick &quot;pavucontrol &amp;&quot;
+              :onscroll &quot;$HOME/.config/eww/bar/scripts/volume.sh set-volume {}&quot;
+
+      (metric
+        :class &quot;volume-metric ${volume_json.muted == &apos;yes&apos; ? &apos;muted&apos; : &apos;&apos;}&quot;
+        :prefix {volume_json.muted == &quot;yes&quot; ? &quot;󰖁 &quot; : &quot; &quot;}
+        :value {volume_json.muted == &quot;yes&quot; ? &quot;muted&quot; : volume_json.volume}
+        :suffix {volume_json.muted == &quot;yes&quot; ? &quot;&quot; : &quot;%&quot;}
+      )
+    )
+    (label :class &quot;separator&quot; :text &quot;|&quot;)
+    (brightness_widget)
+    (label :class &quot;separator&quot; :text &quot;|&quot;)
+    (metric
+            :prefix &quot;  &quot;
+            :value &quot;${round(EWW_RAM.used_mem / 1073741824,2)} &quot;
+            :suffix &quot;GiB&quot;
+            )
+    (label :class &quot;separator&quot; :text &quot;|&quot;)
+    (metric
+            :prefix &quot;  &quot;
+            :suffix &quot;%&quot;
+            :value {round(EWW_CPU.avg,0)}
+            )
+    (label :class &quot;separator&quot; :text &quot;|&quot;)
+    (metric
+            :prefix &quot;󱑃 &quot;
+            :value {time}
+            )
+    (label :class &quot;separator&quot; :text &quot;|&quot;)
+    (power)
+    ))
+
+;; Metric Widgets ;;
+(defwidget metric [value ?prefix ?suffix ?class]
+  (box :orientation &quot;h&quot;
+       :class &quot;metric ${class}&quot;
+       :space-evenly false
+     (label :class &quot;prefix-label&quot; :text &quot;${prefix}&quot;)
+     (label :class &quot;value&quot; :text &quot;${value}&quot;)
+     (label :class &quot;suffix-label&quot; :text &quot;${suffix}&quot;)
+    ))
+
+;; Brigthness Widgets ;;
+(defvar brightness_popup false)
+
+; Brigthness Widgets ;;
+;; This widget in the bar now opens and closes the popup window on hover.
+(defwidget brightness_widget []
+  (eventbox
+    :onclick &quot;$HOME/.config/eww/bar/scripts/pop.sh brightness&quot;
+    :cursor &quot;pointer&quot;
+    (box :class &quot;brightness-icon&quot; :orientation &quot;h&quot;
+      (label :text &quot;󰃠 &quot;)
+    )
+  )
+)
+
+;; Music Widgets ;;
+(defvar music false)
+
+(defwidget music []
+  (eventbox
+        :cursor &quot;pointer&quot;
+        :onhover &quot;${eww} update music=true&quot;
+				:onhoverlost &quot;${eww} update music=false&quot;
+     (box :orientation &quot;h&quot;
+       :class &quot;music&quot;
+       :space-evenly false
+       	(revealer	:transition &quot;slideleft&quot;
+				:reveal music
+				:duration &quot;550ms&quot;
+           (eventbox :cursor &quot;pointer&quot;
+                     :onclick &quot;mpc prev&quot;
+             (label  :class &quot;music-button&quot; :text &quot;󰒮&quot;)
+             )
+        )
+       (eventbox :cursor &quot;pointer&quot;
+                 :onrightclick &quot;mpc toggle&quot;
+                 :onclick &quot;$HOME/.config/eww/bar/scripts/pop.sh music&quot;
+                 :onscroll &quot;$HOME/.config/eww/bar/scripts/media.sh volume {}&quot;
+         (box :orientation &quot;h&quot;
+              :class &quot;music-title&quot;
+              :space-evenly false
+              :spacing 10
+           (label
+                :text &quot; &quot;
+                :style &quot;color: #f0c674;&quot;
+           )
+           (label
+                :show-truncated true
+                :limit-width 30
+                :text &quot;${music_json.title}&quot;
+           )
+          )
+         )
+       (revealer	:transition &quot;slideright&quot;
+				:reveal music
+				:duration &quot;550ms&quot;
+           (eventbox :cursor &quot;pointer&quot;
+                     :onclick &quot;mpc next&quot;
+             (label  :class &quot;music-button&quot; :text &quot;󰒭&quot;)
+             )
+        )
+      )
+    )
+)
+
+;; Power Widgets ;;
+(defvar power false)
+
+;; Powermenu Widgets ;;
+(defwidget power []
+	(eventbox
+        :onhover &quot;${eww} update power=true&quot;
+				:onhoverlost &quot;${eww} update power=false&quot;
+        :cursor &quot;pointer&quot;
+	(box	:orientation &quot;h&quot;
+				:space-evenly &quot;false&quot;
+				:hexpand false
+				:class &quot;powermenu&quot;
+	(revealer	:transition &quot;slideleft&quot;
+				:reveal power
+				:duration &quot;550ms&quot;
+	(box	:orientation &quot;h&quot;
+				:space-evenly &quot;false&quot;
+
+  	(button		:class &quot;button-suspend&quot;
+	  			:tooltip &quot;Suspend&quot;
+				:onclick &quot;systemctl suspend-then-hibernate&quot;	&quot;󰤄 &quot;)
+
+  	(button		:class &quot;button-reb&quot;
+	  			:tooltip &quot;Reboot&quot;
+				:onclick &quot;reboot&quot;	&quot; &quot;)
+  ))
+	(button		:class &quot;button-off&quot;
+				:tooltip &quot;Shutdown&quot;
+				:onclick &quot;shutdown now&quot;	&quot; &quot;))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Window Section&apos;s							 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow bar
+  :monitor 0
+  :windowtype &quot;dock&quot;
+  :geometry (geometry :x &quot;0%&quot;
+                      :y &quot;5px&quot;
+                      :width &quot;99%&quot;
+                      :height &quot;5px&quot;
+                      :anchor &quot;top center&quot;)
+  :reserve (struts :side &quot;top&quot; :distance &quot;4%&quot;)
+  (bar))</file></files></repomix>

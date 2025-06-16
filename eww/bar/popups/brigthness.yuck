@@ -1,0 +1,49 @@
+(deflisten ddcci4_listen :initial "0"
+  "$HOME/.config/eww/bar/scripts/brightness.sh info ddcci4")
+
+(deflisten laptop_listen :initial "0"
+  "$HOME/.config/eww/bar/scripts/brightness.sh info intel_backlight")
+
+(defwidget brightness_slider [label value onchange]
+  (box :orientation "v" :class "brightness-slider-container" :space-evenly false :spacing 10
+    (label :text label :class "brightness-device-label")
+    (scale :orientation "v"
+           :height 250
+           :min 0
+           :max 101
+           :flipped true
+           :value value
+           :onchange onchange)
+
+     (label :text "${round(value, 0)}%" :class "slider-value-label")
+  )
+)
+
+(defwidget brightness_controls []
+  (box :class "brightness-controls"
+       :orientation "v"
+       :space-evenly false
+       :class "brightness-controls"
+    (label :text "Brightness" :class "brightness-title")
+    ;; Brightness control buttons
+    (box :orientation "h"
+         :class "sliders-container"
+         :space-evenly false
+         :spacing 50
+       (brightness_slider :label "Monitor"
+                         :value ddcci4_listen
+                         :onchange "$HOME/.config/eww/bar/scripts/brightness.sh set ddcci4 {}")
+      (brightness_slider :label "Laptop"
+                         :value laptop_listen
+                         :onchange "$HOME/.config/eww/bar/scripts/brightness.sh set intel_backlight {}")
+      )
+  )
+)
+
+(defwindow brightness_popup
+  :monitor 0
+  :geometry (geometry :x "-310px"
+                      :y "45px"
+                      :anchor "top right")
+  :stacking "fg"
+(brightness_controls))

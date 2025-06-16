@@ -1,3 +1,11 @@
+(defvar eww "eww -c $HOME/.config/eww/bar")
+
+(include "./popups/brigthness.yuck")
+(include "./popups/music.yuck")
+
+(defpoll time :interval "2s"
+  "date '+%H:%M'")
+
 (deflisten node_listen :initial "Node Title"
   "$HOME/.config/eww/bar/scripts/get-nodes.sh")
 
@@ -6,17 +14,13 @@
 
 (deflisten volume_json :initial "{}"
   "$HOME/.config/eww/bar/scripts/volume.sh subscribe")
-
-(defpoll time :interval "2s"
-  "date '+%H:%M'")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;							Widget Section's							 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Main Bar Widgets ;;
 (defwidget bar []
-  (box :orientation "h"
+  (box :orientation "h" :space-evenly false
     (box :orientation "h" :halign "start" :space-evenly false
       (workspaces)
       (label :class "separator" :text "|")
@@ -24,13 +28,28 @@
     )
     (sidestuff)))
 
+;; Workspace Widgets ;;
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly false
+       :halign "start"
+    (for workspace in workspaces_json
+      (button :cursor "pointer"
+                :onclick "bspc desktop -f ^${workspace.name}"
+              :class "workspace-button ${workspace.class}"
+        {workspace.name}))))
+
 ;; Side Bar Widgets ;;
 (defwidget sidestuff []
   (box :class "sidestuff"
        :orientation "h"
        :space-evenly false
        :spacing 2
+       :hexpand true
        :halign "end"
+    (music)
+    (label :class "separator" :text "|")
     (eventbox :cursor "pointer"
               :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
               :onrightclick "pavucontrol &"
@@ -43,6 +62,8 @@
         :suffix {volume_json.muted == "yes" ? "" : "%"}
       )
     )
+    (label :class "separator" :text "|")
+    (brightness_widget)
     (label :class "separator" :text "|")
     (metric
             :prefix "  "
@@ -60,6 +81,8 @@
             :prefix "󱑃 "
             :value {time}
             )
+    (label :class "separator" :text "|")
+    (power)
     ))
 
 ;; Metric Widgets ;;
@@ -72,27 +95,111 @@
      (label :class "suffix-label" :text "${suffix}")
     ))
 
-;; Workspace Widgets ;;
-(defwidget workspaces []
-  (box :class "workspaces"
-       :orientation "h"
-       :space-evenly false
-       :halign "start"
-    (for workspace in workspaces_json
-      (button :cursor "pointer"
-                :onclick "bspc desktop -f ^${workspace.name}"
-              :class "workspace-button ${workspace.class}"
-        {workspace.name}))))
+;; Brigthness Widgets ;;
+(defvar brightness_popup false)
 
+; Brigthness Widgets ;;
+;; This widget in the bar now opens and closes the popup window on hover.
+(defwidget brightness_widget []
+  (eventbox
+    :onclick "$HOME/.config/eww/bar/scripts/pop.sh brightness"
+    :cursor "pointer"
+    (box :class "brightness-icon" :orientation "h"
+      (label :text "󰃠 ")
+    )
+  )
+)
+
+;; Music Widgets ;;
+(defvar music false)
+
+(defwidget music []
+  (eventbox
+        :cursor "pointer"
+        :onhover "${eww} update music=true"
+				:onhoverlost "${eww} update music=false"
+     (box :orientation "h"
+       :class "music"
+       :space-evenly false
+       	(revealer	:transition "slideleft"
+				:reveal music
+				:duration "550ms"
+           (eventbox :cursor "pointer"
+                     :onclick "mpc prev"
+             (label  :class "music-button" :text "󰒮")
+             )
+        )
+       (eventbox :cursor "pointer"
+                 :onclick "mpc toggle"
+                 :onrightclick "$HOME/.config/eww/bar/scripts/pop.sh music"
+                 :onscroll "$HOME/.config/eww/bar/scripts/media.sh volume {}"
+         (box :orientation "h"
+              :class "music-title"
+              :space-evenly false
+              :spacing 10
+           (label
+                :text " "
+                :style "color: #f0c674;"
+           )
+           (label
+                :show-truncated true
+                :limit-width 30
+                :text "${music_json.title}"
+           )
+          )
+         )
+       (revealer	:transition "slideright"
+				:reveal music
+				:duration "550ms"
+           (eventbox :cursor "pointer"
+                     :onclick "mpc next"
+             (label  :class "music-button" :text "󰒭")
+             )
+        )
+      )
+    )
+)
+
+;; Power Widgets ;;
+(defvar power false)
+
+;; Powermenu Widgets ;;
+(defwidget power []
+	(eventbox
+        :onhover "${eww} update power=true"
+				:onhoverlost "${eww} update power=false"
+        :cursor "pointer"
+	(box	:orientation "h"
+				:space-evenly "false"
+				:hexpand false
+				:class "powermenu"
+	(revealer	:transition "slideleft"
+				:reveal power
+				:duration "550ms"
+	(box	:orientation "h"
+				:space-evenly "false"
+
+  	(button		:class "button-suspend"
+	  			:tooltip "Suspend"
+				:onclick "systemctl suspend-then-hibernate"	"󰤄 ")
+
+  	(button		:class "button-reb"
+	  			:tooltip "Reboot"
+				:onclick "reboot"	" ")
+  ))
+	(button		:class "button-off"
+				:tooltip "Shutdown"
+				:onclick "shutdown now"	" "))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;							Window Section's							 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defwindow bar
   :monitor 0
   :windowtype "dock"
   :geometry (geometry :x "0%"
-                      :y "95%"
+                      :y "5px"
                       :width "99%"
                       :height "5px"
                       :anchor "top center")

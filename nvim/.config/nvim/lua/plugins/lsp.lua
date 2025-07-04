@@ -25,6 +25,7 @@ return {
 				qmlls = {},
 				cssls = {},
 				tailwindcss = {},
+				rust_analyzer = {},
 			},
 		},
 		config = function(_, opts)

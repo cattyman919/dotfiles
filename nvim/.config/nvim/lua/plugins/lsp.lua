@@ -1,45 +1,36 @@
 return {
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "saghen/blink.cmp",
-      {
-        "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
-        opts = {
-          library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
-            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-          },
-        },
-      },
-    },
-    opts = {
-      servers = {
-        lua_ls = {},
-        gopls = {},
-        basedpyright = {},
-        bashls = {},
-        ts_ls = {},
-        phpactor = {
-          init_options = {
-            -- If you use psalm, enable it here.
-            -- ["language_server.diagnostics.enable"] = true,
-            -- ["language_server_psalm.enabled"] = true,
-            -- If you use phpstan, enable it here.
-            ["language_server_phpstan.enabled"] = true,
-          },
-        },
-        -- denols = {},
-        qmlls = {},
-        cssls = {},
-        tailwindcss = {},
-      },
-    },
-    config = function(_, opts)
-      local lspconfig = require "lspconfig"
-      local util = require "lspconfig.util"
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"saghen/blink.cmp",
+			{
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = {
+						-- See the configuration section for more details
+						-- Load luvit types when the `vim.uv` word is found
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+		},
+		opts = {
+			servers = {
+				lua_ls = {},
+				gopls = {},
+				basedpyright = {},
+				bashls = {},
+				ts_ls = {},
+				qmlls = {},
+				cssls = {},
+				tailwindcss = {},
+				rust_analyzer = {},
+			},
+		},
+		config = function(_, opts)
+			local lspconfig = require("lspconfig")
+			local util = require("lspconfig.util")
 
       if opts.servers.phpactor then
         opts.servers.phpactor.root_dir = util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")

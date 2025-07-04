@@ -23,30 +23,24 @@ return {
 				bashls = {},
 				ts_ls = {},
 				qmlls = {},
-				phpactor = {
-					init_options = {
-						-- If you use psalm, enable it here.
-						-- ["language_server.diagnostics.enable"] = true,
-						-- ["language_server_psalm.enabled"] = true,
-						-- If you use phpstan, enable it here.
-						["language_server_phpstan.enabled"] = true,
-					},
-				},
 				cssls = {},
-				-- denols = {},
+				tailwindcss = {},
 			},
 		},
 		config = function(_, opts)
 			local lspconfig = require("lspconfig")
+			local util = require("lspconfig.util")
+
+			if opts.servers.phpactor then
+				opts.servers.phpactor.root_dir =
+					util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")
+			end
 
 			for server, config in pairs(opts.servers) do
-				-- Ensure server_settings is a table if you plan to add .capabilities to it
 				if type(config) ~= "table" then
 					config = {}
 				end
 
-				-- passing config.capabilities to blink.cmp merges with the capabilities in your
-				-- `opts[server].capabilities, if you've defined it
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				lspconfig[server].setup(config)
 			end

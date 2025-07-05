@@ -21,7 +21,7 @@ alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
 alias cat="bat"
 alias y="yazi"
 alias m="memes"
-alias sh="shutdown"
+alias shut="shutdown"
 alias rb="reboot"
 alias sp="sudo pacman"
 
@@ -49,7 +49,7 @@ alias Qtile='startx'
 # LazyGit
 # -----------------------------------------------------
 
-alias lg="lazygit" 
+alias lg="lazygit"
 
 # -----------------------------------------------------
 # Git

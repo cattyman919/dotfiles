@@ -15,6 +15,19 @@ return {
 				},
 			},
 			{
+				"utilyre/barbecue.nvim",
+				name = "barbecue",
+				version = "*",
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"nvim-tree/nvim-web-devicons",
+				},
+				opts = {
+					show_dirname = false,
+					create_autocmd = false, -- prevent barbecue from updating itself automatically
+				},
+			},
+			{
 				"SmiteshP/nvim-navbuddy",
 				dependencies = {
 					"SmiteshP/nvim-navic",

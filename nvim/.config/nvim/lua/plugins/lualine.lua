@@ -15,8 +15,8 @@ return {
 				},
 				ignore_focus = {},
 				always_divide_middle = true,
-				always_show_tabline = true,
-				globalstatus = false,
+				always_show_tabline = false,
+				globalstatus = true,
 				refresh = {
 					statusline = 100,
 					tabline = 100,
@@ -26,21 +26,7 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = {},
-				lualine_c = {
-					{
-						"filetype",
-						icon_only = true,
-						separator = "",
-						padding = 1,
-						icon = { align = "right" },
-					},
-					{
-						"filename",
-						path = 1,
-						padding = 0,
-						separator = "",
-					},
-				},
+				lualine_c = { { "filename", path = 1 } },
 				lualine_x = { "diff", "diagnostics" },
 				lualine_y = { "lsp_status" },
 				lualine_z = { "" },

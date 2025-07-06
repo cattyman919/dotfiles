@@ -7,6 +7,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.helpheight = 0
 vim.opt.laststatus = 3
+vim.opt.updatetime = 200
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1

@@ -1,5 +1,4 @@
 -- Keymaps
-
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>") -- Source File
@@ -101,7 +100,15 @@ vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diag
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagnostics list (quickfix)" })
 
 -- LSP
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go To Definition" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP Code Action" })
 vim.keymap.set("n", "<space>ga", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+
+-- LSP + Telescope + Navbuddy
+local builtin = require("telescope.builtin")
+local navbuddy = require("nvim-navbuddy")
+vim.keymap.set("n", "<space>fs", navbuddy.open, { desc = "Nav Buddy" })
+vim.keymap.set("n", "grr", builtin.lsp_references, { desc = "Find references" })
 
 -- Terminals
 vim.keymap.set("n", "<space>st", function()

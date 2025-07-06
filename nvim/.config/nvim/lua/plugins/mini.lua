@@ -3,30 +3,30 @@ return {
 	{ "echasnovski/mini.nvim", version = false },
 
 	-- File explorer (this works properly with oil unlike nvim-tree)
-	{
-		"echasnovski/mini.files",
-		config = function()
-			local MiniFiles = require("mini.files")
-			MiniFiles.setup({
-				mappings = {
-					go_in = "l",
-					go_in_plus = "<CR>",
-					go_out_plus = "-",
-					go_out = "h",
-				},
-			})
-			vim.keymap.set("n", "<C-n>", function()
-				if not MiniFiles.close() then
-					MiniFiles.open()
-				end
-			end, { desc = "Toggle mini file explorer" })
-
-			vim.keymap.set("n", "<leader>ef", function()
-				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-				MiniFiles.reveal_cwd()
-			end, { desc = "Toggle into currently opened file" })
-		end,
-	},
+	-- {
+	-- 	"echasnovski/mini.files",
+	-- 	config = function()
+	-- 		local MiniFiles = require("mini.files")
+	-- 		MiniFiles.setup({
+	-- 			mappings = {
+	-- 				go_in = "l",
+	-- 				go_in_plus = "<CR>",
+	-- 				go_out_plus = "-",
+	-- 				go_out = "h",
+	-- 			},
+	-- 		})
+	-- 		vim.keymap.set("n", "<C-n>", function()
+	-- 			if not MiniFiles.close() then
+	-- 				MiniFiles.open()
+	-- 			end
+	-- 		end, { desc = "Toggle mini file explorer" })
+	--
+	-- 		vim.keymap.set("n", "<leader>ef", function()
+	-- 			MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+	-- 			MiniFiles.reveal_cwd()
+	-- 		end, { desc = "Toggle into currently opened file" })
+	-- 	end,
+	-- },
 	-- Surround
 	{
 		"echasnovski/mini.surround",

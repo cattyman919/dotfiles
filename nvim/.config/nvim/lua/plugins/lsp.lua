@@ -14,6 +14,25 @@ return {
 					},
 				},
 			},
+			{
+				"SmiteshP/nvim-navbuddy",
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"MunifTanjim/nui.nvim",
+				},
+				opts = {
+					window = {
+						size = { width = "100%", height = "50%" },
+						position = "100%",
+						sections = {
+							left = {
+								size = "15%",
+							},
+						},
+					},
+					lsp = { auto_attach = true },
+				},
+			},
 		},
 		opts = {
 			servers = {
@@ -45,24 +64,6 @@ return {
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				lspconfig[server].setup(config)
 			end
-
-			-- Enable Formatting when saved
-			-- vim.api.nvim_create_autocmd('LspAttach', {
-			--   callback = function(args)
-			--     local c = vim.lsp.get_client_by_id(args.data.client_id)
-			--     if not c then return end
-			--
-			--     if c.supports_method('textDocument/formatting') then
-			--       -- Format the current buffer on save
-			--       vim.api.nvim_create_autocmd('BufWritePre', {
-			--         buffer = args.buf,
-			--         callback = function()
-			--           vim.lsp.buf.format({ bufnr = args.buf, id = c.id })
-			--         end,
-			--       })
-			--     end
-			--   end,
-			-- })
 		end,
 	},
 }

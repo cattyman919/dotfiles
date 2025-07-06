@@ -40,10 +40,6 @@ return {
 		vim.keymap.set("n", "<space>fo", builtin.oldfiles, { desc = "Find old files" })
 		vim.keymap.set("n", "<space>fj", builtin.jumplist, { desc = "Find jump list" })
 		vim.keymap.set("n", "<space>fw", builtin.live_grep, { desc = "Live Grep" })
-		vim.keymap.set("n", "<space>fs", builtin.lsp_document_symbols, { desc = "Buffer LSP Symbols" })
-
-		vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to Definition" })
-		vim.keymap.set("n", "grr", builtin.lsp_references, { desc = "Find references" })
 
 		-- Telescope to Neovim Config Files
 		vim.keymap.set("n", "<space>en", function()

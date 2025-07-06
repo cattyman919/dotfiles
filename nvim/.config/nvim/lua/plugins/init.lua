@@ -18,6 +18,7 @@ return {
 		},
 	},
 	{
+		-- Notification System
 		"j-hui/fidget.nvim",
 		opts = {
 			-- options

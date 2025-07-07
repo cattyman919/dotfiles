@@ -17,12 +17,21 @@ return {
 		},
 		view = {
 			side = "right",
-			width = 40,
+			width = {
+				min = 30,
+				max = -1,
+			},
 			preserve_window_proportions = true,
+		},
+		diagnostics = {
+			enable = true,
 		},
 		renderer = {
 			root_folder_label = false,
-			highlight_git = true,
+			hidden_display = "all",
+			highlight_git = "icon",
+			highlight_modified = "icon",
+			highlight_diagnostics = "icon",
 			indent_markers = { enable = true },
 			icons = {
 				glyphs = {
@@ -36,6 +45,16 @@ return {
 					},
 					git = { unmerged = "" },
 				},
+			},
+		},
+		modified = {
+			enable = true,
+			show_on_dirs = true,
+			show_on_open_dirs = true,
+		},
+		actions = {
+			open_file = {
+				quit_on_open = true,
 			},
 		},
 	},

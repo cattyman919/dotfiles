@@ -29,9 +29,9 @@ return {
 		renderer = {
 			root_folder_label = false,
 			hidden_display = "all",
-			highlight_git = "icon",
-			highlight_modified = "icon",
-			highlight_diagnostics = "icon",
+			-- highlight_git = "icon",
+			-- highlight_modified = "icon",
+			-- highlight_diagnostics = "icon",
 			indent_markers = { enable = true },
 			icons = {
 				glyphs = {
@@ -47,11 +47,11 @@ return {
 				},
 			},
 		},
-		modified = {
-			enable = true,
-			show_on_dirs = true,
-			show_on_open_dirs = true,
-		},
+		-- modified = {
+		-- 	enable = true,
+		-- 	show_on_dirs = true,
+		-- 	show_on_open_dirs = true,
+		-- },
 		actions = {
 			open_file = {
 				quit_on_open = true,

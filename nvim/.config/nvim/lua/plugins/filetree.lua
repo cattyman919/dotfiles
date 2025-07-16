@@ -16,7 +16,7 @@ return {
 			update_root = false,
 		},
 		view = {
-			side = "right",
+			side = "left",
 			width = {
 				min = 30,
 				max = -1,

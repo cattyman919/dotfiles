@@ -34,7 +34,7 @@ vim.diagnostic.config({
 	}, -- or a table to customize (see below)
 
 	-- Show virtual text (inline messages)
-	virtual_text = true, -- or a table to customize (see below)
+	virtual_text = false, -- or a table to customize (see below)
 
 	-- Underline the diagnostic'd text
 	underline = true,

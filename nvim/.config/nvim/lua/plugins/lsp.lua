@@ -50,19 +50,61 @@ return {
 		opts = {
 			servers = {
 				lua_ls = {},
-				gopls = {},
 				basedpyright = {},
 				bashls = {},
 				ts_ls = {},
 				qmlls = {},
 				cssls = {},
 				tailwindcss = {},
-				rust_analyzer = {},
+				gopls = {
+					settings = {
+						gopls = {
+							-- enable all types of inlay hints for gopls
+							hints = {
+								assignVariableTypes = true,
+								compositeLiteralTypes = true,
+								constantValues = true,
+								functionTypeParameters = true,
+								parameterNames = true,
+								rangeVariableTypes = true,
+							},
+						},
+					},
+				},
+				rust_analyzer = {
+					settings = {
+						["rust-analyzer"] = {
+							-- enable inlay hints for types and chains
+							inlayHints = {
+								typeHints = {
+									enable = true,
+								},
+								chainingHints = {
+									enable = true,
+								},
+							},
+						},
+					},
+				},
 			},
 		},
 		config = function(_, opts)
 			local lspconfig = require("lspconfig")
 			local util = require("lspconfig.util")
+
+			-- [[ Configure Inlay Hints on LspAttach ]]
+			-- This block will enable inlay hints automatically for any attached LSP that supports them.
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("UserLspConfig", {}), -- Create a new augroup or use an existing one
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					-- Check if the server supports inlay hints
+					if client and client.server_capabilities.inlayHintProvider then
+						-- Enable inlay hints for the buffer
+						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+					end
+				end,
+			})
 
 			if opts.servers.phpactor then
 				opts.servers.phpactor.root_dir =

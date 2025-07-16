@@ -92,20 +92,6 @@ return {
 			local lspconfig = require("lspconfig")
 			local util = require("lspconfig.util")
 
-			-- [[ Configure Inlay Hints on LspAttach ]]
-			-- This block will enable inlay hints automatically for any attached LSP that supports them.
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLspConfig", {}), -- Create a new augroup or use an existing one
-				callback = function(args)
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					-- Check if the server supports inlay hints
-					if client and client.server_capabilities.inlayHintProvider then
-						-- Enable inlay hints for the buffer
-						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-					end
-				end,
-			})
-
 			if opts.servers.phpactor then
 				opts.servers.phpactor.root_dir =
 					util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")

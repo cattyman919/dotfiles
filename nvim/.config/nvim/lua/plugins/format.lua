@@ -30,6 +30,7 @@ return {
 				sh = { "shfmt" },
 				go = { "gofmt", "goimports" },
 				php = { "pint" },
+				java = { "google-java-format" },
 				rust = { "rustfmt" },
 
 				-- Example of using a formatter that isn't a default

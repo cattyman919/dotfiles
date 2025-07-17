@@ -56,6 +56,7 @@ return {
 				qmlls = {},
 				cssls = {},
 				tailwindcss = {},
+				jdtls = {},
 				gopls = {
 					settings = {
 						gopls = {

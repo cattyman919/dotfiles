@@ -88,14 +88,15 @@ vim.keymap.set("n", "x", '"_x', opts)
 -- Diagnostics
 
 -- Toggle LSP diagnostics visibility
-local isLspDiagnosticsVisible = true
-vim.keymap.set("n", "<C-x>", function()
-	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-	vim.diagnostic.config({
-		virtual_text = isLspDiagnosticsVisible,
-		underline = isLspDiagnosticsVisible,
-	})
-end, { desc = "Toggle LSP diagnostics" })
+-- local isLspDiagnosticsVisible = true
+-- vim.keymap.set("n", "<C-x>", function()
+-- 	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+-- 	vim.diagnostic.config({
+-- 		virtual_text = isLspDiagnosticsVisible,
+-- 		underline = isLspDiagnosticsVisible,
+-- 	})
+-- end, { desc = "Toggle LSP diagnostics" })
+
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diagnostics list (location)" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagnostics list (quickfix)" })
 

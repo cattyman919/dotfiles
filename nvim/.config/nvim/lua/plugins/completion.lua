@@ -1,5 +1,20 @@
 return {
 	{
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+
+			-- This is the important part
+			require("luasnip").filetype_extend("typescript", { "html" })
+			require("luasnip").filetype_extend("javascript", { "html" })
+
+			-- Make TSX and JSX inherit from their base language AND html
+			require("luasnip").filetype_extend("typescriptreact", { "html", "typescript" })
+			require("luasnip").filetype_extend("javascriptreact", { "html", "javascript" })
+		end,
+	},
+
+	{
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
 		dependencies = {
@@ -78,18 +93,18 @@ return {
 			},
 			sources = {
 				-- Add 'avante' to the list
-				default = { "avante", "lsp", "buffer", "snippets", "path" },
-				providers = {
-					avante = {
-						module = "blink-cmp-avante",
-						name = "Avante",
-						opts = {
-							-- options for blink-cmp-avante
-						},
-					},
-				},
+				default = { "lsp", "buffer", "snippets", "path" },
+				-- providers = {
+				-- 	avante = {
+				-- 		module = "blink-cmp-avante",
+				-- 		name = "Avante",
+				-- 		opts = {
+				-- 			-- options for blink-cmp-avante
+				-- 		},
+				-- 	},
+				-- },
 			},
-
+			snippets = { preset = "luasnip" },
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },

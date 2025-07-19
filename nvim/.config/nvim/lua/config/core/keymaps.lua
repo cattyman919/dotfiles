@@ -5,6 +5,10 @@ vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>") -- Source File
 vim.keymap.set("n", "<C-s>", ":write<CR>") -- Save file with CTRL + S
 vim.keymap.set("n", "<C-c>", ":%y<CR>", opts) -- Copy all lines in buffer
 
+-- Move left/right in insert mode with CTRL+H/L
+vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true, silent = true })
+
 -- Moves Lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "moves lines up in visual selection" })

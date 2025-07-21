@@ -56,7 +56,7 @@ return {
 				qmlls = {},
 				cssls = {},
 				tailwindcss = {},
-				jdtls = {},
+				-- jdtls = {},
 				gopls = {
 					settings = {
 						gopls = {
@@ -108,4 +108,5 @@ return {
 			end
 		end,
 	},
+	"mfussenegger/nvim-jdtls",
 }

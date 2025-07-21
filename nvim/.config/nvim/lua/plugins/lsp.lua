@@ -109,4 +109,8 @@ return {
 		end,
 	},
 	"mfussenegger/nvim-jdtls",
+	{
+		"mason-org/mason.nvim",
+		opts = {},
+	},
 }

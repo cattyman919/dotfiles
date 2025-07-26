@@ -17,6 +17,7 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			"Kaiser-Yang/blink-cmp-avante",
+			"giuxtaposition/blink-cmp-copilot",
 			"rafamadriz/friendly-snippets",
 			"L3MON4D3/LuaSnip",
 			"nvim-tree/nvim-web-devicons",
@@ -52,6 +53,10 @@ return {
 
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = { -- Define 'completion' as a key
+				ghost_text = {
+					enabled = true,
+					show_with_menu = false,
+				},
 				trigger = {
 					show_on_keyword = true,
 				},
@@ -65,6 +70,7 @@ return {
 					update_delay_ms = 50,
 				},
 				menu = {
+					auto_show = false,
 					draw = {
 						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } }, -- 'columns' is a key in 'draw'
 						components = {
@@ -108,16 +114,31 @@ return {
 			},
 			sources = {
 				-- Add 'avante' to the list
-				default = { "lsp", "buffer", "snippets", "path" },
-				-- providers = {
-				-- 	avante = {
-				-- 		module = "blink-cmp-avante",
-				-- 		name = "Avante",
-				-- 		opts = {
-				-- 			-- options for blink-cmp-avante
-				-- 		},
-				-- 	},
-				-- },
+				default = { "copilot", "lsp", "buffer", "snippets", "path" },
+				providers = {
+					copilot = {
+						name = "copilot",
+						module = "blink-cmp-copilot",
+						score_offset = 100,
+						async = true,
+						transform_items = function(_, items)
+							local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+							local kind_idx = #CompletionItemKind + 1
+							CompletionItemKind[kind_idx] = "Copilot"
+							for _, item in ipairs(items) do
+								item.kind = kind_idx
+							end
+							return items
+						end,
+					},
+					-- 	avante = {
+					-- 		module = "blink-cmp-avante",
+					-- 		name = "Avante",
+					-- 		opts = {
+					-- 			-- options for blink-cmp-avante
+					-- 		},
+					-- 	},
+				},
 			},
 			snippets = { preset = "luasnip" },
 			fuzzy = { implementation = "prefer_rust_with_warning" },

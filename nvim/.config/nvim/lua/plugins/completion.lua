@@ -34,6 +34,7 @@ return {
 				["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<M-e>"] = { "hide" },
 				["<C-e>"] = { "hide" },
+				["<C-l>"] = { "select_and_accept" },
 				["<M-l>"] = { "select_and_accept" },
 				-- ["<CR>"] = { "select_and_accept" },
 				["<M-j>"] = { "select_next", "fallback_to_mappings" },
@@ -51,6 +52,10 @@ return {
 
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = { -- Define 'completion' as a key
+				trigger = {
+					show_on_keyword = true,
+				},
+
 				documentation = {
 					auto_show = true,
 					-- Delay before showing the documentation window

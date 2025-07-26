@@ -9,6 +9,26 @@ return {
 					theme = "ivy",
 				},
 				find_files = {
+					hidden = true,
+					no_ignore = false,
+					theme = "ivy",
+				},
+				lsp_references = {
+					theme = "ivy",
+				},
+				lsp_definition = {
+					theme = "ivy",
+				},
+				lsp_implementations = {
+					theme = "ivy",
+				},
+				lsp_document_symbols = {
+					theme = "ivy",
+				},
+				lsp_workspace_symbols = {
+					theme = "ivy",
+				},
+				lsp_dynamic_workspace_symbols = {
 					theme = "ivy",
 				},
 				git_files = {

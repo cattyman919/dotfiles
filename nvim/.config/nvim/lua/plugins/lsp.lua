@@ -27,25 +27,6 @@ return {
 					create_autocmd = false, -- prevent barbecue from updating itself automatically
 				},
 			},
-			{
-				"SmiteshP/nvim-navbuddy",
-				dependencies = {
-					"SmiteshP/nvim-navic",
-					"MunifTanjim/nui.nvim",
-				},
-				opts = {
-					window = {
-						size = { width = "100%", height = "50%" },
-						position = "100%",
-						sections = {
-							left = {
-								size = "15%",
-							},
-						},
-					},
-					lsp = { auto_attach = true },
-				},
-			},
 		},
 		opts = {
 			servers = {

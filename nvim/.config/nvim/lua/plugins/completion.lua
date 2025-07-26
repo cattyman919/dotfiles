@@ -4,11 +4,9 @@ return {
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
 
-			-- This is the important part
 			require("luasnip").filetype_extend("typescript", { "html" })
 			require("luasnip").filetype_extend("javascript", { "html" })
 
-			-- Make TSX and JSX inherit from their base language AND html
 			require("luasnip").filetype_extend("typescriptreact", { "html", "typescript" })
 			require("luasnip").filetype_extend("javascriptreact", { "html", "javascript" })
 		end,
@@ -32,7 +30,19 @@ return {
 		opts = {
 
 			keymap = {
-				preset = "super-tab",
+				preset = "none",
+				["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<M-e>"] = { "hide" },
+				["<C-e>"] = { "hide" },
+				["<M-l>"] = { "select_and_accept" },
+				-- ["<CR>"] = { "select_and_accept" },
+				["<M-j>"] = { "select_next", "fallback_to_mappings" },
+				["<M-k>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			},
 
 			appearance = {

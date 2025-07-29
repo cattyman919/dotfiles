@@ -105,8 +105,10 @@ vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagn
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go To Definition" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP Go To References" })
--- 1. Range-based code actions (works in visual mode)
 vim.keymap.set("v", "<space>ga", vim.lsp.buf.code_action, { desc = "LSP Code Action (Range)" })
+vim.keymap.set("n", "<space>ih", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggal inlay hints" })
 
 -- Telescope
 local builtin = require("telescope.builtin")

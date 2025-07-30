@@ -37,7 +37,6 @@ return {
 				["<C-e>"] = { "hide" },
 				["<C-l>"] = { "select_and_accept" },
 				["<M-l>"] = { "select_and_accept" },
-				-- ["<CR>"] = { "select_and_accept" },
 				["<M-j>"] = { "select_next", "fallback_to_mappings" },
 				["<M-k>"] = { "select_prev", "fallback_to_mappings" },
 				["<C-n>"] = { "select_next", "fallback_to_mappings" },
@@ -55,7 +54,8 @@ return {
 			completion = { -- Define 'completion' as a key
 				ghost_text = {
 					enabled = true,
-					show_with_menu = false,
+					-- show_with_menu = false,
+					-- show_without_menu = true,
 				},
 				trigger = {
 					show_on_keyword = true,
@@ -70,7 +70,7 @@ return {
 					update_delay_ms = 50,
 				},
 				menu = {
-					auto_show = false,
+					auto_show = true,
 					draw = {
 						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } }, -- 'columns' is a key in 'draw'
 						components = {

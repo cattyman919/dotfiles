@@ -8,10 +8,17 @@ return {
 			notify_on_error = true,
 			-- Configure format on save
 			format_on_save = {
-				timeout_ms = 1000, -- Set a timeout for format on save
+				timeout_ms = 200, -- Set a timeout for format on save
 				lsp_fallback = true, -- Fallback to LSP formatting if conform.nvim doesn't have a formatter or fails
 				-- If true, conform will try LSP formatting if its own formatters fail or aren't set up for the buffer.
 				-- If you only want conform.nvim's defined formatters, set this to false.
+			},
+
+			formatters = {
+				["slint-lsp"] = {
+					cmd = "slint-lsp format /dev/stdin", -- The command to run
+					stdin = true, -- It reads from stdin
+				},
 			},
 			-- Define your formatters by filetype
 			formatters_by_ft = {
@@ -27,11 +34,13 @@ return {
 				html = { "prettierd", "prettier" },
 				css = { "prettierd", "prettier" },
 				scss = { "prettierd", "prettier" },
+				astro = { "prettier" },
 				sh = { "shfmt" },
 				go = { "gofmt", "goimports" },
 				php = { "pint" },
 				java = { "google-java-format" },
 				rust = { "rustfmt" },
+				-- slint = { "slint-lsp" }, -- Custom formatter for Slint
 
 				-- Example of using a formatter that isn't a default
 				-- zig = { "zigfmt" },
@@ -53,7 +62,7 @@ return {
 		init = function()
 			-- Set a keymap for manual formatting
 			vim.keymap.set({ "n", "v" }, "<leader>fm", function() -- "fm" for "manual format"
-				require("conform").format({ async = false, lsp_fallback = true, timeout_ms = 1000 })
+				require("conform").format({ async = true, lsp_fallback = true, timeout_ms = 200 })
 				print("Formatted with conform.nvim")
 			end, { desc = "Format buffer with conform.nvim" })
 		end,

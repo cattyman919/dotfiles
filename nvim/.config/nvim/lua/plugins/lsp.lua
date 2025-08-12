@@ -33,10 +33,12 @@ return {
 				lua_ls = {},
 				basedpyright = {},
 				bashls = {},
+				slint_lsp = {},
 				ts_ls = {},
 				qmlls = {},
 				cssls = {},
 				tailwindcss = {},
+				astro = {},
 				-- jdtls = {},
 				gopls = {
 					settings = {
@@ -53,9 +55,31 @@ return {
 						},
 					},
 				},
+				bacon_ls = {
+					-- Bacon export filename (default: .bacon-locations).
+					locationsFile = ".bacon-locations",
+					-- Try to update diagnostics every time the file is saved (default: true).
+					updateOnSave = true,
+					--  How many milliseconds to wait before updating diagnostics after a save (default: 1000).
+					updateOnSaveWaitMillis = 50,
+					-- Try to update diagnostics every time the file changes (default: true).
+					updateOnChange = true,
+					-- Try to validate that bacon preferences are setup correctly to work with bacon-ls (default: true).
+					validateBaconPreferences = true,
+					-- f no bacon preferences file is found, create a new preferences file with the bacon-ls job definition (default: true).
+					createBaconPreferencesFile = true,
+					-- Run bacon in background for the bacon-ls job (default: true)
+					runBaconInBackground = true,
+					-- Command line arguments to pass to bacon running in background (default "--headless -j bacon-ls")
+					runBaconInBackgroundCommandArguments = "--headless -j bacon-ls",
+					-- How many milliseconds to wait between background diagnostics check to synchronize all open files (default: 2000).
+					synchronizeAllOpenFilesWaitMillis = 100,
+				},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
+							checkOnSave = false,
+							diagnostics = false,
 							-- enable inlay hints for types and chains
 							inlayHints = {
 								typeHints = {

@@ -9,6 +9,8 @@ return {
 
 			require("luasnip").filetype_extend("typescriptreact", { "html", "typescript" })
 			require("luasnip").filetype_extend("javascriptreact", { "html", "javascript" })
+
+			require("luasnip").filetype_extend("astro", { "html", "javascript", "typescript" })
 		end,
 	},
 

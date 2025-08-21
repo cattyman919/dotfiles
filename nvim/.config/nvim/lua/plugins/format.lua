@@ -24,10 +24,10 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "ruff_format", "black" }, -- Tries ruff_format first, then black
-				javascript = { "biome", "prettierd", "prettier" }, -- prettierd is faster if available
-				typescript = { "biome", "prettierd", "prettier" },
-				javascriptreact = { "biome", "prettierd", "prettier" },
-				typescriptreact = { "biome", "prettierd", "prettier" },
+				javascript = { "biome", "prettier" }, -- prettierd is faster if available
+				typescript = { "biome", "prettier" },
+				javascriptreact = { "biome", "prettier" },
+				typescriptreact = { "biome", "prettier" },
 				json = { "prettierd", "prettier" },
 				yaml = { "prettierd", "prettier" },
 				markdown = { "prettierd", "prettier" },
@@ -38,6 +38,7 @@ return {
 				sh = { "shfmt" },
 				go = { "gofmt", "goimports" },
 				php = { "pint" },
+				cpp = { "clang-format" },
 				java = { "google-java-format" },
 				rust = { "rustfmt" },
 				-- slint = { "slint-lsp" }, -- Custom formatter for Slint

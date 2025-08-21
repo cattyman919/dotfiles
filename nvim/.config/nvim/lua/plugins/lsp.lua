@@ -37,8 +37,17 @@ return {
 				ts_ls = {},
 				qmlls = {},
 				cssls = {},
+				neocmake = {},
+				angularls = {},
 				tailwindcss = {},
+				clangd = {
+					cmd = { "clangd", "--background-index", "--log=verbose", "--clang-tidy", "--inlay-hints=true" },
+				},
+				yamlls = {},
+				-- sqlls = {},
+				sqls = {},
 				astro = {},
+				dockerls = {},
 				-- jdtls = {},
 				gopls = {
 					settings = {

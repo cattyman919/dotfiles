@@ -10,6 +10,11 @@ return {
 			flavor = "accent",
 			swap_icons = false,
 		},
+		idle = {
+			details = function(opts)
+				return string.format("Taking a break from %s", opts.filename)
+			end,
+		},
 		advanced = {
 			discord = {
 				reconnect = {

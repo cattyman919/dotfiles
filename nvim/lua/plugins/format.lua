@@ -19,6 +19,24 @@ return {
 					cmd = "slint-lsp format /dev/stdin", -- The command to run
 					stdin = true, -- It reads from stdin
 				},
+				rustfmt = {
+					cmd = "rustfmt",
+					-- args = {
+					-- 	"+nightly",
+					-- },
+					stdin = true, -- rustfmt can read from stdin
+				},
+				odinfmt = {
+					-- Change where to find the command if it isn't in your path.
+					command = "odinfmt",
+					args = { "-stdin" },
+					stdin = true,
+				},
+				zigfmt = {
+					command = "zig",
+					args = { "fmt", "--stdin" },
+					stdin = true,
+				},
 			},
 			-- Define your formatters by filetype
 			formatters_by_ft = {
@@ -41,6 +59,8 @@ return {
 				cpp = { "clang-format" },
 				java = { "google-java-format" },
 				rust = { "rustfmt" },
+				odin = { "odinfmt" },
+				zig = { "zigfmt" },
 				-- slint = { "slint-lsp" }, -- Custom formatter for Slint
 
 				-- Example of using a formatter that isn't a default

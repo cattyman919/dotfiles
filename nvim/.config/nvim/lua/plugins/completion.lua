@@ -115,8 +115,8 @@ return {
 				enabled = true,
 			},
 			sources = {
-				-- Add 'avante' to the list
-				default = { "copilot", "lsp", "snippets", "buffer", "path" },
+				-- default = { "copilot", "lsp", "snippets", "buffer", "path" },
+				default = { "lsp", "snippets", "buffer", "path" },
 				providers = {
 					copilot = {
 						name = "copilot",

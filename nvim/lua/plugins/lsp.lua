@@ -42,6 +42,7 @@ return {
 				neocmake = {},
 				angularls = {},
 				tailwindcss = {},
+				terraformls = {},
 				buf_ls = {},
 				clangd = {
 					cmd = { "clangd", "--background-index", "--log=verbose", "--clang-tidy", "--inlay-hints=true" },

@@ -5,6 +5,7 @@ vim.opt.expandtab = true -- Ensure tabs are converted to spaces
 vim.opt.clipboard = "unnamedplus" -- Allow system clipboards
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
 vim.opt.helpheight = 0
 vim.opt.laststatus = 3
 vim.opt.updatetime = 200

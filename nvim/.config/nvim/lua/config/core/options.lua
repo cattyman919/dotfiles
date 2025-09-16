@@ -17,43 +17,39 @@ vim.g.loaded_netrwPlugin = 1
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
--- Themes
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme kanagawa]])
-
 -- Diagnostics
-vim.diagnostic.config({
-	-- Show signs in the gutter
-	signs = {
-		active = true,
-		-- text = {
-		--   [vim.diagnostic.severity.ERROR] = "", -- Icon for Error
-		--   [vim.diagnostic.severity.WARN] = "", -- Icon for Warning
-		--   [vim.diagnostic.severity.INFO] = "", -- Icon for Info
-		--   [vim.diagnostic.severity.HINT] = "", -- Icon for Hint
-		-- },
-	}, -- or a table to customize (see below)
+vim.diagnostic.config {
+  -- Show signs in the gutter
+  signs = {
+    active = true,
+    -- text = {
+    --   [vim.diagnostic.severity.ERROR] = "", -- Icon for Error
+    --   [vim.diagnostic.severity.WARN] = "", -- Icon for Warning
+    --   [vim.diagnostic.severity.INFO] = "", -- Icon for Info
+    --   [vim.diagnostic.severity.HINT] = "", -- Icon for Hint
+    -- },
+  }, -- or a table to customize (see below)
 
-	-- Show virtual text (inline messages)
-	virtual_text = false, -- or a table to customize (see below)
+  -- Show virtual text (inline messages)
+  virtual_text = false, -- or a table to customize (see below)
 
-	-- Underline the diagnostic'd text
-	underline = true,
+  -- Underline the diagnostic'd text
+  underline = true,
 
-	-- Update diagnostics in insert mode (can be distracting for some)
-	update_in_insert = false,
+  -- Update diagnostics in insert mode (can be distracting for some)
+  update_in_insert = false,
 
-	-- Sort diagnostics by severity
-	severity_sort = true,
+  -- Sort diagnostics by severity
+  severity_sort = true,
 
-	-- Configure the floating window for diagnostics (e.g., when using vim.diagnostic.open_float())
-	float = {
-		focusable = false, -- Whether the float window can receive focus
-		style = "minimal", -- "minimal" or "border" (deprecated in favor of border option)
-		border = "rounded", -- "none", "single", "double", "rounded", "solid", "shadow"
-		source = "always", -- "always", "if_many" (show source only if multiple sources) or false
-		header = "", -- Text to put at the top of the float
-		prefix = "", -- Text to put before each diagnostic in the float
-		-- scope = "cursor", -- "cursor", "line", "buffer" (for vim.diagnostic.open_float)
-	},
-})
+  -- Configure the floating window for diagnostics (e.g., when using vim.diagnostic.open_float())
+  float = {
+    focusable = false, -- Whether the float window can receive focus
+    style = "minimal", -- "minimal" or "border" (deprecated in favor of border option)
+    border = "rounded", -- "none", "single", "double", "rounded", "solid", "shadow"
+    source = "always", -- "always", "if_many" (show source only if multiple sources) or false
+    header = "", -- Text to put at the top of the float
+    prefix = "", -- Text to put before each diagnostic in the float
+    -- scope = "cursor", -- "cursor", "line", "buffer" (for vim.diagnostic.open_float)
+  },
+}

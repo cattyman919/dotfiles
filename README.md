@@ -7,11 +7,12 @@ There are 2 main window manager that are in the repo
 
 im currently using bspwm as of now
 
-
-## DWM 
+## DWM
 
 ![DWM](assets/dwm.png)
 
 ## BSPWM
 
-![BSPWM](assets/bspwm.png)
+![BSPWM (Old)](assets/bspwm_old.png)
+
+![BSPWM (New)](assets/bspwm_new.jpg)

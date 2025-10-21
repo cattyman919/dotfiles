@@ -11,8 +11,10 @@ im currently using bspwm as of now
 
 ![DWM](assets/dwm.png)
 
-## BSPWM
+## BSPWM (Old)
 
 ![BSPWM (Old)](assets/bspwm_old.png)
+
+## BSPWM (New)
 
 ![BSPWM (New)](assets/bspwm_new.jpg)

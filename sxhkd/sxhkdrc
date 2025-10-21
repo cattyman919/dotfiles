@@ -17,6 +17,9 @@ super + @space
 super + b
   zen-browser
 
+super + e
+  dolphin
+
 super + r
   /home/senohebat/.config/sxhkd/scripts/record.sh
 

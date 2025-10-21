@@ -60,7 +60,8 @@ dunst & # Notification System
 feh --bg-fill /home/senohebat/Pictures/background.jpg & # Background
 
 # Launch Application at start and send them to specific desktop
-kitty --class RMPC rmpc & sleep 0.5 && bspc node newest -d '^6'
-kitty --class CAVA cava & sleep 0.5 && bspc node newest -d '^6'
-flatpak run com.discordapp.Discord & sleep 2 && bspc node newest -d '^5'
-zen-browser & sleep 2 && bspc node newest -d '^1'
+# kitty --class RMPC rmpc & sleep 0.5 && bspc node newest -d '^6'
+# kitty --class CAVA cava & sleep 0.5 && bspc node newest -d '^6'
+flatpak run com.discordapp.Discord & sleep 3 && bspc node newest -d '^5'
+youtube-music & sleep 3 && bspc node newest -d '^6'
+zen-browser & sleep 3 && bspc node newest -d '^1'

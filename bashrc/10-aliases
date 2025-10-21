@@ -21,8 +21,6 @@ alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
 alias cat="bat"
 alias y="yazi"
 alias m="memes"
-alias sh="shutdown"
-alias rb="reboot"
 alias sp="sudo pacman"
 
 # -----------------------------------------------------
@@ -49,7 +47,7 @@ alias Qtile='startx'
 # LazyGit
 # -----------------------------------------------------
 
-alias lg="lazygit" 
+alias lg="lazygit"
 
 # -----------------------------------------------------
 # Git
@@ -74,6 +72,7 @@ alias ascii='~/.config/ml4w/scripts/figlet.sh'
 # System
 # -----------------------------------------------------
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias rb='reboot'
 
 # -----------------------------------------------------
 # Qtile

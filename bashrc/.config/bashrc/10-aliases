@@ -24,6 +24,7 @@ alias m="memes"
 alias shut="shutdown"
 alias rb="reboot"
 alias sp="sudo pacman"
+alias k="kubectl"
 
 # -----------------------------------------------------
 # ML4W Apps

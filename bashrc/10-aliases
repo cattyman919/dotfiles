@@ -22,6 +22,7 @@ alias cat="bat"
 alias y="yazi"
 alias m="memes"
 alias sp="sudo pacman"
+alias k="kubectl"
 
 # -----------------------------------------------------
 # ML4W Apps

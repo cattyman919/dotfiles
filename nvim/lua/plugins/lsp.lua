@@ -121,10 +121,10 @@ return {
 					util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")
 			end
 
-      for server, config in pairs(opts.servers) do
-        if type(config) ~= "table" then
-          config = {}
-        end
+			for server, config in pairs(opts.servers) do
+				if type(config) ~= "table" then
+					config = {}
+				end
 
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				lspconfig[server].setup(config)

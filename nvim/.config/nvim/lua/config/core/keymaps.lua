@@ -26,66 +26,7 @@ vim.keymap.set("n", "n", "nzzzv") -- Center Cursor when navigating with n
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Navigations (Hop Plugin)
-vim.keymap.set("n", "<C-f>", ":HopWord<CR>", { desc = "move down in buffer with cursor centered" })
-
--- -- Harpoon
--- local harpoon = require("harpoon")
--- local fidget = require("fidget")
---
--- -- Add Harpoon Mark
--- vim.keymap.set("n", "<leader>a", function()
--- 	local fname = vim.fn.expand("%:t") -- current file name
--- 	-- Notify
--- 	fidget.notify("Added " .. fname .. " Harpoon", vim.log.levels.INFO)
---
--- 	harpoon:list():add()
--- end)
---
--- -- Remove Harpoon Mark
--- vim.keymap.set("n", "<leader>r", function()
--- 	local fname = vim.fn.expand("%:t") -- current file name
--- 	-- Notify
--- 	fidget.notify("Removed " .. fname .. " Harpoon", vim.log.levels.WARN)
---
--- 	harpoon:list():remove()
--- end)
---
--- -- Open Harpoon List with telescope
--- vim.keymap.set("n", "<C-e>", function()
--- 	-- basic telescope configuration
--- 	local conf = require("telescope.config").values
--- 	local ivy = require("telescope.themes").get_ivy
---
--- 	local function toggle_telescope(harpoon_files)
--- 		local file_paths = {}
--- 		for _, item in ipairs(harpoon_files.items) do
--- 			table.insert(file_paths, item.value)
--- 		end
---
--- 		require("telescope.pickers")
--- 			.new(
--- 				{},
--- 				ivy({
--- 					prompt_title = "Harpoon",
--- 					finder = require("telescope.finders").new_table({
--- 						results = file_paths,
--- 					}),
--- 					previewer = conf.file_previewer({}),
--- 					sorter = conf.generic_sorter({}),
--- 				})
--- 			)
--- 			:find()
--- 	end
---
--- 	toggle_telescope(harpoon:list())
--- end)
---
--- -- Toggle next in harpoon list (wrap)
--- vim.keymap.set("n", "<C-V>", function()
--- 	harpoon:list():next({
--- 		ui_nav_wrap = true,
--- 	})
--- end)
+-- vim.keymap.set("n", "<C-f>", ":HopWord<CR>", { desc = "move down in buffer with cursor centered" })
 
 -- ctrl c as escape cuz Im lazy to reach up to the esc key
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -118,16 +59,22 @@ vim.keymap.set("n", "<space>ih", function()
 end, { desc = "Toggal inlay hints" })
 
 -- Telescope
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "grr", builtin.lsp_references, { desc = "Find references" })
-vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Find implementations" })
-vim.keymap.set("n", "<space>sw", builtin.lsp_dynamic_workspace_symbols, { desc = "Dynamic Workspace Symbols" })
-vim.keymap.set("n", "<space>sd", builtin.lsp_document_symbols, { desc = "Document Symbols" })
-vim.keymap.set("n", "<space>fh", builtin.help_tags, { desc = "Find help tags" })
-vim.keymap.set("n", "<space>ff", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<space>fo", builtin.oldfiles, { desc = "Find old files" })
-vim.keymap.set("n", "<space>fj", builtin.jumplist, { desc = "Find jump list" })
-vim.keymap.set("n", "<space>fw", builtin.live_grep, { desc = "Live Grep" })
+vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, { desc = "Find references" })
+vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, { desc = "Find implementations" })
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<space>sw",
+-- 	require("telescope.builtin").lsp_dynamic_workspace_symbols,
+-- 	{ desc = "Dynamic Workspace Symbols" }
+-- )
+vim.keymap.set("n", "<space>sd", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
+vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Find help tags" })
+vim.keymap.set("n", "<space>ff", require("telescope.builtin").find_files, { desc = "Find files" })
+vim.keymap.set("n", "<space>fg", require("telescope.builtin").git_files, { desc = "Find Git files" })
+-- vim.keymap.set("n", "<space>fo", require("telescope.builtin").oldfiles, { desc = "Find old files" })
+-- vim.keymap.set("n", "<space>fj", require("telescope.builtin").jumplist, { desc = "Find jump list" })
+-- vim.keymap.set("n", "<space>fw", require("telescope.builtin").live_grep, { desc = "Live Grep" })
+vim.keymap.set("n", "<space>km", require("telescope.builtin").keymaps, { desc = "Keymap" })
 
 -- Telescope to Neovim Config Files
 vim.keymap.set("n", "<space>en", function()
@@ -136,10 +83,12 @@ vim.keymap.set("n", "<space>en", function()
 	})
 end)
 
--- Terminals
-vim.keymap.set("n", "<space>st", function()
-	vim.cmd.vnew()
-	vim.cmd.term()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 5)
-end, { desc = "Open small terminal at bottom" })
+-- Namu
+vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
+	desc = "Jump to LSP symbol",
+	silent = true,
+})
+vim.keymap.set("n", "<leader>sw", ":Namu workspace<cr>", {
+	desc = "LSP Symbols - Workspace",
+	silent = true,
+})

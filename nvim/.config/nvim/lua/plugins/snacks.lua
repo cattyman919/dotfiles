@@ -199,7 +199,7 @@ return {
 				desc = "Find Config File",
 			},
 			{
-				"<leader>ps",
+				"<leader>fw",
 				function()
 					require("snacks").picker.grep()
 				end,

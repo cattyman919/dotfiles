@@ -18,7 +18,7 @@ return {
 		"saghen/blink.cmp",
 		-- optional: provides snippets for the snippet source
 		dependencies = {
-			"Kaiser-Yang/blink-cmp-avante",
+			-- "Kaiser-Yang/blink-cmp-avante",
 			"giuxtaposition/blink-cmp-copilot",
 			"rafamadriz/friendly-snippets",
 			"L3MON4D3/LuaSnip",

@@ -19,7 +19,7 @@ return {
 				enabled = true,
 			},
 			quickfile = {
-				enabled = true,
+				enabled = false,
 				exclude = { "latex" },
 			},
 			-- HACK: read picker docs @ https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
@@ -184,13 +184,6 @@ return {
 			},
 
 			-- Snacks Picker
-			{
-				"<leader>pf",
-				function()
-					require("snacks").picker.files()
-				end,
-				desc = "Find Files (Snacks Picker)",
-			},
 			{
 				"<leader>pc",
 				function()

@@ -25,9 +25,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "move up in buffer with cursor 
 vim.keymap.set("n", "n", "nzzzv") -- Center Cursor when navigating with n
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Navigations (Hop Plugin)
--- vim.keymap.set("n", "<C-f>", ":HopWord<CR>", { desc = "move down in buffer with cursor centered" })
-
 -- ctrl c as escape cuz Im lazy to reach up to the esc key
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search hl", silent = true })
@@ -69,7 +66,7 @@ vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, { de
 -- )
 vim.keymap.set("n", "<space>sd", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
 vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Find help tags" })
-vim.keymap.set("n", "<space>ff", require("telescope.builtin").find_files, { desc = "Find files" })
+-- vim.keymap.set("n", "<space>ff", require("telescope.builtin").find_files, { desc = "Find files" })
 vim.keymap.set("n", "<space>fg", require("telescope.builtin").git_files, { desc = "Find Git files" })
 -- vim.keymap.set("n", "<space>fo", require("telescope.builtin").oldfiles, { desc = "Find old files" })
 -- vim.keymap.set("n", "<space>fj", require("telescope.builtin").jumplist, { desc = "Find jump list" })
@@ -92,3 +89,6 @@ vim.keymap.set("n", "<leader>sw", ":Namu workspace<cr>", {
 	desc = "LSP Symbols - Workspace",
 	silent = true,
 })
+
+-- Snacks
+vim.keymap.set("n", "<space>ff", require("snacks").picker.files, { desc = "Find files" })

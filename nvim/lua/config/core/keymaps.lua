@@ -56,29 +56,29 @@ vim.keymap.set("n", "<space>ih", function()
 end, { desc = "Toggal inlay hints" })
 
 -- Telescope
-vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, { desc = "Find references" })
-vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, { desc = "Find implementations" })
+-- vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, { desc = "Find references" })
+-- vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, { desc = "Find implementations" })
 -- vim.keymap.set(
 -- 	"n",
 -- 	"<space>sw",
 -- 	require("telescope.builtin").lsp_dynamic_workspace_symbols,
 -- 	{ desc = "Dynamic Workspace Symbols" }
 -- )
-vim.keymap.set("n", "<space>sd", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
-vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Find help tags" })
+-- vim.keymap.set("n", "<space>sd", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
+-- vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "Find help tags" })
 -- vim.keymap.set("n", "<space>ff", require("telescope.builtin").find_files, { desc = "Find files" })
-vim.keymap.set("n", "<space>fg", require("telescope.builtin").git_files, { desc = "Find Git files" })
+-- vim.keymap.set("n", "<space>fg", require("telescope.builtin").git_files, { desc = "Find Git files" })
 -- vim.keymap.set("n", "<space>fo", require("telescope.builtin").oldfiles, { desc = "Find old files" })
 -- vim.keymap.set("n", "<space>fj", require("telescope.builtin").jumplist, { desc = "Find jump list" })
 -- vim.keymap.set("n", "<space>fw", require("telescope.builtin").live_grep, { desc = "Live Grep" })
-vim.keymap.set("n", "<space>km", require("telescope.builtin").keymaps, { desc = "Keymap" })
+-- vim.keymap.set("n", "<space>km", require("telescope.builtin").keymaps, { desc = "Keymap" })
 
 -- Telescope to Neovim Config Files
-vim.keymap.set("n", "<space>en", function()
-	require("telescope.builtin").find_files({
-		cwd = vim.fn.stdpath("config"),
-	})
-end)
+-- vim.keymap.set("n", "<space>en", function()
+-- 	require("telescope.builtin").find_files({
+-- 		cwd = vim.fn.stdpath("config"),
+-- 	})
+-- end)
 
 -- Namu
 vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
@@ -91,4 +91,21 @@ vim.keymap.set("n", "<leader>sw", ":Namu workspace<cr>", {
 })
 
 -- Snacks
+vim.keymap.set("n", "<space>en", function()
+	require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+end)
+vim.keymap.set("n", "grr", require("snacks").picker.lsp_references, { desc = "Find LSP References" })
+vim.keymap.set("n", "gi", require("snacks").picker.lsp_implementations, { desc = "Find LSP References" })
 vim.keymap.set("n", "<space>ff", require("snacks").picker.files, { desc = "Find files" })
+vim.keymap.set("n", "<space>fg", require("snacks").picker.git_files, { desc = "Find Git files" })
+vim.keymap.set("n", "<space>sb", require("snacks").picker.lines, { desc = "Buffer Lines" })
+vim.keymap.set("n", "<space>fw", require("snacks").picker.grep, { desc = "Grep" })
+vim.keymap.set("n", "<space>km", require("snacks").picker.keymaps, { desc = "Keymaps" })
+vim.keymap.set("n", "<space>lg", function()
+	require("snacks").lazygit()
+end, { desc = "Lazygit" })
+
+-- -- Grep
+-- { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+-- { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+-- { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }

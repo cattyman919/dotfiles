@@ -14,9 +14,9 @@
 # Launch bspwm when boot
 # -----------------------------------------------------
 
-if [[ "$(tty)" == "/dev/tty1" ]]; then
-   pgrep bspwm || exec startx
-fi
+# if [[ "$(tty)" == "/dev/tty1" ]]; then
+#    pgrep bspwm || exec startx
+# fi
 
 # -----------------------------------------------------
 # Fastfetch
@@ -26,4 +26,5 @@ if [[ $(tty) == *"pts"* ]]; then
     fastfetch
 fi
 
-eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+# eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+# eval $(keychain --eval --quiet ~/.ssh/id_xlsmart)

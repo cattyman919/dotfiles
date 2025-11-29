@@ -11,8 +11,8 @@ vim.keymap.set("n", "<C-s>", ":write<CR>") -- Save file with CTRL + S
 vim.keymap.set("n", "<C-c>", ":%y<CR>", opts) -- Copy all lines in buffer
 
 -- Move left/right in insert mode with CTRL+H/L
-vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true, silent = true })
-vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true, silent = true })
+-- vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true, silent = true })
+-- vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true, silent = true })
 
 -- Moves Lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
@@ -97,6 +97,8 @@ end)
 vim.keymap.set("n", "grr", require("snacks").picker.lsp_references, { desc = "Find LSP References" })
 vim.keymap.set("n", "gi", require("snacks").picker.lsp_implementations, { desc = "Find LSP References" })
 vim.keymap.set("n", "<space>ff", require("snacks").picker.files, { desc = "Find files" })
+vim.keymap.set("n", "<space>fs", require("snacks").picker.smart, { desc = "Smart Find files" })
+vim.keymap.set("n", "<space>fo", require("snacks").picker.recent, { desc = "Find Recent files" })
 vim.keymap.set("n", "<space>fg", require("snacks").picker.git_files, { desc = "Find Git files" })
 vim.keymap.set("n", "<space>sb", require("snacks").picker.lines, { desc = "Buffer Lines" })
 vim.keymap.set("n", "<space>fw", require("snacks").picker.grep, { desc = "Grep" })

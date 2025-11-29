@@ -245,14 +245,14 @@ return {
 			-- 	desc = "Search Visual selection or Word",
 			-- 	mode = { "n", "x" },
 			-- },
-			{
-				"grr",
-				function()
-					Snacks.picker.lsp_references()
-				end,
-				nowait = true,
-				desc = "References",
-			},
+			-- {
+			-- 	"grr",
+			-- 	function()
+			-- 		Snacks.picker.lsp_references()
+			-- 	end,
+			-- 	nowait = true,
+			-- 	desc = "References",
+			-- },
 
 			-- Git Stuff
 			{

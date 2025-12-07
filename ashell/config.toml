@@ -4,8 +4,8 @@ position = "Top"
 
 [modules]
 left = [ [ "appLauncher",  "Workspaces" ] ]
-center = [ "WindowTitle" ]
-right = [ "Tray", "SystemInfo", ["Clock", "Privacy", "Settings" ] ]
+center = [ "Clock","WindowTitle" ]
+right = [ "Tray", "SystemInfo", [ "Privacy", "Settings" ] ]
 
 [workspaces]
 enable_workspace_filling = true

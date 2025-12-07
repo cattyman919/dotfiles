@@ -11,8 +11,8 @@ get_mute() {
   amixer sget Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g'
 }
 
-show_help(){
-  cat << EOF
+show_help() {
+  cat <<EOF
 Usage: $(basename "$0") [options] <action>
 
 Actions:
@@ -37,18 +37,18 @@ EOF
 OPTIND=1
 
 while getopts "hq" opt; do
-  case "$opt" in 
-    h)
-      show_help
-      exit 0
-      ;;
-    q)
-      QUIET_MODE=true
-      ;;
-    \?)
-      show_help
-      exit 1
-      ;;
+  case "$opt" in
+  h)
+    show_help
+    exit 0
+    ;;
+  q)
+    QUIET_MODE=true
+    ;;
+  \?)
+    show_help
+    exit 1
+    ;;
   esac
 done
 
@@ -67,44 +67,44 @@ fi
 action=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
 case "$action" in
-  up|increase)
-    amixer -q sset Master 5%+
-    if [ "$QUIET_MODE" = false ]; then
-      echo "Volume increased."
-    fi
-    ;;
-  down|decrease)
-    amixer -q sset Master 5%-
-    if [ "$QUIET_MODE" = false ]; then
-      echo "Volume decreased."
-    fi
-    ;;
-  toggle_volume)
-    amixer -q sset Master toggle
-    if [ "$QUIET_MODE" = false ]; then
-      echo "Volume toggled."
-    fi
-    ;;
+up | increase)
+  amixer -q sset Master 5%+
+  if [ "$QUIET_MODE" = false ]; then
+    echo "Volume increased."
+  fi
+  ;;
+down | decrease)
+  amixer -q sset Master 5%-
+  if [ "$QUIET_MODE" = false ]; then
+    echo "Volume decreased."
+  fi
+  ;;
+toggle_volume)
+  amixer -q sset Master toggle
+  if [ "$QUIET_MODE" = false ]; then
+    echo "Volume toggled."
+  fi
+  ;;
 
-  toggle_mic)
-    amixer -q sset Capture toggle
-    if [ "$QUIET_MODE" = false ]; then
-      echo "Microphone toggled."
-    fi
-    ;;
-  *)
-    show_help
-    exit 1
-    ;;
+toggle_mic)
+  amixer -q sset Capture toggle
+  if [ "$QUIET_MODE" = false ]; then
+    echo "Microphone toggled."
+  fi
+  ;;
+*)
+  show_help
+  exit 1
+  ;;
 esac
 
 VOLUME_LEVEL=$(get_volume_level)
 MUTE=$(get_mute)
 
-if [[ $VOLUME_LEVEL == 0 || "$MUTE" == "off" ]]; then
-  notify-send -a volumeMaster -t 1000 -i audio-volume-muted -h string:x-dunst-stack-tag:volume "Volume: Muted"
-else
-  notify-send -a volumeMaster -t 1000 -i audio-speakers -h int:value:$VOLUME_LEVEL -h string:x-dunst-stack-tag:volume "Volume: $VOLUME_LEVEL"
-fi
+# if [[ $VOLUME_LEVEL == 0 || "$MUTE" == "off" ]]; then
+#   notify-send -a volumeMaster -t 1000 -i audio-volume-muted -h string:x-dunst-stack-tag:volume "Volume: Muted"
+# else
+#   notify-send -a volumeMaster -t 1000 -i audio-speakers -h int:value:$VOLUME_LEVEL -h string:x-dunst-stack-tag:volume "Volume: $VOLUME_LEVEL"
+# fi
 
 exit 0

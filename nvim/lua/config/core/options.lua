@@ -22,12 +22,6 @@ vim.diagnostic.config({
 	-- Show signs in the gutter
 	signs = {
 		active = true,
-		-- text = {
-		--   [vim.diagnostic.severity.ERROR] = "", -- Icon for Error
-		--   [vim.diagnostic.severity.WARN] = "", -- Icon for Warning
-		--   [vim.diagnostic.severity.INFO] = "", -- Icon for Info
-		--   [vim.diagnostic.severity.HINT] = "", -- Icon for Hint
-		-- },
 	}, -- or a table to customize (see below)
 
 	-- Show virtual text (inline messages)

@@ -1,6 +1,6 @@
 local set = vim.opt_local
 
-set.textwidth = 120 -- Wrap text at 80 characters
+-- set.textwidth = 120 -- Wrap text at 80 characters
 set.spell = true -- Enable spell checking
 set.linebreak = true
 set.number = false

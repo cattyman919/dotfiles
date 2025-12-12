@@ -2,6 +2,14 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		config = function()
+			local ls = require("luasnip")
+
+			-- 1. SETUP THE ENGINE (This is the missing part)
+			ls.setup({
+				history = true, -- CRITICAL: Allows jumping back to previous placeholders
+				update_events = "TextChanged,TextChangedI", -- Updates snippet content as you type
+			})
+
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			require("luasnip").filetype_extend("typescript", { "html" })

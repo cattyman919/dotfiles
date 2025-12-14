@@ -43,15 +43,21 @@ return {
 		-- 2. Half-Page Scroll (<C-d> / <C-u>) + Center
 		-- We use the helper functions which handle the 'window scroll amount' math
 		vim.keymap.set(modes, "<C-d>", function()
-			neoscroll.ctrl_d({ duration = page_dur, info = {
-				post_hook = "zz",
-			} })
+			neoscroll.ctrl_d({
+				duration = page_dur,
+				info = {
+					-- post_hook = "zz",
+				},
+			})
 		end, { desc = "Scroll down half page & center" })
 
 		vim.keymap.set(modes, "<C-u>", function()
-			neoscroll.ctrl_u({ duration = page_dur, info = {
-				post_hook = "zz",
-			} })
+			neoscroll.ctrl_u({
+				duration = page_dur,
+				info = {
+					-- post_hook = "zz",
+				},
+			})
 		end, { desc = "Scroll up half page & center" })
 	end,
 }

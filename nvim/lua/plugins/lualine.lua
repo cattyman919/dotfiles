@@ -25,11 +25,25 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = {},
+				lualine_b = { "branch" },
 				lualine_c = { { "filename", path = 1 } },
-				lualine_x = { "diff", "diagnostics" },
+				lualine_x = {
+					-- 1. Add the Snippet Indicator here
+					{
+						function()
+							-- Check if 'luasnip' is available and if a snippet is active
+							if package.loaded["luasnip"] and require("luasnip").in_snippet() then
+								return "⚡ SNIP" -- You can use an icon like  or 󰆐
+							end
+							return ""
+						end,
+						color = { fg = "#ff9e64", gui = "bold" }, -- Orange color for visibility
+					},
+					"diff",
+					"diagnostics",
+				},
 				lualine_y = { "lsp_status" },
-				lualine_z = { "" },
+				lualine_z = { "location" },
 			},
 			inactive_sections = {
 				lualine_a = {},

@@ -4,6 +4,7 @@ return { -- Those are the default options
 		namu_symbols = {
 			options = {
 				display = {
+					icon = "icon",
 					format = "tree_guides",
 				},
 				-- This is a preset that let's set window without really get into the hassle of tuning window options

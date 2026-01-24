@@ -6,9 +6,9 @@
 # Launch Hyprland when boot
 # -----------------------------------------------------
 
-# if [[ "$(tty)" == "/dev/tty1" ]]; then
-#   pgrep Hyprland || Hyprland
-# fi
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+  pgrep Hyprland || start-hyprland
+fi
 
 # -----------------------------------------------------
 # Launch dwm when boot
@@ -22,9 +22,9 @@
 # Launch bspwm when boot
 # -----------------------------------------------------
 
-if [[ "$(tty)" == "/dev/tty1" ]]; then
-   pgrep bspwm || exec startx
-fi
+# if [[ "$(tty)" == "/dev/tty1" ]]; then
+#    pgrep bspwm || exec startx
+# fi
 
 
 # -----------------------------------------------------

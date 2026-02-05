@@ -4,6 +4,7 @@ return {
     dependencies = {
       "saghen/blink.cmp",
       "b0o/schemastore.nvim",
+      { "qvalentin/helm-ls.nvim", ft = "helm" },
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -51,17 +52,6 @@ return {
         },
         yamlls = {
           filetypes = { "yaml", "yaml.docker-compose" },
-          on_attach = function(client, bufnr)
-            -- Get the current file path
-            local path = vim.api.nvim_buf_get_name(bufnr)
-            -- Check if it is inside a templates folder or is a helmfile
-            if path:match("/templates/") or path:match("helmfile.yaml") then
-              -- Stop yamlls for this buffer
-              vim.schedule(function()
-                vim.lsp.buf_detach_client(bufnr, client.id)
-              end)
-            end
-          end,
           settings = {
             yaml = {
               keyOrdering = false,
@@ -80,9 +70,26 @@ return {
         helm_ls = {
           settings = {
             ["helm-ls"] = {
-              yamlls = {
-                path = "yaml-language-server",
+              helmLint = {
+                enabled = true,
+                ignoredMessages = {},
               },
+              yamlls = {
+                enabled = true,
+                enabledForFilesGlob = "*.{yaml,yml}",
+                diagnosticsLimit = 50,
+                showDiagnosticsDirectly = false,
+                path = "yaml-language-server", -- or something like { "node", "yaml-language-server.js" }
+                initTimeoutSeconds = 3,
+                config = {
+                  schemas = {
+                    kubernetes = "templates/**",
+                  },
+                  completion = true,
+                  hover = true,
+                  -- any other config from https://github.com/redhat-developer/yaml-language-server#language-server-settings
+                }
+              }
             },
           },
         },
@@ -165,7 +172,7 @@ return {
               fileMatch = { "k8s/*.yaml", "kube/*.yaml" },
               name = "Kubernetes",
               url =
-              "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone-strict/all.json",
+              "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone/all.json",
             },
           },
         })

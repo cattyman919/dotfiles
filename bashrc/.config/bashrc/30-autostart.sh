@@ -32,11 +32,6 @@ fi
 
 if [[ $(tty) == *"pts"* ]]; then
     fastfetch
-    eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
-    eval $(keychain --eval --quiet ~/.ssh/id_xlsmart)
-
-    # Check if tmux is installed and not currently running inside tmux
-    # if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    #     tmux new-session
-    # fi
+    # eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+    # eval $(keychain --eval --quiet ~/.ssh/id_xlsmart)
 fi

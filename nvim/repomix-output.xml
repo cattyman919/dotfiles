@@ -51,6 +51,7 @@ lua/
   config/
     core/
       autocmds.lua
+      functions.lua
       keymaps.lua
       options.lua
   plugins/
@@ -289,11 +290,118 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 </file>
 
+<file path="lua/config/core/functions.lua">
+local M = {}
+
+-- Helper: Find the ID of the active window in the "other" tab
+local function get_runner_window_id()
+  -- 1. Get the current Kitty state as JSON
+  local handle = io.popen("kitten @ ls")
+  if not handle then
+    return nil
+  end
+  local json_str = handle:read("*a")
+  handle:close()
+
+  -- 2. Parse JSON and get our current ID
+  local data = vim.json.decode(json_str)
+  local my_id = tonumber(vim.env.KITTY_WINDOW_ID)
+
+  -- 3. Iterate through the OS Window to find tabs
+  for _, os_win in ipairs(data) do
+    local tabs = os_win.tabs
+    local my_tab_index = nil
+
+    -- Find which tab *we* (Neovim) are inside
+    for i, tab in ipairs(tabs) do
+      for _, win in ipairs(tab.windows) do
+        if win.id == my_id then
+          my_tab_index = i
+          break
+        end
+      end
+    end
+
+    -- 4. Find the "Other" tab
+    if my_tab_index then
+      for i, tab in ipairs(tabs) do
+        -- If this tab is NOT the one Neovim is in...
+        if i ~= my_tab_index then
+          -- ...Then this is our Runner tab.
+          local history = tab.active_window_history
+          if history and #history > 0 then
+            return history[#history]
+          elseif #tab.windows > 0 then
+            return tab.windows[1].id
+          end
+        end
+      end
+    end
+  end
+  return nil
+end
+
+M.run_code = function()
+  -- 1. Safety Checks
+  if not vim.env.KITTY_LISTEN_ON then
+    vim.notify("❌ Not in Kitty.", vim.log.levels.ERROR)
+    return
+  end
+
+  -- 2. Save
+  vim.cmd("write")
+
+  -- 3. Prepare Command
+  local filetype = vim.bo.filetype
+  local cmd = ""
+
+  if filetype == "go" then
+    cmd = "go run ."
+  elseif filetype == "rust" then
+    cmd = "cargo run"
+  elseif filetype == "nim" then
+    cmd = "nimble build -r"
+  elseif filetype == "zig" then
+    cmd = "zig build run"
+  elseif vim.fn.filereadable("Makefile") == 1 then
+    cmd = "make run"
+  else
+    vim.notify("⚠️ No run command for " .. filetype, vim.log.levels.WARN)
+    return
+  end
+
+  -- 4. Get the exact ID of the other tab
+  local target_id = get_runner_window_id()
+
+  if not target_id then
+    vim.notify("❌ Could not find the other tab!", vim.log.levels.ERROR)
+    return
+  end
+
+  -- 5. Send Text & Focus
+  local kitty_payload = string.format("clear && %s\r", cmd)
+  local safe_cmd = string.format("kitten @ send-text --match id:%d --stdin", target_id)
+
+  local handle = io.popen(safe_cmd, "w")
+  if handle then
+    handle:write(kitty_payload)
+    handle:close()
+
+    -- === NEW LINE: Switch focus to that window ===
+    os.execute(string.format("kitten @ focus-window --match id:%d", target_id))
+
+    -- Optional: No notification needed since you'll see the screen switch
+  else
+    vim.notify("❌ Failed to send command", vim.log.levels.ERROR)
+  end
+end
+
+return M
+</file>
+
 <file path="lua/config/core/keymaps.lua">
 -- Keymaps
-local opts = { noremap = true, silent = true }
-
--- Toggle relative Number
+local opts = { noremap = true, silent = true } -- Toggle relative Number
 vim.keymap.set("n", "<leader>rn", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle relative numbers" })
@@ -381,6 +489,14 @@ vim.keymap.set("n", "<space>km", require("snacks").picker.keymaps, { desc = "Key
 vim.keymap.set("n", "<space>lg", function()
 	require("snacks").lazygit()
 end, { desc = "Lazygit" })
+
+-- =============================================================================
+-- FUNCTIONS & CUSTOM TOOLS
+-- =============================================================================
+local functions = require("config.core.functions")
+
+-- Map <leader>rr to the run_code function imported above
+vim.keymap.set("n", "<leader>rr", functions.run_code, { desc = "Save and Run Code in Kitty" })
 
 -- -- Grep
 -- { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
@@ -1020,143 +1136,147 @@ return {
 
 <file path="lua/plugins/lsp.lua">
 return {
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			"saghen/blink.cmp",
-			{
-				"folke/lazydev.nvim",
-				ft = "lua", -- only load on lua files
-				opts = {
-					library = {
-						-- See the configuration section for more details
-						-- Load luvit types when the `vim.uv` word is found
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-				},
-			},
-			{
-				"utilyre/barbecue.nvim",
-				name = "barbecue",
-				version = "*",
-				dependencies = {
-					"SmiteshP/nvim-navic",
-					"nvim-tree/nvim-web-devicons",
-				},
-				opts = {
-					show_dirname = false,
-					create_autocmd = false, -- prevent barbecue from updating itself automatically
-				},
-			},
-		},
-		opts = {
-			servers = {
-				lua_ls = {},
-				basedpyright = {},
-				bashls = {},
-				slint_lsp = {},
-				ts_ls = {},
-				qmlls = {},
-				cssls = {},
-				ols = {},
-				zls = {},
-				neocmake = {},
-				angularls = {},
-				tailwindcss = {},
-				terraformls = {},
-				buf_ls = {},
-				clangd = {
-					cmd = { "clangd", "--background-index", "--log=verbose", "--clang-tidy", "--inlay-hints=true" },
-					filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-				},
-				yamlls = {},
-				-- sqlls = {},
-				sqls = {},
-				astro = {},
-				dockerls = {},
-				-- jdtls = {},
-				gopls = {
-					settings = {
-						gopls = {
-							-- enable all types of inlay hints for gopls
-							hints = {
-								assignVariableTypes = true,
-								compositeLiteralTypes = true,
-								constantValues = true,
-								functionTypeParameters = true,
-								parameterNames = true,
-								rangeVariableTypes = true,
-							},
-						},
-					},
-				},
-				-- bacon_ls = {
-				-- 	-- Bacon export filename (default: .bacon-locations).
-				-- 	locationsFile = ".bacon-locations",
-				-- 	-- Try to update diagnostics every time the file is saved (default: true).
-				-- 	updateOnSave = true,
-				-- 	--  How many milliseconds to wait before updating diagnostics after a save (default: 1000).
-				-- 	updateOnSaveWaitMillis = 350,
-				-- 	-- Try to update diagnostics every time the file changes (default: true).
-				-- 	updateOnChange = true,
-				-- 	-- Try to validate that bacon preferences are setup correctly to work with bacon-ls (default: true).
-				-- 	validateBaconPreferences = true,
-				-- 	-- f no bacon preferences file is found, create a new preferences file with the bacon-ls job definition (default: true).
-				-- 	createBaconPreferencesFile = true,
-				-- 	-- Run bacon in background for the bacon-ls job (default: true)
-				-- 	runBaconInBackground = true,
-				-- 	-- Command line arguments to pass to bacon running in background (default "--headless -j bacon-ls")
-				-- 	runBaconInBackgroundCommandArguments = "--headless -j bacon-ls",
-				-- 	-- How many milliseconds to wait between background diagnostics check to synchronize all open files (default: 2000).
-				-- 	synchronizeAllOpenFilesWaitMillis = 1500,
-				-- },
-				rust_analyzer = {
-					settings = {
-						["rust-analyzer"] = {
-							checkOnSave = {
-								enable = true,
-							},
-							diagnostics = {
-								enable = true,
-							},
-							-- enable inlay hints for types and chains
-							inlayHints = {
-								typeHints = {
-									enable = true,
-								},
-								chainingHints = {
-									enable = true,
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		config = function(_, opts)
-			local lspconfig = require("lspconfig")
-			local util = require("lspconfig.util")
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "saghen/blink.cmp",
+      {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
+      {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "nvim-tree/nvim-web-devicons",
+        },
+        opts = {
+          show_dirname = false,
+          create_autocmd = false, -- prevent barbecue from updating itself automatically
+        },
+      },
+    },
+    opts = {
+      servers = {
+        lua_ls = {},
+        basedpyright = {},
+        bashls = {},
+        slint_lsp = {},
+        ts_ls = {},
+        qmlls = {},
+        cssls = {},
+        ols = {},
+        zls = {},
+        neocmake = {},
+        angularls = {},
+        tailwindcss = {},
+        terraformls = {},
+        buf_ls = {},
+        clangd = {
+          cmd = { "clangd", "--background-index", "--log=verbose", "--clang-tidy", "--inlay-hints=true" },
+          filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        },
+        yamlls = {},
+        -- sqlls = {},
+        sqls = {},
+        astro = {},
+        dockerls = {},
+        -- jdtls = {},
+        nimls = {},
+        -- nim_langserver = {},
+        gopls = {
+          buildFlags = { "-tags=wireinject" },
+          settings = {
+            gopls = {
+              -- enable all types of inlay hints for gopls
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
+          },
+        },
+        -- bacon_ls = {
+        -- 	-- Bacon export filename (default: .bacon-locations).
+        -- 	locationsFile = ".bacon-locations",
+        -- 	-- Try to update diagnostics every time the file is saved (default: true).
+        -- 	updateOnSave = true,
+        -- 	--  How many milliseconds to wait before updating diagnostics after a save (default: 1000).
+        -- 	updateOnSaveWaitMillis = 350,
+        -- 	-- Try to update diagnostics every time the file changes (default: true).
+        -- 	updateOnChange = true,
+        -- 	-- Try to validate that bacon preferences are setup correctly to work with bacon-ls (default: true).
+        -- 	validateBaconPreferences = true,
+        -- 	-- f no bacon preferences file is found, create a new preferences file with the bacon-ls job definition (default: true).
+        -- 	createBaconPreferencesFile = true,
+        -- 	-- Run bacon in background for the bacon-ls job (default: true)
+        -- 	runBaconInBackground = true,
+        -- 	-- Command line arguments to pass to bacon running in background (default "--headless -j bacon-ls")
+        -- 	runBaconInBackgroundCommandArguments = "--headless -j bacon-ls",
+        -- 	-- How many milliseconds to wait between background diagnostics check to synchronize all open files (default: 2000).
+        -- 	synchronizeAllOpenFilesWaitMillis = 1500,
+        -- },
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = { enable = true },
+              diagnostics = { enable = true },
+              inlayHints = {
+                typeHints = { enable = true },
+                chainingHints = { enable = true },
+              },
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                buildScripts = {
+                  enable = true,
+                },
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      local lspconfig = require("lspconfig")
+      local util = require("lspconfig.util")
 
-			if opts.servers.phpactor then
-				opts.servers.phpactor.root_dir =
-					util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")
-			end
+      if opts.servers.phpactor then
+        opts.servers.phpactor.root_dir =
+            util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")
+      end
 
-			for server, config in pairs(opts.servers) do
-				if type(config) ~= "table" then
-					config = {}
-				end
+      for server, config in pairs(opts.servers) do
+        if type(config) ~= "table" then
+          config = {}
+        end
 
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				lspconfig[server].setup(config)
-			end
-		end,
-	},
-	"mfussenegger/nvim-jdtls",
-	{
-		"mason-org/mason.nvim",
-		opts = {},
-	},
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
+      end
+    end,
+  },
+  "mfussenegger/nvim-jdtls",
+  {
+    "mason-org/mason.nvim",
+    opts = {},
+  },
 }
 </file>
 
@@ -2175,13 +2295,15 @@ require("config.core.autocmds")
   "fidget.nvim": { "branch": "main", "commit": "2cb5edb2dd6700a958a446b20bb2be04d318da9d" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
+  "image.nvim": { "branch": "master", "commit": "446a8a5cc7a3eae3185ee0c697732c32a5547a0b" },
   "img-clip.nvim": { "branch": "main", "commit": "d8b6b030672f9f551a0e3526347699985a779d93" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "kanagawa.nvim": { "branch": "master", "commit": "debe91547d7fb1eef34ce26a5106f277fbfdd109" },
-  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "lspkind.nvim": { "branch": "master", "commit": "d79a1c3299ad0ef94e255d045bed9fa26025dab6" },
   "lualine.nvim": { "branch": "master", "commit": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "4cfe411526a7a99c18281135e8b4765ae6330d15" },
   "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
   "mini.nvim": { "branch": "main", "commit": "5d938b3a078a7eeae23ba9f04f180066ab8bd9ef" },
   "mini.splitjoin": { "branch": "main", "commit": "51909e9883ab206f5a92deb9ca685317387586a4" },
@@ -2193,9 +2315,10 @@ require("config.core.autocmds")
   "nvim-lspconfig": { "branch": "master", "commit": "a6dbc91d9ae373a87bcd9e3c15853e309691c39b" },
   "nvim-navic": { "branch": "master", "commit": "f887d794a0f4594882814d7780980a949200a238" },
   "nvim-tree.lua": { "branch": "master", "commit": "f0e9951778802526b14c934f7bf746e1e0ae5ed0" },
-  "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
+  "nvim-treesitter": { "branch": "main", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-ts-autotag": { "branch": "main", "commit": "a1d526af391f6aebb25a8795cbc05351ed3620b5" },
   "nvim-web-devicons": { "branch": "master", "commit": "c2599a81ecabaae07c49ff9b45dcd032a8d90f1a" },
+  "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "render-markdown.nvim": { "branch": "main", "commit": "e5c3c500d66e9aaf04c116cdfdb0b040d56a1521" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },

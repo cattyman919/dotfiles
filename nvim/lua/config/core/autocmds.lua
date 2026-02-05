@@ -49,3 +49,21 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     end
   end,
 })
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   group = vim.api.nvim_create_augroup("lsp_detach_yamlls_helm", { clear = true }),
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--
+--     -- If filetype is helm, detach yamlls immediately
+--     -- (helm_ls often wraps yamlls internally, so we don't want the standalone one)
+--     if client and client.name == "yamlls" and vim.bo[args.buf].filetype == "helm" then
+--       vim.schedule(function()
+--         if vim.lsp.buf_is_attached(args.buf, client.id) then
+--           vim.notify("🚫 Detaching yamlls (native helm_ls active)", vim.log.levels.INFO)
+--           vim.lsp.buf_detach_client(args.buf, client.id)
+--         end
+--       end)
+--     end
+--   end,
+-- })

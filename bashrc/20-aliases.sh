@@ -19,12 +19,9 @@ alias ts='~/.config/ml4w/scripts/snapshot.sh'
 alias wifi='nmtui'
 alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
 alias cat="bat"
-<<<<<<<< HEAD:bashrc/10-aliases
 alias y="yazi"
 alias m="memes"
-========
 alias rb="reboot"
->>>>>>>> e80536b (feat (bashrc): aliases & functions yazi):bashrc/20-aliases.sh
 alias sp="sudo pacman"
 
 # -----------------------------------------------------

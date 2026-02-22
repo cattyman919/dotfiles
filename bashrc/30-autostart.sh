@@ -32,10 +32,6 @@ fi
 # -----------------------------------------------------
 if [[ $(tty) == *"pts"* ]]; then
     fastfetch
-<<<<<<<< HEAD:bashrc/30-autostart
-========
-    # eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
-    # eval $(keychain --eval --quiet ~/.ssh/id_xlsmart)
->>>>>>>> e80536b (feat (bashrc): aliases & functions yazi):bashrc/30-autostart.sh
+    eval $(keychain --eval --quiet ~/.ssh/id_ed25519)
+    eval $(keychain --eval --quiet ~/.ssh/id_xlsmart)
 fi
-# eval $(keychain --eval --quiet ~/.ssh/id_ed25519)

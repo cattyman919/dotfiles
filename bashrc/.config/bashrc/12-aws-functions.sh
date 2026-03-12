@@ -274,3 +274,24 @@ function ec2_metrics() {
     fi
     echo "=========================================="
 }
+
+awsp() {
+    local selected_profile
+    
+    # Parse the config file for profiles, remove the brackets, and pipe to fzf
+    selected_profile=$(grep -E '^\[profile ' ~/.aws/config | awk '{print $2}' | tr -d ']' | fzf --prompt="Select AWS Profile: " --height=50% --layout=reverse --border)
+
+    # Check if a profile was actually selected (handles pressing Esc/Ctrl+C)
+    if [ -n "$selected_profile" ]; then
+        export AWS_PROFILE="$selected_profile"
+        echo "✅ AWS_PROFILE exported as: $AWS_PROFILE"
+        
+        # Check if the current SSO session is valid; if not, initiate login
+        if ! aws sts get-caller-identity > /dev/null 2>&1; then
+            echo "SSO session expired or not found. Initiating login..."
+            aws sso login
+        fi
+    else
+        echo "❌ No profile selected."
+    fi
+}

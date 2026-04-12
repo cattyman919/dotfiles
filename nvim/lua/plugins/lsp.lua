@@ -43,6 +43,7 @@ return {
 				ols = {},
 				zls = {},
 				neocmake = {},
+				jsonls = {},
 				angularls = {},
 				tailwindcss = {},
 				terraformls = {},

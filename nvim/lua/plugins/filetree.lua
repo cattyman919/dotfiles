@@ -1,11 +1,13 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+	keys = {
+		{ "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+	},
 	config = function(_, opts)
 		require("nvim-tree").setup(opts)
-		local api = require("nvim-tree.api")
-		vim.keymap.set("n", "<C-n>", api.tree.toggle, { desc = "" })
 	end,
+	---@type nvim_tree.config
 	opts = {
 		filters = { dotfiles = false },
 		disable_netrw = true,
@@ -13,7 +15,9 @@ return {
 		sync_root_with_cwd = true,
 		update_focused_file = {
 			enable = true,
-			update_root = false,
+			update_root = {
+				enable = true,
+			},
 		},
 		view = {
 			side = "left",

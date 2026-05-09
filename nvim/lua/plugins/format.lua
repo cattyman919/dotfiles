@@ -8,7 +8,7 @@ return {
 			notify_on_error = true,
 			-- Configure format on save
 			format_on_save = {
-				timeout_ms = 200, -- Set a timeout for format on save
+				timeout_ms = 2000, -- Set a timeout for format on save
 				lsp_fallback = true, -- Fallback to LSP formatting if conform.nvim doesn't have a formatter or fails
 				-- If true, conform will try LSP formatting if its own formatters fail or aren't set up for the buffer.
 				-- If you only want conform.nvim's defined formatters, set this to false.
@@ -52,7 +52,7 @@ return {
 				html = { "prettierd", "prettier" },
 				css = { "prettierd", "prettier" },
 				scss = { "prettierd", "prettier" },
-				astro = { "prettier" },
+				astro = { "prettierd", "prettier" },
 				sh = { "shfmt" },
 				go = { "gofmt", "goimports" },
 				php = { "pint" },

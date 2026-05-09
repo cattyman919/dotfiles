@@ -18,9 +18,6 @@ return {
 			input = {
 				enabled = true,
 			},
-			gitbrowse = {
-				enabled = true,
-			},
 			quickfile = {
 				enabled = false,
 				exclude = { "latex" },
@@ -230,14 +227,6 @@ return {
 					require("snacks").rename.rename_file()
 				end,
 				desc = "Fast Rename Current File",
-			},
-			{
-				"<leader>gp",
-				function()
-					require("snacks").gitbrowse()
-				end,
-				desc = "Git Browse",
-				mode = { "n", "v" },
 			},
 
 			-- Snacks Picker

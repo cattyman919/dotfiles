@@ -3,14 +3,6 @@ return {
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",
 		config = function()
-			local ls = require("luasnip")
-
-			-- 1. SETUP THE ENGINE (This is the missing part)
-			ls.setup({
-				history = true, -- CRITICAL: Allows jumping back to previous placeholders
-				update_events = "TextChanged,TextChangedI", -- Updates snippet content as you type
-			})
-
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/lua/snippets" })
@@ -60,9 +52,6 @@ return {
 				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
-				["<Tab>"] = { "snippet_forward", "fallback" },
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
 			},
 
 			appearance = {

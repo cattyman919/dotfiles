@@ -26,9 +26,8 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch" },
-				lualine_c = { { "filename", path = 1 } },
-				lualine_x = {
-					-- 1. Add the Snippet Indicator here
+				lualine_c = {
+					{ "filename", path = 1 }, -- 1. Add the Snippet Indicator here
 					{
 						function()
 							-- Check if 'luasnip' is available and if a snippet is active
@@ -39,6 +38,8 @@ return {
 						end,
 						color = { fg = "#ff9e64", gui = "bold" }, -- Orange color for visibility
 					},
+				},
+				lualine_x = {
 					"diff",
 					"diagnostics",
 				},

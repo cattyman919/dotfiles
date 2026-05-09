@@ -1,7 +1,5 @@
 -- Keymaps
-local opts = { noremap = true, silent = true }
-
--- Toggle relative Number
+local opts = { noremap = true, silent = true } -- Toggle relative Number
 vim.keymap.set("n", "<leader>rn", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle relative numbers" })
@@ -89,6 +87,14 @@ vim.keymap.set("n", "<space>km", require("snacks").picker.keymaps, { desc = "Key
 vim.keymap.set("n", "<space>lg", function()
 	require("snacks").lazygit()
 end, { desc = "Lazygit" })
+
+-- =============================================================================
+-- FUNCTIONS & CUSTOM TOOLS
+-- =============================================================================
+local functions = require("config.core.functions")
+
+-- Map <leader>rr to the run_code function imported above
+vim.keymap.set("n", "<leader>rr", functions.run_code, { desc = "Save and Run Code in Kitty" })
 
 -- -- Grep
 -- { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },

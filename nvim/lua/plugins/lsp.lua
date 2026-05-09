@@ -20,7 +20,6 @@ return {
 				"utilyre/barbecue.nvim",
 				name = "barbecue",
 				version = "*",
-				enabled = false,
 				dependencies = {
 					"SmiteshP/nvim-navic",
 					"nvim-tree/nvim-web-devicons",
@@ -40,13 +39,15 @@ return {
 				ts_ls = {},
 				qmlls = {},
 				cssls = {},
+				jsonls = {},
+				lemminx = {},
 				ols = {},
 				zls = {},
 				neocmake = {},
-				jsonls = {},
 				angularls = {},
 				tailwindcss = {},
 				terraformls = {},
+				mdx_analyzer = {},
 				buf_ls = {},
 				clangd = {
 					cmd = { "clangd", "--background-index", "--log=verbose", "--clang-tidy", "--inlay-hints=true" },
@@ -141,11 +142,17 @@ return {
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
-							checkOnSave = { enable = true },
-							diagnostics = { enable = true },
+							checkOnSave = {
+								enable = true,
+								command = "clippy",
+							},
+							diagnostics = {
+								enable = true,
+							},
 							inlayHints = {
 								typeHints = { enable = true },
 								chainingHints = { enable = true },
+								parameterHints = { enable = true },
 							},
 							cargo = {
 								allFeatures = true,
@@ -163,8 +170,7 @@ return {
 			},
 		},
 		config = function(_, opts)
-			local lspconfig = require("lspconfig")
-			local util = require("lspconfig.util")
+			local util = vim.lsp.util
 
 			if opts.servers.yamlls then
 				opts.servers.yamlls.settings.yaml.schemas = require("schemastore").yaml.schemas({
@@ -190,7 +196,7 @@ return {
 				end
 
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				lspconfig[server].setup(config)
+				vim.lsp.enable(server)
 			end
 		end,
 	},

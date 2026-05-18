@@ -11,6 +11,7 @@ return {
         'typescript',
         'zig',
         "c",
+        "proto",
         "lua",
         "vim",
         "json",
@@ -24,7 +25,9 @@ return {
         "xml",
         "go",
         "astro",
+        "python"
       }
+
       require('nvim-treesitter').install {
         languages
       }

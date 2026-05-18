@@ -1,12 +1,12 @@
 -- Keymaps
 local opts = { noremap = true, silent = true } -- Toggle relative Number
 vim.keymap.set("n", "<leader>rn", function()
-	vim.wo.relativenumber = not vim.wo.relativenumber
+  vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle relative numbers" })
 
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>") -- Source File
-vim.keymap.set("n", "<C-s>", ":write<CR>") -- Save file with CTRL + S
-vim.keymap.set("n", "<C-c>", ":%y<CR>", opts) -- Copy all lines in buffer
+vim.keymap.set("n", "<C-s>", ":write<CR>")                  -- Save file with CTRL + S
+vim.keymap.set("n", "<C-c>", ":%y<CR>", opts)               -- Copy all lines in buffer
 
 -- Move left/right in insert mode with CTRL+H/L
 -- vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true, silent = true })
@@ -50,30 +50,30 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go To Definition
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP Go To References" })
 vim.keymap.set("v", "<space>ga", vim.lsp.buf.code_action, { desc = "LSP Code Action (Range)" })
 vim.keymap.set("n", "<space>ih", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggal inlay hints" })
 
 -- Unlink/Exit the current snippet (stops <Tab> from jumping)
 vim.keymap.set({ "i", "s" }, "<C-c>", function()
-	if require("luasnip").in_snippet() then
-		require("luasnip").unlink_current()
-	end
-	return "<Esc>" -- Still perform the normal Escape behavior
+  if require("luasnip").in_snippet() then
+    require("luasnip").unlink_current()
+  end
+  return "<Esc>" -- Still perform the normal Escape behavior
 end, { expr = true, desc = "Exit snippet and insert mode" })
 
 -- Namu
 vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
-	desc = "Jump to LSP symbol",
-	silent = true,
+  desc = "Jump to LSP symbol",
+  silent = true,
 })
 vim.keymap.set("n", "<leader>sw", ":Namu workspace<cr>", {
-	desc = "LSP Symbols - Workspace",
-	silent = true,
+  desc = "LSP Symbols - Workspace",
+  silent = true,
 })
 
 -- Snacks
 vim.keymap.set("n", "<space>en", function()
-	require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+  require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
 end)
 vim.keymap.set("n", "grr", require("snacks").picker.lsp_references, { desc = "Find LSP References" })
 vim.keymap.set("n", "gi", require("snacks").picker.lsp_implementations, { desc = "Find LSP References" })
@@ -85,7 +85,7 @@ vim.keymap.set("n", "<space>sb", require("snacks").picker.lines, { desc = "Buffe
 vim.keymap.set("n", "<space>fw", require("snacks").picker.grep, { desc = "Grep" })
 vim.keymap.set("n", "<space>km", require("snacks").picker.keymaps, { desc = "Keymaps" })
 vim.keymap.set("n", "<space>lg", function()
-	require("snacks").lazygit()
+  require("snacks").lazygit()
 end, { desc = "Lazygit" })
 
 -- =============================================================================
@@ -100,3 +100,5 @@ vim.keymap.set("n", "<leader>rr", functions.run_code, { desc = "Save and Run Cod
 -- { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
 -- { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
 -- { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" }
+--
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })

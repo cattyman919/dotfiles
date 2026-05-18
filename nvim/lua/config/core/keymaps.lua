@@ -45,10 +45,30 @@ vim.keymap.set("n", "x", '"_x', opts)
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diagnostics list (location)" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagnostics list (quickfix)" })
 
--- LSP
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go To Definition" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP Go To References" })
-vim.keymap.set("v", "<space>ga", vim.lsp.buf.code_action, { desc = "LSP Code Action (Range)" })
+-- LSP (old keymap)
+-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go To Definition" })
+-- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP Go To References" })
+-- vim.keymap.set("v", "<space>ga", vim.lsp.buf.code_action, { desc = "LSP Code Action (Range)" })
+
+-- =============================================================================
+-- LSP (Powered by Navigator.lua or Snacks)
+-- =============================================================================
+
+-- Definition, References, and Implementation
+--
+vim.keymap.set("n", "grr", require("snacks").picker.lsp_references, { desc = "Find LSP References" })
+vim.keymap.set("n", "gi", require("snacks").picker.lsp_implementations, { desc = "Find LSP References" })
+
+-- vim.keymap.set("n", "gd", require("navigator.definition").definition, { desc = "Navigator: Go To Definition" })
+-- vim.keymap.set("n", "grr", require("navigator.reference").reference, { desc = "Navigator: Go To References" })
+
+vim.keymap.set("n", "gi", require("navigator.implementation").implementation,
+  { desc = "Navigator: Go To Implementation" })
+
+-- Code Action (Normal and Visual mode)
+vim.keymap.set({ "n", "v" }, "<space>ga", require("navigator.codeAction").code_action,
+  { desc = "Navigator: Code Action" })
+
 vim.keymap.set("n", "<space>ih", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggal inlay hints" })
@@ -75,8 +95,6 @@ vim.keymap.set("n", "<leader>sw", ":Namu workspace<cr>", {
 vim.keymap.set("n", "<space>en", function()
   require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
 end)
-vim.keymap.set("n", "grr", require("snacks").picker.lsp_references, { desc = "Find LSP References" })
-vim.keymap.set("n", "gi", require("snacks").picker.lsp_implementations, { desc = "Find LSP References" })
 vim.keymap.set("n", "<space>ff", require("snacks").picker.files, { desc = "Find files" })
 vim.keymap.set("n", "<space>fs", require("snacks").picker.smart, { desc = "Smart Find files" })
 vim.keymap.set("n", "<space>fo", require("snacks").picker.recent, { desc = "Find Recent files" })

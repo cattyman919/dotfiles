@@ -19,7 +19,8 @@ return {
       },
       -- Navigator sets up its own default keymaps (e.g., 'gr' for references, 'gd' for definition).
       -- Set this to false if you want to strictly use the ones you defined in lua/config/core/keymaps.lua
-      default_mapping = true,
+      -- default_mapping = true,
+      default_mapping = false,
     })
   end,
 }

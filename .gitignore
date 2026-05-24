@@ -2,3 +2,10 @@
 !.gitignore
 !.gitmodules
 !*/.config
+
+pi/context-mode
+pi/agent/cache
+pi/agent/bin
+pi/agent/sessions
+pi/agent/run-history.jsonl
+pi/agent/auth.json

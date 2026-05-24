@@ -1,0 +1,18 @@
+{
+  "defaultModel": "kimi-k2.6",
+  "defaultProvider": "tencent",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": false,
+  "lastChangelogVersion": "0.75.4",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:pi-lens",
+    "npm:pi-powerline-footer",
+    "npm:pi-mcp-adapter",
+    "npm:pi-markdown-preview",
+    "npm:context-mode",
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-todo"
+  ]
+}

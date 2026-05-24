@@ -1,0 +1,47 @@
+{
+  "providers": {
+    "tencent": {
+      "name": "Tencent LLM Service (Work)",
+      "baseUrl": "https://tokenhub-intl.tencentcloudmaas.com/v1",
+      "api": "openai-completions",
+      "apiKey": "TENCENT_LLM_API_KEY",
+      "authHeader": true,
+      "models": [
+        {
+          "id": "kimi-k2.6",
+          "name": "Kimi K2.6 (Tencent)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0.6,
+            "output": 3.0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false
+          }
+        },
+        {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4-Flash (Tencent)",
+          "reasoning": false,
+          "input": ["text"],
+          "contextWindow": 64000,
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0.3,
+            "output": 0.6,
+            "cacheRead": 0.1,
+            "cacheWrite": 0.3
+          },
+          "compat": {
+            "supportsDeveloperRole": false
+          }
+        }
+      ]
+    }
+  }
+}

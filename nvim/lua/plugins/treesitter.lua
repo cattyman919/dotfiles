@@ -25,7 +25,6 @@ return {
 				"query",
 				"markdown",
 				"markdown_inline",
-				"mdx",
 				"tsx",
 				"rust",
 				"helm",

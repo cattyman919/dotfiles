@@ -50,7 +50,19 @@ return {
 				mdx_analyzer = {},
 				buf_ls = {},
 				clangd = {
-					cmd = { "clangd", "--background-index", "--log=verbose", "--clang-tidy", "--inlay-hints=true" },
+					cmd = {
+						"clangd",
+						"--background-index",
+						"--log=verbose",
+						"--clang-tidy",
+						"--inlay-hints=true",
+						-- Tell clangd to query the ESP-IDF cross-compilers for system headers
+						"--query-driver="
+							.. vim.env.HOME
+							.. "/.espressif/tools/**/bin/*-gcc,"
+							.. vim.env.HOME
+							.. "/.espressif/tools/**/bin/*-g++",
+					},
 					filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 				},
 				yamlls = {
@@ -197,6 +209,7 @@ return {
 
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				vim.lsp.enable(server)
+				vim.lsp.config(server, config)
 			end
 		end,
 	},

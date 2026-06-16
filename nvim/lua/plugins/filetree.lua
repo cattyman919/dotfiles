@@ -14,7 +14,7 @@ return {
 		hijack_cursor = true,
 		sync_root_with_cwd = true,
 		update_focused_file = {
-			enable = false,
+			enable = true,
 			update_root = {
 				enable = false,
 			},

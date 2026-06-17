@@ -37,7 +37,9 @@ return {
         bashls = {},
         slint_lsp = {},
         ts_ls = {},
-        qmlls = {},
+        qmlls = {
+          cmd = { "qmlls", "-E" },
+        },
         tinymist = {},
         cssls = {},
         jsonls = {},

@@ -1,5 +1,6 @@
 return {
   "ray-x/navigator.lua",
+  enabled = false,
   dependencies = {
     -- guihua.lua is strictly required by navigator.lua for its floating windows and UI
     { "ray-x/guihua.lua",     build = "cd lua/fzy && make" },

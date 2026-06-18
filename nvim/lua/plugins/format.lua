@@ -26,6 +26,11 @@ return {
           -- },
           stdin = true, -- rustfmt can read from stdin
         },
+        qmlformat = {
+          command = "qmlformat",
+          args = { "--inplace", "$FILENAME" },
+          stdin = false,
+        },
         odinfmt = {
           -- Change where to find the command if it isn't in your path.
           command = "odinfmt",
@@ -61,6 +66,7 @@ return {
         rust = { "rustfmt" },
         odin = { "odinfmt" },
         zig = { "zigfmt" },
+        qml = { "qmlformat" },
         -- slint = { "slint-lsp" }, -- Custom formatter for Slint
 
         -- Example of using a formatter that isn't a default
@@ -79,6 +85,7 @@ return {
       --   }
       -- }
     },
+    notify_on_error = true,
     -- You can also put keymaps in init if you want them defined even earlier
     init = function()
       -- Set a keymap for manual formatting

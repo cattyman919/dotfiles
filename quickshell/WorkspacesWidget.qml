@@ -6,6 +6,18 @@ import Quickshell.Io
 import Quickshell.Wayland
 
 RowLayout {
+    function getTopLevelsByWorkspace(workspace) {
+        const topLevels = Hyprland.toplevels.values;
+        let topLevelResults = [];
+        for (let i = 0; i < topLevels.length; i++) {
+            const topLevelWindow = topLevels[i];
+            if (topLevelWindow.workspace && topLevelWindow.workspace.id === workspace.id)
+                topLevelResults.push(topLevelWindow);
+
+        }
+        return topLevelResults;
+    }
+
     spacing: 8
 
     Repeater {
@@ -27,6 +39,7 @@ RowLayout {
 
                 stdout: StdioCollector {
                     onStreamFinished: () => {
+                        console.log(getTopLevelsByWorkspace(modelData)[0]?.title);
                     }
                 }
 

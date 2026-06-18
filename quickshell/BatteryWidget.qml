@@ -44,7 +44,7 @@ Rectangle {
         font.pixelSize: Settings.panelFontSize
         text: {
             let batteryIcon = getBatteryIcon();
-            return `${batteryIcon} ${BatteryState.percentage}%`;
+            return `${batteryIcon}  ${BatteryState.percentage}%`;
         }
     }
 

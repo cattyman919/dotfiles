@@ -2,9 +2,9 @@
 import QtQuick
 
 Rectangle {
-    width: clockText.implicitWidth + 20
-    height: 20
-    radius: 4
+    implicitWidth: clockText.implicitWidth + Settings.panelWidgetRightLeftPadding
+    implicitHeight: Settings.panelWidgetHeight + Settings.panelWidgetTopBottomPadding
+    radius: Settings.panelBorderRadius
     color: Color.bgPanel
 
     Text {
@@ -13,7 +13,8 @@ Rectangle {
         font.bold: true
         color: Color.primary
         anchors.centerIn: parent
-        text: ClockState.time
+        font.pixelSize: Settings.panelFontSize
+        text: `\uf073  ${ClockState.time}`
     }
 
 }

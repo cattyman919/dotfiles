@@ -32,7 +32,11 @@ Scope {
                 anchors.leftMargin: root.padding
                 spacing: root.spacing
 
-                Workspaces {
+                WorkspacesWidget {
+                }
+
+                ActiveWindowWidget {
+                    visible: Settings.showActiveWindowWidget
                 }
 
             }

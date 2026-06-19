@@ -17,7 +17,7 @@ Singleton {
         running: true
 
         stdout: StdioCollector {
-            onStreamFinished: () => {
+            onStreamFinished: {
                 const words = this.text.trim().split(/\s+/);
                 root.percentage = words[0];
                 root.status = words[1];

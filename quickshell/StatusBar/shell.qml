@@ -48,6 +48,9 @@ Scope {
                 anchors.rightMargin: root.padding
                 spacing: root.spacing
 
+                CPUWidget {
+                }
+
                 BatteryWidget {
                 }
 

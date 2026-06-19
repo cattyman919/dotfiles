@@ -15,6 +15,7 @@ Rectangle {
         font.bold: true
         color: Color.primary
         font.pixelSize: Settings.panelFontSize
+        font.family: Settings.panelFontFamily
         text: {
             return `${cpuIcon}  ${CPUState.percentage}%`;
         }

@@ -51,6 +51,9 @@ Scope {
                 CPUWidget {
                 }
 
+                MemoryWidget {
+                }
+
                 BatteryWidget {
                 }
 

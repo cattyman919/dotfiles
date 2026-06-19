@@ -10,8 +10,6 @@ RowLayout {
     spacing: 8
 
     Repeater {
-        model: Hyprland.workspaces
-
         Rectangle {
             id: workspaceItem
 
@@ -59,6 +57,10 @@ RowLayout {
                 visible: workspaceItem.iconPath === ""
             }
 
+        }
+
+        model: ScriptModel {
+            values: Hyprland.workspaces.values
         }
 
     }

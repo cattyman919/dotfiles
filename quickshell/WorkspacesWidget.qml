@@ -30,7 +30,7 @@ RowLayout {
                 return Quickshell.iconPath(entry.icon, true);
             }
 
-            width: 60
+            width: 45
             height: Settings.panelWidgetHeight + Settings.panelWidgetTopBottomPadding
             color: modelData.focused ? Color.primary : Color.surface1
             radius: 3

@@ -189,38 +189,38 @@ return {
 		config = function(_, opts)
 			local util = vim.lsp.util
 
-      if opts.servers.yamlls then
-        opts.servers.yamlls.settings.yaml.schemas = require("schemastore").yaml.schemas({
-          extra = {
-            {
-              description = "Kubernetes Resources",
-              fileMatch = { "k8s/*.yaml", "kube/*.yaml" },
-              name = "Kubernetes",
-              url =
-              "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone/all.json",
-            },
-          },
-        })
-      end
+			if opts.servers.yamlls then
+				opts.servers.yamlls.settings.yaml.schemas = require("schemastore").yaml.schemas({
+					extra = {
+						{
+							description = "Kubernetes Resources",
+							fileMatch = { "k8s/*.yaml", "kube/*.yaml" },
+							name = "Kubernetes",
+							url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone/all.json",
+						},
+					},
+				})
+			end
 
-      if opts.servers.phpactor then
-        opts.servers.phpactor.root_dir =
-            util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")
-      end
+			if opts.servers.phpactor then
+				opts.servers.phpactor.root_dir =
+					util.root_pattern(".git", "composer.json", ".phpactor.json", ".phpactor.yml")
+			end
 
-      for server, config in pairs(opts.servers) do
-        if type(config) ~= "table" then
-          config = {}
-        end
+			for server, config in pairs(opts.servers) do
+				if type(config) ~= "table" then
+					config = {}
+				end
 
-        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-        lspconfig[server].setup(config)
-      end
-    end,
-  },
-  "mfussenegger/nvim-jdtls",
-  {
-    "mason-org/mason.nvim",
-    opts = {},
-  },
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				vim.lsp.enable(server)
+				vim.lsp.config(server, config)
+			end
+		end,
+	},
+	"mfussenegger/nvim-jdtls",
+	{
+		"mason-org/mason.nvim",
+		opts = {},
+	},
 }

@@ -30,6 +30,13 @@ vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search hl", silent = t
 -- prevent x delete from registering when next paste
 vim.keymap.set("n", "x", '"_x', opts)
 
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
+
+-- CodeCompanion
+vim.keymap.set("n", "<leader>c", function()
+	return require("codecompanion.interactions.cli").toggle({ agent = "opencode" })
+end, { desc = "CodeCompanion Chat Toggle" })
+
 -- Diagnostics
 
 -- Toggle LSP diagnostics visibility

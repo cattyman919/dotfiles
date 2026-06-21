@@ -1,5 +1,6 @@
 return {
 	"olimorris/codecompanion.nvim",
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
@@ -59,4 +60,10 @@ return {
 		-- NOTE: The log_level is in `opts.opts`
 		opts = {},
 	},
+	config = function(_, opts)
+		require("codecompanion").setup(opts)
+
+		-- The CLI interaction triggered afterward
+		require("codecompanion.interactions.cli").create({ agent = "opencode" })
+	end,
 }

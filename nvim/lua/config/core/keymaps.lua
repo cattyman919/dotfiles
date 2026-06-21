@@ -30,12 +30,60 @@ vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search hl", silent = t
 -- prevent x delete from registering when next paste
 vim.keymap.set("n", "x", '"_x', opts)
 
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
-
 -- CodeCompanion
+vim.keymap.set("t", "<Esc><Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
 vim.keymap.set("n", "<leader>c", function()
-	return require("codecompanion.interactions.cli").toggle({ agent = "opencode" })
+	local cli = require("codecompanion.interactions.cli")
+	cli.toggle({ agent = "opencode" })
+	local instance = cli.last_cli()
+	if instance then
+		instance:focus()
+	end
 end, { desc = "CodeCompanion Chat Toggle" })
+
+-- Toggle focus between the current window and the previous window (Code <-> CLI)
+vim.keymap.set({ "n", "t" }, "<A-w>", function()
+	local mode = vim.api.nvim_get_mode().mode
+
+	-- If we are in the terminal, drop out of insert mode first
+	if mode == "t" then
+		vim.cmd("stopinsert")
+	end
+
+	-- Jump to the previous window
+	vim.cmd("wincmd p")
+
+	-- If we just jumped INTO a terminal buffer, auto-start insert mode
+	if vim.bo.buftype == "terminal" then
+		vim.cmd("startinsert")
+	end
+end, { desc = "Toggle focus between code and terminal" })
+
+-- Toggle Fullscreen (Maximize/Equalize)
+local is_maximized = false
+vim.keymap.set({ "n", "t" }, "<leader>z", function()
+	local mode = vim.api.nvim_get_mode().mode
+
+	-- Temporarily escape terminal mode to run window commands safely
+	if mode == "t" then
+		vim.cmd("stopinsert")
+	end
+
+	if is_maximized then
+		vim.cmd("wincmd =") -- Equalize all windows back to normal
+		is_maximized = false
+	else
+		vim.cmd("wincmd _") -- Maximize height
+		vim.cmd("wincmd |") -- Maximize width
+		is_maximized = true
+	end
+
+	-- If we were originally in terminal mode, resume typing
+	if mode == "t" then
+		vim.cmd("startinsert")
+	end
+end, { desc = "Toggle fullscreen for current window" })
 
 -- Diagnostics
 

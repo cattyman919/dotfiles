@@ -14,60 +14,60 @@ return {
         -- If you only want conform.nvim's defined formatters, set this to false.
       },
 
-      formatters = {
-        ["slint-lsp"] = {
-          cmd = "slint-lsp format /dev/stdin", -- The command to run
-          stdin = true,                        -- It reads from stdin
-        },
-        rustfmt = {
-          cmd = "rustfmt",
-          -- args = {
-          -- 	"+nightly",
-          -- },
-          stdin = true, -- rustfmt can read from stdin
-        },
-        qmlformat = {
-          command = "qmlformat",
-          args = { "--inplace", "$FILENAME" },
-          stdin = false,
-        },
-        odinfmt = {
-          -- Change where to find the command if it isn't in your path.
-          command = "odinfmt",
-          args = { "-stdin" },
-          stdin = true,
-        },
-        zigfmt = {
-          command = "zig",
-          args = { "fmt", "--stdin" },
-          stdin = true,
-        },
-      },
-      -- Define your formatters by filetype
-      formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "ruff_format", "black" },  -- Tries ruff_format first, then black
-        javascript = { "biome", "prettier" }, -- prettierd is faster if available
-        typescript = { "biome", "prettier" },
-        javascriptreact = { "biome", "prettier" },
-        typescriptreact = { "biome", "prettier" },
-        json = { "prettierd", "prettier" },
-        yaml = { "prettierd", "prettier" },
-        markdown = { "prettierd", "prettier" },
-        html = { "prettierd", "prettier" },
-        css = { "prettierd", "prettier" },
-        scss = { "prettierd", "prettier" },
-        astro = { "prettierd", "prettier" },
-        sh = { "shfmt" },
-        go = { "gofmt", "goimports" },
-        php = { "pint" },
-        cpp = { "clang-format" },
-        java = { "google-java-format" },
-        rust = { "rustfmt" },
-        odin = { "odinfmt" },
-        zig = { "zigfmt" },
-        qml = { "qmlformat" },
-        -- slint = { "slint-lsp" }, -- Custom formatter for Slint
+			formatters = {
+				["slint-lsp"] = {
+					cmd = "slint-lsp format /dev/stdin", -- The command to run
+					stdin = true, -- It reads from stdin
+				},
+				rustfmt = {
+					cmd = "rustfmt",
+					-- args = {
+					-- 	"+nightly",
+					-- },
+					stdin = true, -- rustfmt can read from stdin
+				},
+				qmlformat = {
+					command = "qmlformat",
+					args = { "--inplace", "$FILENAME" },
+					stdin = false,
+				},
+				odinfmt = {
+					-- Change where to find the command if it isn't in your path.
+					command = "odinfmt",
+					args = { "-stdin" },
+					stdin = true,
+				},
+				zigfmt = {
+					command = "zig",
+					args = { "fmt", "--stdin" },
+					stdin = true,
+				},
+			},
+			-- Define your formatters by filetype
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "ruff_format", "black" }, -- Tries ruff_format first, then black
+				javascript = { "biome", "prettier" }, -- prettierd is faster if available
+				typescript = { "biome", "prettier" },
+				javascriptreact = { "biome", "prettier" },
+				typescriptreact = { "biome", "prettier" },
+				json = { "prettierd", "prettier" },
+				yaml = { "prettierd", "prettier" },
+				markdown = { "prettierd", "prettier" },
+				html = { "prettierd", "prettier" },
+				css = { "prettierd", "prettier" },
+				scss = { "prettierd", "prettier" },
+				astro = { "prettierd", "prettier" },
+				sh = { "shfmt" },
+				go = { "gofmt", "goimports" },
+				php = { "pint" },
+				cpp = { "clang-format" },
+				java = { "google-java-format" },
+				rust = { "rustfmt" },
+				odin = { "odinfmt" },
+				zig = { "zigfmt" },
+				qml = { "qmlformat" },
+				-- slint = { "slint-lsp" }, -- Custom formatter for Slint
 
         -- Example of using a formatter that isn't a default
         -- zig = { "zigfmt" },

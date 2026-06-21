@@ -28,9 +28,32 @@ return {
         "python"
       }
 
-      require('nvim-treesitter').install {
-        languages
-      }
+			local languages = {
+				"rust",
+				"javascript",
+				"typescript",
+				"tsx",
+				"zig",
+				"c",
+				"sql",
+				"lua",
+				"vim",
+				"json",
+				"vimdoc",
+				"query",
+				"markdown",
+				"markdown_inline",
+				"tsx",
+				"rust",
+				"helm",
+				"yaml",
+				"xml",
+				"go",
+				"astro",
+				"proto",
+				"python",
+			}
+			require("nvim-treesitter").install(languages)
 
       -- vim.api.nvim_create_autocmd('FileType', {
       --   pattern = '*',
@@ -52,8 +75,8 @@ return {
       --   callback = function() vim.treesitter.start() end,
       -- })
 
-      -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-      vim.wo[0][0].foldmethod = 'expr'
+			-- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			-- vim.wo[0][0].foldmethod = "expr"
 
 
       -- highlight = {

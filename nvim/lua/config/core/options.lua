@@ -14,6 +14,9 @@ vim.opt.updatetime = 200
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- default split to right
+vim.opt.splitright = true
+
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 

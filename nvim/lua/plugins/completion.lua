@@ -37,7 +37,13 @@ return {
 
 			keymap = {
 				preset = "none",
-				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<Tab>"] = {
+					"snippet_forward",
+					function() -- sidekick next edit suggestion
+						return require("sidekick").nes_jump_or_apply()
+					end,
+					"fallback",
+				},
 				["<S-Tab>"] = { "snippet_backward", "fallback" },
 
 				["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -121,31 +127,24 @@ return {
 				enabled = true,
 			},
 			sources = {
-				-- default = { "copilot", "lsp", "snippets", "buffer", "path" },
-				default = { "lsp", "snippets", "buffer", "path" },
+				default = { "copilot", "lsp", "snippets", "buffer", "path" },
+				-- default = { "lsp", "snippets", "buffer", "path" },
 				providers = {
-					-- copilot = {
-					-- 	name = "copilot",
-					-- 	module = "blink-cmp-copilot",
-					-- 	score_offset = 100,
-					-- 	async = true,
-					-- 	transform_items = function(_, items)
-					-- 		local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-					-- 		local kind_idx = #CompletionItemKind + 1
-					-- 		CompletionItemKind[kind_idx] = "Copilot"
-					-- 		for _, item in ipairs(items) do
-					-- 			item.kind = kind_idx
-					-- 		end
-					-- 		return items
-					-- 	end,
-					-- },
-					-- 	avante = {
-					-- 		module = "blink-cmp-avante",
-					-- 		name = "Avante",
-					-- 		opts = {
-					-- 			-- options for blink-cmp-avante
-					-- 		},
-					-- 	},
+					copilot = {
+						name = "copilot",
+						module = "blink-cmp-copilot",
+						score_offset = 100,
+						async = true,
+						transform_items = function(_, items)
+							local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+							local kind_idx = #CompletionItemKind + 1
+							CompletionItemKind[kind_idx] = "Copilot"
+							for _, item in ipairs(items) do
+								item.kind = kind_idx
+							end
+							return items
+						end,
+					},
 				},
 			},
 			snippets = { preset = "luasnip" },

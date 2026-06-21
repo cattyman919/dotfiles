@@ -15,6 +15,7 @@ return {
 				"rust",
 				"javascript",
 				"typescript",
+				"tsx",
 				"zig",
 				"c",
 				"sql",
@@ -67,8 +68,8 @@ return {
 			--   callback = function() vim.treesitter.start() end,
 			-- })
 
-			-- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-			vim.wo[0][0].foldmethod = "expr"
+			-- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			-- vim.wo[0][0].foldmethod = "expr"
 
 			-- highlight = {
 			--   enable = true,

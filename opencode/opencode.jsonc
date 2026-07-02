@@ -1,0 +1,136 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {},
+  "lsp": true,
+  "provider": {
+    "work": {
+      "name": "Work Models",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://ai-gateway.devops.xlaxiata.id/v1"
+      },
+      "models": {
+        "GLM 5.2": {
+          "name": "GLM 5.2 (Work)",
+          "id": "tencent-glm-5.2",
+          "reasoning": true,
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          },
+          "cost": {
+            "input": 1.05,
+            "output": 3.5,
+            "cache_read": 0.21,
+            "cache_write": 1.05
+          }
+        },
+        "GLM 5.1": {
+          "name": "GLM 5.1 (Work)",
+          "id": "tencent-glm-5.1",
+          "reasoning": true,
+          "limit": {
+            "context": 202752,
+            "output": 131072
+          },
+          "cost": {
+            "input": 1.05,
+            "output": 3.5,
+            "cache_read": 0.21,
+            "cache_write": 1.05
+          }
+        },
+        "Kimi K2.6": {
+          "name": "Kimi K2.6 (Work)",
+          "id": "tencent-kimi-k2.6",
+          "reasoning": false,
+          "attachment": true,
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          },
+          "cost": {
+            "input": 0.6,
+            "output": 3,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+        "DeepSeek V4-Flash": {
+          "name": "DeepSeek V4-Flash (Work)",
+          "id": "tencent-deepseek-v4-flash",
+          "reasoning": false,
+          "limit": {
+            "context": 64000,
+            "output": 8192
+          },
+          "cost": {
+            "input": 0.3,
+            "output": 0.6,
+            "cache_read": 0.1,
+            "cache_write": 0.3
+          }
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "*": "allow"
+      }
+    },
+    "plan": {
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "list": "allow",
+        "edit": "ask",
+        "grep": "allow",
+        "bash": {
+          "*": "ask", // Ask before running anything not explicitly allowed above
+          "rm *": "ask", // Always ask before deleting files/folders
+          "sudo *": "ask", // Always ask before executing root commands
+          "git push*": "ask", // Always ask before modifying remote repositories
+          "curl *": "allow",
+          "cat *": "allow",
+          "find *": "allow",
+          "grep *": "allow",
+          "sort *": "allow",
+          "tail *": "allow",
+          "jq *": "allow",
+          "ls *": "allow",
+          "node *": "allow",
+          "echo *":"allow",
+          "cd *":"allow",
+          "head *": "allow",
+          "wc *": "allow",
+          "npm *": "allow",
+          "pnpm *": "allow",
+          "yarn *": "allow",
+          "go *": "allow",
+          "rg *":"allow",
+          "cargo *": "allow",
+          "python *": "allow",
+          "pip *": "allow",
+          "uv *": "allow",
+          // 3. Safe Version Control (Read-only / Local)
+          "git status": "allow",
+          "git log*": "allow",
+          "git diff*": "allow",
+          "git branch*": "allow"
+          // 4. Default Fallback
+        },
+        "task": "allow",
+        "todowrite": "allow",
+        "external_directory": "allow",
+        "question": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "lsp": "allow",
+        "skill": "allow",
+        "doom_loop": "ask"
+      }
+    }
+  }
+}

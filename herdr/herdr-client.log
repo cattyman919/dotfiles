@@ -1,0 +1,15 @@
+2026-07-02T15:09:36.916195Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=56009
+2026-07-02T15:09:36.916240Z  INFO herdr::client: connecting to server path=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-02T15:09:36.925875Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-02T15:54:46.773294Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=70316
+2026-07-02T15:54:46.773655Z  INFO herdr::client: connecting to server path=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-02T15:54:46.865686Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-03T01:26:39.422119Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=93358
+2026-07-03T01:26:39.422264Z  INFO herdr::client: connecting to server path=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-03T01:26:39.635167Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-03T01:29:38.890711Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=96076
+2026-07-03T01:29:38.890793Z  INFO herdr::client: connecting to server path=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-03T01:29:39.076362Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-03T01:58:59.959862Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=5430
+2026-07-03T01:58:59.959944Z  INFO herdr::client: connecting to server path=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-03T01:59:00.204774Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame

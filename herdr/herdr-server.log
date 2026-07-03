@@ -1,0 +1,210 @@
+2026-07-02T15:09:36.872957Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-07-02T15:09:36.873859Z  INFO herdr::api::server: api server listening path=/Users/senohebat/.config/herdr/herdr.sock
+2026-07-02T15:09:36.874499Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-02T15:09:36.888284Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-02T15:09:36.888783Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-02T15:09:36.890924Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=56025
+2026-07-02T15:09:36.891237Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w1" pane_id=1
+2026-07-02T15:09:36.891257Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-07-02T15:09:36.891290Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:36.891296Z  INFO herdr::server::headless: created startup workspace cwd=/Users/senohebat/repo/dotfiles/herdr
+2026-07-02T15:09:36.891412Z  INFO herdr::server::headless: client protocol socket listening path=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-02T15:09:36.891429Z  INFO herdr::server::headless: herdr server started api_socket=/Users/senohebat/.config/herdr/herdr.sock client_socket=/Users/senohebat/.config/herdr/herdr-client.sock
+2026-07-02T15:09:36.891446Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=56010
+2026-07-02T15:09:36.926034Z  INFO herdr::server::headless: client connected client_id=2 cols=171 rows=47 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-02T15:09:40.289836Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:40.605805Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:41.674862Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=46 cols=149 scrollback_limit_bytes=10000000
+2026-07-02T15:09:41.681108Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=56212
+2026-07-02T15:09:41.681442Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:41.681483Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2" pane_id=2
+2026-07-02T15:09:42.119869Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:42.347768Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:42.434711Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:42.619792Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:42.714006Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:42.942191Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:43.006204Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:43.311800Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:43.514664Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:43.595568Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:45.928040Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:46.408472Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:09:46.602050Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:09:51.605386Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=1
+2026-07-02T15:09:52.557148Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-02T15:39:36.857834Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-02T15:54:46.865703Z  INFO herdr::server::headless: client connected client_id=4 cols=171 rows=47 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-02T15:54:48.567439Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=46 cols=149 scrollback_limit_bytes=10000000
+2026-07-02T15:54:48.578473Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=70317
+2026-07-02T15:54:48.579066Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3"
+2026-07-02T15:54:48.579213Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3" pane_id=3
+2026-07-02T15:54:48.971064Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:54:49.102205Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3"
+2026-07-02T15:54:49.264103Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:54:49.486931Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:54:49.683026Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3"
+2026-07-02T15:54:49.838880Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:54:50.010728Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:54:50.394885Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3"
+2026-07-02T15:54:52.820156Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:54:53.043959Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-02T15:54:53.375940Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-02T15:54:58.379055Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=1
+2026-07-02T15:54:59.035011Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-07-02T16:14:39.636813Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-02T16:14:40.821725Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 1, signal: None }"
+2026-07-02T16:14:40.845095Z  INFO herdr::pane: pane session terminated pane=3 pid=70317 signal=Hangup
+2026-07-02T16:14:40.845496Z  WARN herdr::app::actions: PaneDied for unknown pane pane=3
+2026-07-02T21:33:25.828687Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T01:26:39.635195Z  INFO herdr::server::headless: client connected client_id=6 cols=171 rows=47 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-03T01:26:40.598751Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:26:40.856531Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:26:41.060394Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:26:41.380387Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:26:41.665161Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T01:26:41.732143Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:26:43.069434Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=46 cols=149 scrollback_limit_bytes=10000000
+2026-07-03T01:26:43.074844Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=93507
+2026-07-03T01:26:43.075125Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t4"
+2026-07-03T01:26:43.075144Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t4" pane_id=4
+2026-07-03T01:26:44.034217Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:26:44.343474Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t4"
+2026-07-03T01:26:44.531012Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:26:44.851542Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t4"
+2026-07-03T01:26:49.494139Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:26:49.794442Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:26:50.082054Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:26:50.297506Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:26:55.301206Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=1
+2026-07-03T01:27:20.943782Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:27:25.945803Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=1
+2026-07-03T01:27:26.422530Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:27:26.747114Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:27:31.749656Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=1
+2026-07-03T01:27:34.351274Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:27:39.359254Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=1
+2026-07-03T01:28:07.959323Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=5 rows=46 cols=149 scrollback_limit_bytes=10000000
+2026-07-03T01:28:07.967869Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=5 pid=95506
+2026-07-03T01:28:07.968338Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w2" pane_id=5
+2026-07-03T01:28:07.968367Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T01:28:07.968395Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:28:08.528633Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 1, signal: None }"
+2026-07-03T01:28:08.552309Z  INFO herdr::pane: pane session terminated pane=4 pid=93507 signal=Hangup
+2026-07-03T01:28:08.552737Z  WARN herdr::app::actions: PaneDied for unknown pane pane=4
+2026-07-03T01:28:09.671938Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:28:11.441711Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:28:11.638837Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:28:11.822552Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:28:15.845243Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-07-03T01:28:15.845363Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:20.656771Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:25.166787Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:30.171466Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:28:45.877077Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:47.419372Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:48.413117Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:48.763220Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:48.955079Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:49.207133Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:49.707222Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:49.790001Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:49.873627Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:49.957875Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:50.042025Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:50.583329Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:28:55.216809Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:28:56.700178Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:29:01.704350Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:29:38.567041Z  INFO herdr::server::headless: client disconnected client_id=6
+2026-07-03T01:29:39.076396Z  INFO herdr::server::headless: client connected client_id=8 cols=171 rows=47 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-03T01:29:39.817305Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:29:40.020160Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:29:45.023424Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:30:22.513595Z  WARN herdr::config::keybinds: config diagnostic invalid keybinding: keys.switch_workspace = "cmdn+1..9"; disabling binding
+2026-07-03T01:31:43.620460Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=6 rows=46 cols=149 scrollback_limit_bytes=10000000
+2026-07-03T01:31:43.629068Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=6 pid=97207
+2026-07-03T01:31:43.629496Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T01:31:43.629546Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5" pane_id=6
+2026-07-03T01:31:48.640094Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:31:55.678089Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-03T01:33:26.015328Z  INFO herdr::app::actions: copied double-clicked token to clipboard
+2026-07-03T01:33:28.216193Z  INFO herdr::app::actions: copied double-clicked token to clipboard
+2026-07-03T01:33:41.409470Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-03T01:37:09.276995Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:37:12.310328Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T01:37:17.316539Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:40:58.331697Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=7 rows=46 cols=149 scrollback_limit_bytes=10000000
+2026-07-03T01:40:58.340561Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=7 pid=1426
+2026-07-03T01:40:58.340969Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T01:40:58.341020Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6" pane_id=7
+2026-07-03T01:41:03.351488Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:41:13.994575Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T01:41:19.004407Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:41:42.405702Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T01:41:44.637172Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T01:41:49.640033Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:58:15.781343Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T01:58:15.782331Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:58:17.213316Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-07-03T01:58:17.213369Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T01:58:18.113628Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:58:19.303994Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:58:24.313473Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:58:29.859662Z  INFO herdr::server::headless: client resize client_id=8 cols=171 rows=49 cell_width_px=0 cell_height_px=0
+2026-07-03T01:58:30.679109Z  INFO herdr::server::headless: client resize client_id=8 cols=171 rows=47 cell_width_px=0 cell_height_px=0
+2026-07-03T01:58:31.980648Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:58:33.013797Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T01:58:33.634570Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T01:58:38.641970Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:58:45.044310Z  INFO herdr::server::headless: client resize client_id=8 cols=84 rows=47 cell_width_px=0 cell_height_px=0
+2026-07-03T01:58:49.505698Z  INFO herdr::server::headless: client resize client_id=8 cols=171 rows=47 cell_width_px=0 cell_height_px=0
+2026-07-03T01:58:50.568501Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:58:55.573222Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:58:56.645788Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-07-03T01:59:00.204806Z  INFO herdr::server::headless: client connected client_id=10 cols=171 rows=47 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-03T01:59:02.897865Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T01:59:02.897962Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:59:04.768682Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-07-03T01:59:04.768796Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:59:09.773121Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:59:10.814614Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T01:59:10.814695Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T01:59:11.514834Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-07-03T01:59:11.514920Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T01:59:16.519465Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T01:59:19.621158Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T01:59:24.632494Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T02:01:08.991541Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T02:01:08.992552Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T02:01:09.764444Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-07-03T02:01:09.764518Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:11.327722Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T02:01:11.552280Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:11.731864Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:11.903874Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T02:01:12.075766Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:12.265674Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:12.423261Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:12.585556Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T02:01:14.148918Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:14.311873Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:14.459963Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:14.639622Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T02:01:16.576852Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:16.990398Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T02:01:19.405419Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T02:01:19.698793Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t6"
+2026-07-03T02:01:20.519321Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:20.741399Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t5"
+2026-07-03T02:01:20.925715Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:21.101647Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T02:01:21.712800Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:26.716523Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2
+2026-07-03T02:01:28.382905Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T02:01:29.833004Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=7 status="ExitStatus { code: 1, signal: None }"
+2026-07-03T02:01:29.856723Z  INFO herdr::pane: pane session terminated pane=7 pid=1426 signal=Hangup
+2026-07-03T02:01:29.857016Z  WARN herdr::app::actions: PaneDied for unknown pane pane=7
+2026-07-03T02:01:47.876396Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-07-03T02:01:48.210453Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-07-03T02:01:53.215742Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/senohebat/.config/herdr/session.json workspaces=2

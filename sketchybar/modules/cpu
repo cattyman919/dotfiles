@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+sketchybar \
+  --add item cpu q \
+  --set cpu update_freq=20 script="$PLUGIN_DIR/cpu.sh" \
+  icon="" \
+  label.font="Hack Nerd Font:Italic:13.0" \
+  icon.color=0x44FFFFFF \
+  label.color=0x44FFFFFF

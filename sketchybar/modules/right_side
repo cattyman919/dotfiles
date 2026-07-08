@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
-sketchybar --add item clock right \
-           --add item volume right \
-           --add item battery right
+set -u
 
+sketchybar --add item clock right \
+  --add item volume right \
+  --add item battery right
 
 sketchybar --set clock update_freq=1 \
-                       script="$PLUGIN_DIR/clock.sh"
+  script="$PLUGIN_DIR/clock.sh"
 
 sketchybar --set volume script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change
+  --subscribe volume volume_change
 
 sketchybar --set battery update_freq=120 \
-                         script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change
+  script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change

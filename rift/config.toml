@@ -53,11 +53,14 @@ auto_focus_blacklist = []
 #
 # Example (sketchybar integration):
 # run_on_start = [
-#   "rift-cli subscribe cli --event workspace_changed --command sh --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WORKSPACE_ID=\"$RIFT_WORKSPACE_ID\"'",
+ # "rift-cli subscribe cli --event workspace_changed --command ~/.config/sketchybar/plugins/changed_workspace_rift.sh"
+# "rift-cli subscribe cli --event workspace_changed --command sh --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WORKSPACE_ID=\"$RIFT_WORKSPACE_ID\"'",
 #   "rift-cli subscribe cli --event windows_changed --command sh --args -c --args 'sketchybar --trigger rift_windows_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WINDOW_COUNT=\"$RIFT_WINDOW_COUNT\"'"
 # ]
 
-run_on_start = []
+run_on_start = [
+  "rift-cli subscribe cli --event workspace_changed --command /Users/senohebat/.config/sketchybar/plugins/rift_hook.sh"
+]
 
 # Hot Reloading
 # - If true, rift will watch the config file for changes and reload automatically.
@@ -145,7 +148,7 @@ default_orientation = "perpendicular"
 #   Use the display's UUID as the key (for example, from system profiler or via rift CLI).
 
 [settings.layout.gaps.outer]
-top = 0
+top = 10
 left = 0
 bottom = 0
 right = 0
@@ -202,7 +205,7 @@ fade_duration_ms = 180.0
 # Trackpad gestures
 [settings.gestures]
 # Enable horizontal swipes to switch virtual workspaces
-enabled = true
+enabled = false
 # If true, Rift consumes low-level dock swipe events for its trackpad gesture handlers
 # to prevent interference with rift's own swipe detection
 consume_dock_swipe = true
@@ -259,15 +262,12 @@ workspace_rules = []
 # Default workspace to activate on startup (0-based index).
 # If omitted, defaults to 0 (first workspace). Must be less than default_workspace_count.
 # Uncomment to change:
-default_workspace = 1
+default_workspace = 0
 
 # Workspace names (indexed order). If fewer than default_workspace_count are provided,
 # remaining workspaces are named "Workspace X".
 # Do not provide more names than default_workspace_count.
-workspace_names = [
-	"first",
-	"second"
-]
+workspace_names = []
 
 # App rules (automatic assignment)
 # Define rules that match new windows and set properties (workspace, floating, etc).
@@ -386,28 +386,32 @@ comb1 = "Alt + Shift"
 
 "Alt + Z" = "toggle_space_activated"
 
-# "Alt + W" = { exec = ["osascript", "-e", "tell application \"System Events\" to keystroke \"w\" using command down"] }
-"Alt + W" = "close_window"
+"Alt + W" = { exec = ["osascript", "-e", "tell application \"System Events\" to keystroke \"w\" using command down"] }
+# "Alt + W" = {close_window = {}}
 
 "Alt + H" = { move_focus = "left" }
 "Alt + J" = { move_focus = "down" }
 "Alt + K" = { move_focus = "up" }
 "Alt + L" = { move_focus = "right" }
 
-"comb1 + H" = { move_node = "left" }
-"comb1 + J" = { move_node = "down" }
-"comb1 + K" = { move_node = "up" }
-"comb1 + L" = { move_node = "right" }
+# "comb1 + H" = { move_node = "left" }
+# "comb1 + J" = { move_node = "down" }
+# "comb1 + K" = { move_node = "up" }
+# "comb1 + L" = { move_node = "right" }
 
-# "Alt + 0" = { switch_to_workspace = 0 }
-"Alt + 1" = { switch_to_workspace = 1 }
-"Alt + 2" = { switch_to_workspace = 2 }
-"Alt + 3" = { switch_to_workspace = 3 }
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+"Alt + 5" = { switch_to_workspace = 4 }
+"Alt + 6" = { switch_to_workspace = 5 }
 
-"comb1 + 0" = { move_window_to_workspace = 0 }
-"comb1 + 1" = { move_window_to_workspace = 1 }
-"comb1 + 2" = { move_window_to_workspace = 2 }
-"comb1 + 3" = { move_window_to_workspace = 3 }
+"comb1 + 1" = { move_window_to_workspace = 0 }
+"comb1 + 2" = { move_window_to_workspace = 1 }
+"comb1 + 3" = { move_window_to_workspace = 2 }
+"comb1 + 4" = { move_window_to_workspace = 3 }
+"comb1 + 5" = { move_window_to_workspace = 4 }
+"comb1 + 6" = { move_window_to_workspace = 5 }
 
 "Alt + Tab" = "switch_to_last_workspace"
 
@@ -458,6 +462,9 @@ comb1 = "Alt + Shift"
 # "Alt + Enter" = { "exec" = ["/bin/bash", "-c", "open -a \"/System/Applications/Utilities/Terminal.app\""] }
 "Alt + Enter" = { "exec" = ["/bin/bash", "-c", "open -n -a Ghostty"] }
 "Alt + B" = { "exec" = ["/bin/bash", "-c", "open -n -a Zen"] }
+
+# "Alt + Shift + L" = { exec = ["osascript", "-e", "tell application \"System Events\" to keystroke \"q\" using {control down, command down}"] }
+"Alt + Shift + L" = { exec = ["/bin/bash", "-c", "pmset displaysleepnow"] }
 
 "Alt + Shift + D" = "debug" # prints layout tree
 

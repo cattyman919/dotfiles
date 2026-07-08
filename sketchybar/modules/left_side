@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -u
+
+CONFIG_DIR="/Users/senohebat/.config/sketchybar"
+
+THEME_DIR="$CONFIG_DIR/theme"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+# Colors
+source "$THEME_DIR/colors.sh"
+
+# UI Settings
+padding=20
+
+get_workspaces_script="${PLUGIN_DIR}/get_workspaces_rift.sh"
+
+sketchybar --add event workspace_changed
+
+# Setup workspaces
+while IFS=$'\t' read -r index is_active; do
+
+  if [[ "$is_active" == "true" ]]; then
+    bg_color=${GREEN}
+    label_color=0xff000000
+  else
+    bg_color=${TRANSPARENT}
+    label_color=${WHITE}
+  fi
+
+  sketchybar --add item "Workspace ${index}" left \
+    --subscribe "Workspace ${index}" workspace_changed \
+    --set "Workspace ${index}" \
+    script="${PLUGIN_DIR}/workspace_rift_event.sh" \
+    background.drawing=on \
+    background.color=$bg_color \
+    background.corner_radius=8 \
+    background.height=26 \
+    background.border_width=0 \
+    icon.drawing=off \
+    label.font="Hack Nerd Font:Bold:14.0" \
+    label.padding_left=12 \
+    label.padding_right=12 \
+    label.color=${label_color} \
+    label=${index}
+
+done <<<"$($get_workspaces_script)"

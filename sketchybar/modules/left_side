@@ -21,7 +21,7 @@ sketchybar --add event workspace_changed
 while IFS=$'\t' read -r index is_active; do
 
   if [[ "$is_active" == "true" ]]; then
-    bg_color=${GREEN}
+    bg_color=${BLUE}
     label_color=0xff000000
   else
     bg_color=${TRANSPARENT}

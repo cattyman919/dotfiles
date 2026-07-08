@@ -12,6 +12,6 @@ if [ "$SENDER" = "workspace_changed" ]; then
     # Inactive: Transparent background, dimmed text to reduce visual noise
     sketchybar --animate tanh 5 --set "$NAME" \
       background.color=$TRANSPARENT \
-      label.color=$FG_DIM
+      label.color=$WHITE
   fi
 fi

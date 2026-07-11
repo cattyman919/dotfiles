@@ -332,7 +332,18 @@ workspace_names = []
 #       ]
 #
 # By default there are no app rules; add or uncomment rules below as needed.
-app_rules = []
+app_rules = [
+  # Float System Settings
+  { app_name = "System Settings", floating = true },
+
+  # Float any pop-up dialogs or preferences
+  { title_substring = "Preferences", floating = true },
+  { title_substring = "seno", floating = true },
+
+  # Example: Float standard macOS dialog boxes using Accessibility roles
+  { ax_subrole = "AXDialog", floating = true },
+  { ax_subrole = "AXSystemDialog", floating = true }
+]
 
 # Modifier combinations that can be reused in key bindings
 # Define common modifier combinations to avoid repetition.

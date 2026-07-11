@@ -3,11 +3,17 @@
 set -u
 
 sketchybar --add item clock right \
+  --add item bluetooth right \
   --add item volume right \
   --add item battery right
 
 sketchybar --set clock update_freq=1 \
   script="$PLUGIN_DIR/clock.sh"
+
+sketchybar --set bluetooth update_freq=30 \
+  script="$PLUGIN_DIR/bluetooth.sh" \
+  drawing=off \
+  --subscribe bluetooth mouse.entered mouse.exited system_woke
 
 sketchybar --set volume script="$PLUGIN_DIR/volume.sh" \
   --subscribe volume volume_change

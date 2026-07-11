@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration
 # Place this file at ~/.config/herdr/config.toml
 
@@ -173,7 +174,7 @@ sidebar_min_width = 14
 
 # Ask for a tab name before creating a new tab.
 # Set false to create tabs immediately with generated names.
-# prompt_new_tab_name = true
+prompt_new_tab_name = false
 
 # Draw borders around split panes.
 # pane_borders = true
@@ -209,7 +210,7 @@ delivery = "system"
 
 [ui.toast.clipboard]
 # enabled = true
-# position = "bottom-center"
+position = "bottom-right"
 
 # Play sounds when agents change state in background workspaces
 [ui.sound]
@@ -227,7 +228,7 @@ delivery = "system"
 [session]
 # Resume supported AI-agent panes into their native conversation sessions after
 # a Herdr server restart. Requires official integrations that report session refs.
-# resume_agents_on_restore = true
+resume_agents_on_restore = false
 
 [remote]
 # Whether herdr manages the ssh config used for the `herdr --remote` bridge.

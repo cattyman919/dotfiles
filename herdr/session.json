@@ -4,28 +4,28 @@
     {
       "id": "w1",
       "custom_name": null,
-      "identity_cwd": "/Users/senohebat",
+      "identity_cwd": "/Users/senohebat/repo/work/weekly-report",
       "public_pane_numbers": {
-        "1": 1,
-        "6": 5,
-        "2": 2
+        "3": 12,
+        "2": 11,
+        "1": 1
       },
-      "next_public_pane_number": 7,
+      "next_public_pane_number": 15,
       "public_tab_numbers": [
         1,
-        2,
-        5
+        10,
+        11
       ],
-      "next_public_tab_number": 7,
+      "next_public_tab_number": 14,
       "tabs": [
         {
-          "custom_name": null,
+          "custom_name": "coding",
           "layout": {
             "Pane": 1
           },
           "panes": {
             "1": {
-              "cwd": "/Users/senohebat"
+              "cwd": "/Users/senohebat/repo/work/weekly-report"
             }
           },
           "zoomed": false,
@@ -33,13 +33,13 @@
           "root_pane": 1
         },
         {
-          "custom_name": null,
+          "custom_name": "runner",
           "layout": {
             "Pane": 2
           },
           "panes": {
             "2": {
-              "cwd": "/Users/senohebat/repo/dotfiles/herdr"
+              "cwd": "/Users/senohebat/repo/work/weekly-report"
             }
           },
           "zoomed": false,
@@ -47,55 +47,721 @@
           "root_pane": 2
         },
         {
-          "custom_name": null,
+          "custom_name": "opencode",
           "layout": {
-            "Pane": 6
+            "Pane": 3
           },
           "panes": {
-            "6": {
-              "cwd": "/Users/senohebat"
+            "3": {
+              "cwd": "/Users/senohebat/repo/work/weekly-report"
             }
           },
           "zoomed": false,
-          "focused": 6,
-          "root_pane": 6
+          "focused": 3,
+          "root_pane": 3
         }
       ],
       "active_tab": 1
     },
     {
-      "id": "w2",
+      "id": "w3",
       "custom_name": null,
-      "identity_cwd": "/Users/senohebat",
+      "identity_cwd": "/Users/senohebat/repo/work/report-be",
       "public_pane_numbers": {
-        "5": 1
+        "6": 16,
+        "31": 18,
+        "5": 6,
+        "4": 5,
+        "32": 19,
+        "33": 20
       },
-      "next_public_pane_number": 2,
+      "next_public_pane_number": 21,
       "public_tab_numbers": [
-        1
+        5,
+        6,
+        16,
+        18,
+        19,
+        20
       ],
-      "next_public_tab_number": 2,
+      "next_public_tab_number": 21,
       "tabs": [
         {
-          "custom_name": null,
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 4
+          },
+          "panes": {
+            "4": {
+              "cwd": "/Users/senohebat/repo/work/report-be"
+            }
+          },
+          "zoomed": false,
+          "focused": 4,
+          "root_pane": 4
+        },
+        {
+          "custom_name": "opencode",
           "layout": {
             "Pane": 5
           },
           "panes": {
             "5": {
-              "cwd": "/Users/senohebat"
+              "cwd": "/Users/senohebat/repo/work/k8s-comparison-fe"
             }
           },
           "zoomed": false,
           "focused": 5,
           "root_pane": 5
+        },
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 6
+          },
+          "panes": {
+            "6": {
+              "cwd": "/Users/senohebat/repo/work/k8s-comparison"
+            }
+          },
+          "zoomed": false,
+          "focused": 6,
+          "root_pane": 6
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 31
+          },
+          "panes": {
+            "31": {
+              "cwd": "/Users/senohebat/repo/work/k8s-comparison"
+            }
+          },
+          "zoomed": false,
+          "focused": 31,
+          "root_pane": 31
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 32
+          },
+          "panes": {
+            "32": {
+              "cwd": "/Users/senohebat/repo/work"
+            }
+          },
+          "zoomed": false,
+          "focused": 32,
+          "root_pane": 32
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 33
+          },
+          "panes": {
+            "33": {
+              "cwd": "/Users/senohebat/repo/work"
+            }
+          },
+          "zoomed": false,
+          "focused": 33,
+          "root_pane": 33
+        }
+      ],
+      "active_tab": 1
+    },
+    {
+      "id": "w4",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/work/report-fe",
+      "public_pane_numbers": {
+        "8": 3,
+        "7": 2
+      },
+      "next_public_pane_number": 16,
+      "public_tab_numbers": [
+        2,
+        3
+      ],
+      "next_public_tab_number": 10,
+      "tabs": [
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 7
+          },
+          "panes": {
+            "7": {
+              "cwd": "/Users/senohebat/repo/work/report-fe"
+            }
+          },
+          "zoomed": false,
+          "focused": 7,
+          "root_pane": 7
+        },
+        {
+          "custom_name": "opencode",
+          "layout": {
+            "Pane": 8
+          },
+          "panes": {
+            "8": {
+              "cwd": "/Users/senohebat/repo/work/report-fe"
+            }
+          },
+          "zoomed": false,
+          "focused": 8,
+          "root_pane": 8
+        }
+      ],
+      "active_tab": 1
+    },
+    {
+      "id": "w6",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/gitscope",
+      "public_pane_numbers": {
+        "11": 4,
+        "9": 2,
+        "10": 3,
+        "79": 32
+      },
+      "next_public_pane_number": 33,
+      "public_tab_numbers": [
+        2,
+        3,
+        4,
+        31
+      ],
+      "next_public_tab_number": 32,
+      "tabs": [
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 9
+          },
+          "panes": {
+            "9": {
+              "cwd": "/Users/senohebat/repo/gitscope"
+            }
+          },
+          "zoomed": false,
+          "focused": 9,
+          "root_pane": 9
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 10
+          },
+          "panes": {
+            "10": {
+              "cwd": "/Users/senohebat/repo/gitscope"
+            }
+          },
+          "zoomed": false,
+          "focused": 10,
+          "root_pane": 10
+        },
+        {
+          "custom_name": "oc",
+          "layout": {
+            "Pane": 11
+          },
+          "panes": {
+            "11": {
+              "cwd": "/Users/senohebat/repo/gitscope",
+              "agent_session": {
+                "source": "herdr:opencode",
+                "agent": "opencode",
+                "kind": "id",
+                "value": "ses_0b3976d88ffe9kklZE44XO1hY0"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 11,
+          "root_pane": 11
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 79
+          },
+          "panes": {
+            "79": {
+              "cwd": "/Users/senohebat/.agents"
+            }
+          },
+          "zoomed": false,
+          "focused": 79,
+          "root_pane": 79
         }
       ],
       "active_tab": 0
+    },
+    {
+      "id": "w7",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/dotfiles",
+      "public_pane_numbers": {
+        "14": 5,
+        "12": 1,
+        "13": 2
+      },
+      "next_public_pane_number": 6,
+      "public_tab_numbers": [
+        1,
+        2,
+        5
+      ],
+      "next_public_tab_number": 6,
+      "tabs": [
+        {
+          "custom_name": "coding",
+          "layout": {
+            "Pane": 12
+          },
+          "panes": {
+            "12": {
+              "cwd": "/Users/senohebat/repo/dotfiles"
+            }
+          },
+          "zoomed": false,
+          "focused": 12,
+          "root_pane": 12
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 13
+          },
+          "panes": {
+            "13": {
+              "cwd": "/Users/senohebat/repo/dotfiles"
+            }
+          },
+          "zoomed": false,
+          "focused": 13,
+          "root_pane": 13
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 14
+          },
+          "panes": {
+            "14": {
+              "cwd": "/Users/senohebat/repo/autocv"
+            }
+          },
+          "zoomed": false,
+          "focused": 14,
+          "root_pane": 14
+        }
+      ],
+      "active_tab": 2
+    },
+    {
+      "id": "w8",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/work/scripts",
+      "public_pane_numbers": {
+        "15": 1,
+        "17": 7,
+        "16": 2
+      },
+      "next_public_pane_number": 13,
+      "public_tab_numbers": [
+        1,
+        2,
+        7
+      ],
+      "next_public_tab_number": 13,
+      "tabs": [
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 15
+          },
+          "panes": {
+            "15": {
+              "cwd": "/Users/senohebat/repo/work/scripts"
+            }
+          },
+          "zoomed": false,
+          "focused": 15,
+          "root_pane": 15
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 16
+          },
+          "panes": {
+            "16": {
+              "cwd": "/Users/senohebat/repo/work/scripts"
+            }
+          },
+          "zoomed": false,
+          "focused": 16,
+          "root_pane": 16
+        },
+        {
+          "custom_name": "opencode",
+          "layout": {
+            "Pane": 17
+          },
+          "panes": {
+            "17": {
+              "cwd": "/Users/senohebat/repo/work/scripts"
+            }
+          },
+          "zoomed": false,
+          "focused": 17,
+          "root_pane": 17
+        }
+      ],
+      "active_tab": 2
+    },
+    {
+      "id": "w9",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/autocv",
+      "public_pane_numbers": {
+        "19": 4,
+        "18": 2
+      },
+      "next_public_pane_number": 5,
+      "public_tab_numbers": [
+        2,
+        4
+      ],
+      "next_public_tab_number": 5,
+      "tabs": [
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 18
+          },
+          "panes": {
+            "18": {
+              "cwd": "/Users/senohebat/repo/autocv"
+            }
+          },
+          "zoomed": false,
+          "focused": 18,
+          "root_pane": 18
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 19
+          },
+          "panes": {
+            "19": {
+              "cwd": "/Users/senohebat/repo/autocv"
+            }
+          },
+          "zoomed": false,
+          "focused": 19,
+          "root_pane": 19
+        }
+      ],
+      "active_tab": 1
+    },
+    {
+      "id": "wA",
+      "custom_name": "config",
+      "identity_cwd": "/Users/senohebat/repo/dotfiles/sketchybar",
+      "public_pane_numbers": {
+        "23": 9,
+        "21": 2,
+        "20": 1,
+        "22": 7
+      },
+      "next_public_pane_number": 10,
+      "public_tab_numbers": [
+        1,
+        2,
+        7,
+        8
+      ],
+      "next_public_tab_number": 9,
+      "tabs": [
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 20
+          },
+          "panes": {
+            "20": {
+              "cwd": "/Users/senohebat/repo/dotfiles/sketchybar"
+            }
+          },
+          "zoomed": false,
+          "focused": 20,
+          "root_pane": 20
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 21
+          },
+          "panes": {
+            "21": {
+              "cwd": "/Users/senohebat/repo/dotfiles/sketchybar"
+            }
+          },
+          "zoomed": false,
+          "focused": 21,
+          "root_pane": 21
+        },
+        {
+          "custom_name": "rift",
+          "layout": {
+            "Pane": 22
+          },
+          "panes": {
+            "22": {
+              "cwd": "/Users/senohebat/repo/dotfiles/rift"
+            }
+          },
+          "zoomed": false,
+          "focused": 22,
+          "root_pane": 22
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 23
+          },
+          "panes": {
+            "23": {
+              "cwd": "/Users/senohebat/repo/dotfiles/sketchybar"
+            }
+          },
+          "zoomed": false,
+          "focused": 23,
+          "root_pane": 23
+        }
+      ],
+      "active_tab": 1
+    },
+    {
+      "id": "wC",
+      "custom_name": "shared-lib",
+      "identity_cwd": "/Users/senohebat/repo/work/shared-lib-apps",
+      "public_pane_numbers": {
+        "26": 3,
+        "25": 2,
+        "24": 1
+      },
+      "next_public_pane_number": 4,
+      "public_tab_numbers": [
+        1,
+        2,
+        3
+      ],
+      "next_public_tab_number": 4,
+      "tabs": [
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 24
+          },
+          "panes": {
+            "24": {
+              "cwd": "/Users/senohebat/repo/work/shared-lib-apps"
+            }
+          },
+          "zoomed": false,
+          "focused": 24,
+          "root_pane": 24
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 25
+          },
+          "panes": {
+            "25": {
+              "cwd": "/Users/senohebat/repo/work/shared-lib-apps"
+            }
+          },
+          "zoomed": false,
+          "focused": 25,
+          "root_pane": 25
+        },
+        {
+          "custom_name": "opencode",
+          "layout": {
+            "Pane": 26
+          },
+          "panes": {
+            "26": {
+              "cwd": "/Users/senohebat/repo/work/shared-lib-apps"
+            }
+          },
+          "zoomed": false,
+          "focused": 26,
+          "root_pane": 26
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "wD",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/seno",
+      "public_pane_numbers": {
+        "27": 1,
+        "28": 2,
+        "71": 16
+      },
+      "next_public_pane_number": 17,
+      "public_tab_numbers": [
+        1,
+        2,
+        16
+      ],
+      "next_public_tab_number": 17,
+      "tabs": [
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 27
+          },
+          "panes": {
+            "27": {
+              "cwd": "/Users/senohebat/repo/seno"
+            }
+          },
+          "zoomed": false,
+          "focused": 27,
+          "root_pane": 27
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 28
+          },
+          "panes": {
+            "28": {
+              "cwd": "/Users/senohebat/repo/seno"
+            }
+          },
+          "zoomed": false,
+          "focused": 28,
+          "root_pane": 28
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 71
+          },
+          "panes": {
+            "71": {
+              "cwd": "/Users/senohebat/repo/seno"
+            }
+          },
+          "zoomed": false,
+          "focused": 71,
+          "root_pane": 71
+        }
+      ],
+      "active_tab": 2
+    },
+    {
+      "id": "wE",
+      "custom_name": null,
+      "identity_cwd": "/Users/senohebat/repo/plato",
+      "public_pane_numbers": {
+        "57": 2,
+        "51": 1,
+        "80": 8,
+        "69": 7
+      },
+      "next_public_pane_number": 9,
+      "public_tab_numbers": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "next_public_tab_number": 7,
+      "tabs": [
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 51
+          },
+          "panes": {
+            "51": {
+              "cwd": "/Users/senohebat/repo/plato"
+            }
+          },
+          "zoomed": false,
+          "focused": 51,
+          "root_pane": 51
+        },
+        {
+          "custom_name": "runner",
+          "layout": {
+            "Pane": 57
+          },
+          "panes": {
+            "57": {
+              "cwd": "/Users/senohebat/repo/plato/frontend"
+            }
+          },
+          "zoomed": false,
+          "focused": 57,
+          "root_pane": 57
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 69
+          },
+          "panes": {
+            "69": {
+              "cwd": "/Users/senohebat/repo/plato",
+              "agent_session": {
+                "source": "herdr:opencode",
+                "agent": "opencode",
+                "kind": "id",
+                "value": "ses_0b2f97d09ffepatTA10rnM3ame"
+              }
+            }
+          },
+          "zoomed": false,
+          "focused": 69,
+          "root_pane": 69
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 80
+          },
+          "panes": {
+            "80": {
+              "cwd": "/Users/senohebat/repo/plato"
+            }
+          },
+          "zoomed": false,
+          "focused": 80,
+          "root_pane": 80
+        }
+      ],
+      "active_tab": 1
     }
   ],
-  "active": 0,
-  "selected": 0,
+  "active": 7,
+  "selected": 7,
   "sidebar_width": 22,
   "sidebar_section_split": 0.5,
   "collapsed_space_keys": []

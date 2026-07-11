@@ -29,7 +29,7 @@ while IFS=$'\t' read -r index is_active; do
   fi
 
   sketchybar --add item "Workspace ${index}" left \
-    --subscribe "Workspace ${index}" workspace_changed \
+    --subscribe "Workspace ${index}" workspace_changed mouse.clicked \
     --set "Workspace ${index}" \
     script="${PLUGIN_DIR}/workspace_rift_event.sh" \
     background.drawing=on \

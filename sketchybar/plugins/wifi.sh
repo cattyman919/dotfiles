@@ -17,7 +17,7 @@ if [ -z "$WIFI_DEVICE" ]; then
   exit 0
 fi
 
-SSID=$(ipconfig getsummary "$WIFI_DEVICE" 2>/dev/null | awk -F': ' '/ SSID / {print $2}')
+SSID=$(networksetup -getairportnetwork "$WIFI_DEVICE" 2>/dev/null | sed -n 's/^Current Wi-Fi Network: //p')
 
 if [ -n "$SSID" ]; then
   if [ ${#SSID} -gt 20 ]; then
